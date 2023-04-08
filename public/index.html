@@ -1,13 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Idle RPG</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/phaser.min.js"></script>
     <script src="js/game.js"></script>
-  </head>
-  <body>
-    <h1>Hello, World!</h1>
-  </body>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1Z8SDgzgny7D2OA/zGd/1nt2Q1tLGdDP7hL6jl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Idle RPG Adventure</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Character</a></li>
+            <li><a href="#"><i class="fas fa-hammer"></i> Crafting</a></li>
+            <li><a href="#"><i class="fas fa-scroll"></i> Quests</a></li>
+            <li><a href="#"><i class="fas fa-book"></i> Lore</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Welcome to the Adventure</h2>
+            <p>Begin your journey in this enchanted world, filled with mysteries, magical creatures, and endless exploration.</p>
+        </section>
+    </main>
+    <aside>
+        <h3>Status Panel</h3>
+        <ul>
+            <li>Health: 100/100</li>
+            <li>Mana: 50/50</li>
+            <li>Experience: 0/100</li>
+            <li>Gold: 500</li>
+        </ul>
+    </aside>
+    <footer>
+        <p>&copy; 2023 Idle RPG Adventure. All rights reserved.</p>
+    </footer>
+</body>
 </html>
