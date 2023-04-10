@@ -1,4 +1,5 @@
 import { disableUserInterface, enableUserInterface, displayErrorMessage } from './utils.js';
+import io from './node_modules/socket.io-client/dist/socket.io.min.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -15,10 +16,12 @@ const game = new Phaser.Game(config);
 
 function preload() {
     // Load your game assets here
+    this.load.image('woodcutting_icon', 'public/assets/icons/skill-icons/icon_woodcutting_elvish.png');
 }
 
 function create() {
     // Initialize your game objects here
+    this.add.image(400, 300, 'woodcutting_icon');
 }
 
 function update() {
@@ -26,10 +29,6 @@ function update() {
 }
 
 const socket = io();
-
-socket.on('connect', () => {
-    console.log('Connected to server');
-});
 
 // Functions related to authentication
 function handleRegistrationModal() {
@@ -95,6 +94,7 @@ function handleLoginModal() {
 
             if (data.success) {
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('userID', data.user._id);
                 localStorage.setItem('username', data.user.username); // Save the username to localStorage
                 displaySuccessMessage('Login successful!');
                 document.getElementById('login-modal').style.display = 'none';
@@ -102,7 +102,7 @@ function handleLoginModal() {
                 // Redirect to home page after 2 seconds
                 setTimeout(() => {
                     window.location.href = '/';
-                }, 2000);
+                }, 1000);
             } else {
                 alert(`Error: ${data.msg}`);
             }
@@ -119,18 +119,7 @@ function logout() {
     // Redirect to home page after 2 seconds
     setTimeout(() => {
         window.location.href = '/';
-    }, 2000);
-}
-
-function updateAuthStatus() {
-    const authStatus = document.getElementById('auth-status');
-
-    if (localStorage.getItem('token')) {
-        authStatus.textContent = 'Logged in';
-    } else {
-        authStatus.textContent = 'Not logged in';
-    }
-    updateUsernameDisplay(); // Update the username display
+    }, 1000);
 }
 
 function updateUsernameDisplay() {
@@ -156,6 +145,50 @@ function displaySuccessMessage(message) {
     }, 3000);
 }
 
+function showCharacterCreationUI() {
+    // Hide the main game container or any other elements currently displayed
+    document.getElementById('gameContainer').style.display = 'none';
+
+    // Create an iframe to load the character creation page
+    const iframe = document.createElement('iframe');
+    iframe.src = 'character_creation.html';
+    iframe.id = 'characterCreationIframe';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+
+    // Add the iframe to the DOM
+    document.body.appendChild(iframe);
+}
+
+socket.on('connect', async () => {
+    console.log('Connected to server');
+    
+    updateUsernameDisplay();
+
+    try {
+        const userId = localStorage.getItem('userID'); // Get the actual user ID from localStorage
+
+        if (!userId) {
+            console.log('User not logged in');
+            return;
+        }
+
+        const response = await fetch(`/api/characters/${userId}`);
+        const data = await response.json();
+        const characters = data.characters;
+
+        if (characters.length === 0) {
+            // If the user has no characters, show the character creation UI
+            showCharacterCreationUI();
+        } else {
+            // If the user has existing characters, initialize the game
+            // Example: loadCharacter(characters[0]);
+        }
+    } catch (err) {
+        console.error('Error checking existing characters:', err);
+    }
+});
 
 // Run the functions after the DOM content has loaded
 window.addEventListener('DOMContentLoaded', () => {
@@ -167,6 +200,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const logoutButton = document.getElementById('logout');
     logoutButton.addEventListener('click', logout);
-
-    updateAuthStatus();
 });

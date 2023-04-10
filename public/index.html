@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Idle RPG</title>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket.io.min.js"></script>
     <script src="js/phaser.min.js"></script>
+    <script src="js/character_creation.js"></script>
+    <script src="js/utils.js"></script>
     <script type="module" src="js/game.js"></script>
     <script src="https://kit.fontawesome.com/c5d770fabf.js" crossorigin="anonymous"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,7 +29,6 @@
                 <li><a href="#" id="open-login-modal">Login</a></li>
                 <li><a href="#" id="logout">Logout</a></li>
                 <li><a>|</a></li>
-                <li><a id="auth-status">Not logged in</a></li>
                 <li><a id="username-display"></a></li>
             </ul>
         </nav>

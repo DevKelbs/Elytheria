@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
         const isMatch = await user.comparePassword(password);
 
         if (isMatch) {
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
             res.json({
                 success: true,
@@ -45,6 +45,7 @@ router.post('/login', async (req, res) => {
                 user: {
                     id: user._id,
                     email: user.email,
+                    username: user.username,
                 },
             });
         } else {

@@ -66,8 +66,47 @@ server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 // Connect to MongoDB
 const dbUrl = process.env.DATABASE_URL;
 mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
+
+const Character = require('./public/models/character');
+const User = require('./public/models/user');
+
+// Socket.io connection event
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  socket.on('createCharacter', async ({ userId, name, race }) => {
+    try {
+      const user = await User.findById(userId);
+      const newCharacter = new Character({ name, race, user: user._id });
+      await newCharacter.save();
+
+      user.characters.push(newCharacter);
+      await user.save();
+
+      // Emit an event to notify the client that the character has been created
+      socket.emit('characterCreated', { success: true, character: newCharacter });
+    } catch (err) {
+      console.log('Error creating character:', err);
+      socket.emit('characterCreated', { success: false, error: 'Error creating character' });
+    }
+  });
+
+
+  app.get('/api/characters/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+      const user = await User.findById(userId).populate('characters');
+      res.json({ success: true, characters: user.characters });
+    } catch (err) {
+      console.log('Error fetching characters:', err);
+      res.json({ success: false, error: 'Error fetching characters' });
+    }
+  });
+
+  // ... (All other socket event handling)
+});

@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
     validate: {
-      validator: function(email) {
+      validator: function (email) {
         const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailRegex.test(email);
       },
@@ -26,6 +26,12 @@ const UserSchema = new mongoose.Schema({
   gameData: {
     // Define game-related data fields here
   },
+  characters: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Character',
+    },
+  ],
 });
 
 UserSchema.pre('save', function (next) {
