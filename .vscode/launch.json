@@ -4,7 +4,7 @@
     {
       "name": "Attach to MyIdleRPG",
       "type": "firefox",
-      "request": "attach",
+      "request": "launch",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}"
     }
