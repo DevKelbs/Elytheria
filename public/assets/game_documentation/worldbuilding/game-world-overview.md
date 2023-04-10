@@ -1,0 +1,1 @@
+Elytheria: Chronicles of the Eternal is a high-fantasy, single-player idle game set in a vast, enchanting world where players embark on an epic journey, exploring and unraveling the mysteries of a once-thriving land now facing a growing darkness. Players choose from various races, each with its unique abilities and attributes, influencing the gameplay experience.

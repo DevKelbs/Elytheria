@@ -1,0 +1,1 @@
+Clean UI design like melvor idle, with art styles inspired by studio ghibli.
