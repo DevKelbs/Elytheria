@@ -2,25 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Server",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/server.js"
-    },
-    {
       "type": "firefox",
       "request": "launch",
       "reAttach": true,
-      "name": "Launch Firefox",
-      "url": "http://localhost:3000/index.html",
-      "webRoot": "${workspaceFolder}/public/"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Launch Server and Firefox",
-      "configurations": ["Launch Server", "Launch Firefox"]
+      "name": "Launch MyIdleRPG",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "start"
     }
   ]
 }
