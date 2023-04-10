@@ -104,7 +104,7 @@ io.on('connection', (socket) => {
       res.json({ success: true, characters: user.characters });
     } catch (err) {
       console.log('Error fetching characters:', err);
-      res.status(500).json({ success: false, error: 'Error fetching characters' });
+      res.json({ success: false, error: 'Error fetching characters' });
     }
   });
 
