@@ -1,135 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Idle RPG</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/socket.io.min.js"></script>
     <script src="js/phaser.min.js"></script>
     <script src="js/character_creation.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
     <script type="module" src="js/game.js"></script>
-    <script src="https://kit.fontawesome.com/c5d770fabf.js" crossorigin="anonymous"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <script
+      src="https://kit.fontawesome.com/c5d770fabf.js"
+      crossorigin="anonymous"
+    ></script>
 
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="#"><i class="fas fa-shopping-cart"></i> Shop</a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i> Stats</a></li>
-                <li><a href="#" id="open-registration-modal"><i class="fas fa-user-circle"></i> Register</a></li>
-                <li><a>|</a></li>
-                <li><a href="#" id="open-login-modal">Login</a></li>
-                <li><a href="#" id="logout">Logout</a></li>
-                <li><a>|</a></li>
-                <li><a id="username-display"></a></li>
-            </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+          </li>
+          <li>
+            <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
+          </li>
+          <li>
+            <a href="#"><i class="fas fa-chart-bar"></i> Stats</a>
+          </li>
+          <li>
+            <a href="#" id="open-registration-modal"
+              ><i class="fas fa-user-circle"></i> Register</a
+            >
+          </li>
+          <li><a>|</a></li>
+          <li><a href="#" id="open-login-modal">Login</a></li>
+          <li><a href="#" id="logout">Logout</a></li>
+          <li><a>|</a></li>
+          <li><a id="username-display"></a></li>
+        </ul>
+      </nav>
     </header>
     <main>
-        <section id="skills">
-            <ul>
-                <li>
-                    <div class="skill-icon">
-                        <img src="assets/icons/skill-icons/icon_woodcutting_elvish.png" alt="Mining">
-                    </div>
-                    <h3>Mining</h3>
-                </li>
-                <li>
-                    <div class="skill-icon">
-                        <img src="assets/icons/skill-icons/icon_woodcutting_elvish.png" alt="Woodcutting">
-                    </div>
-                    <h3>Woodcutting</h3>
-                </li>
-                <li>
-                    <div class="skill-icon">
-                        <img src="assets/icons/skill-icons/icon_woodcutting_elvish.png" alt="Fishing">
-                    </div>
-                    <h3>Fishing</h3>
-                </li>
-                <!-- Add more skills here -->
-            </ul>
-        </section>
+      <section id="skills">
+        <ul>
+          <li>
+            <div class="skill-icon">
+              <img
+                src="assets/icons/skill-icons/icon_woodcutting_elvish.png"
+                alt="Mining"
+              />
+            </div>
+            <h3>Mining</h3>
+          </li>
+          <li>
+            <div class="skill-icon">
+              <img
+                src="assets/icons/skill-icons/icon_woodcutting_elvish.png"
+                alt="Woodcutting"
+              />
+            </div>
+            <h3>Woodcutting</h3>
+          </li>
+          <li>
+            <div class="skill-icon">
+              <img
+                src="assets/icons/skill-icons/icon_woodcutting_elvish.png"
+                alt="Fishing"
+              />
+            </div>
+            <h3>Fishing</h3>
+          </li>
+          <!-- Add more skills here -->
+        </ul>
+      </section>
     </main>
     <div id="registration-modal" class="modal">
-        <div class="registration-modal-content">
-            <span class="registration-modal-close">&times;</span>
-            <form id="register-form">
-                <h2>Register</h2>
-                <label for="register-username">Username</label>
-                <input type="text" id="register-username" name="username" required />
-                <label for="register-email">Email</label>
-                <input type="email" id="register-email" name="email" required />
-                <label for="register-password">Password</label>
-                <input type="password" id="register-password" name="password" required />
-                <button type="submit">Register</button>
-            </form>
-        </div>
+      <div class="registration-modal-content">
+        <span class="registration-modal-close">&times;</span>
+        <form id="register-form">
+          <h2>Register</h2>
+          <label for="register-username">Username</label>
+          <input type="text" id="register-username" name="username" required />
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" name="email" required />
+          <label for="register-password">Password</label>
+          <input
+            type="password"
+            id="register-password"
+            name="password"
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
     <div id="login-modal" class="modal">
-        <div class="login-modal-content">
-            <span class="login-modal-close">&times;</span>
-            <form id="login-form">
-                <h2>Login</h2>
-                <label for="login-email">Email</label>
-                <input type="text" id="login-email" name="email" required />
-                <label for="login-password">Password</label>
-                <input type="password" id="login-password" name="password" required />
-                <button id="login-button" type="submit">Login</button>
-                <p id="error-message" style="display:none; color:red;"></p>
-            </form>
-        </div>
+      <div class="login-modal-content">
+        <span class="login-modal-close">&times;</span>
+        <form id="login-form">
+          <h2>Login</h2>
+          <label for="login-email">Email</label>
+          <input type="text" id="login-email" name="email" required />
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" required />
+          <button id="login-button" type="submit">Login</button>
+          <p id="error-message" style="display: none; color: red"></p>
+        </form>
+      </div>
     </div>
     <script>
-        // Get the modal elements
-        const registrationModal = document.getElementById('registration-modal');
-        const loginModal = document.getElementById('login-modal');
+      // Get the modal elements
+      const registrationModal = document.getElementById("registration-modal");
+      const loginModal = document.getElementById("login-modal");
 
-        // Get the buttons that open the modals
-        const openRegistrationModal = document.getElementById('open-registration-modal');
-        const openLoginModal = document.getElementById('open-login-modal');
+      // Get the buttons that open the modals
+      const openRegistrationModal = document.getElementById(
+        "open-registration-modal"
+      );
+      const openLoginModal = document.getElementById("open-login-modal");
 
-        // Get the <span> elements that close the modals
-        const closeRegistrationModal = document.getElementsByClassName('registration-modal-close')[0];
-        const closeLoginModal = document.getElementsByClassName('login-modal-close')[0];
+      // Get the <span> elements that close the modals
+      const closeRegistrationModal = document.getElementsByClassName(
+        "registration-modal-close"
+      )[0];
+      const closeLoginModal =
+        document.getElementsByClassName("login-modal-close")[0];
 
-        // When the user clicks the button, open the registration modal
-        openRegistrationModal.addEventListener("click", function () {
-            registrationModal.style.display = "block";
-        });
+      // When the user clicks the button, open the registration modal
+      openRegistrationModal.addEventListener("click", function () {
+        registrationModal.style.display = "block";
+      });
 
-        // When the user clicks the button, open the login modal
-        openLoginModal.addEventListener("click", function () {
-            loginModal.style.display = "block";
-        });
+      // When the user clicks the button, open the login modal
+      openLoginModal.addEventListener("click", function () {
+        loginModal.style.display = "block";
+      });
 
-        // When the user clicks the <span> element, close the registration modal
-        closeRegistrationModal.addEventListener("click", function () {
-            registrationModal.style.display = "none";
-        });
+      // When the user clicks the <span> element, close the registration modal
+      closeRegistrationModal.addEventListener("click", function () {
+        registrationModal.style.display = "none";
+      });
 
-        // When the user clicks the <span> element, close the login modal
-        closeLoginModal.addEventListener("click", function () {
-            loginModal.style.display = "none";
-        });
+      // When the user clicks the <span> element, close the login modal
+      closeLoginModal.addEventListener("click", function () {
+        loginModal.style.display = "none";
+      });
 
-        // When the user clicks anywhere outside of the modals, close them
-        window.addEventListener("click", function (event) {
-            if (event.target == registrationModal) {
-                registrationModal.style.display = "none";
-            }
-            if (event.target == loginModal) {
-                loginModal.style.display = "none";
-            }
-        });
+      // When the user clicks anywhere outside of the modals, close them
+      window.addEventListener("click", function (event) {
+        if (event.target == registrationModal) {
+          registrationModal.style.display = "none";
+        }
+        if (event.target == loginModal) {
+          loginModal.style.display = "none";
+        }
+      });
     </script>
-</body>
-
+  </body>
 </html>

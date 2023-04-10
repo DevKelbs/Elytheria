@@ -3,7 +3,8 @@ import {
     enableUserInterface,
     displayErrorMessage,
 } from "./utils.js";
-import io from "./node_modules/socket.io-client/dist/socket.io.min.js";
+
+import io from "socket.io-client";
 
 const config = {
     type: Phaser.AUTO,
@@ -39,35 +40,44 @@ const socket = io();
 
 // Functions related to authentication
 function handleRegistrationModal() {
-    const registerModal = document.getElementById("register-form");
+    const registerModal = document.getElementById('register-form');
 
-    registerModal.addEventListener("submit", async (e) => {
+    registerModal.addEventListener('submit', async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
 
-        const username = document.getElementById("register-username").value;
-        const email = document.getElementById("register-email").value;
-        const password = document.getElementById("register-password").value;
+        const username = document.getElementById('register-username').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
 
-        // Send a fetch request to register the user
-        const response = await fetch("/api/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username,
-                email,
-                password,
-            }),
-        });
+        try {
+            // Send a fetch request to register the user
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password,
+                }),
+            });
 
-        const data = await response.json();
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+            }
 
-        if (data.success) {
-            displaySuccessMessage("Registration successful!");
-            document.getElementById("registration-modal").style.display = "none";
-        } else {
-            alert(`Error: ${data.msg}`);
+            const data = await response.json();
+
+            if (data.success) {
+                displaySuccessMessage('Registration successful!');
+                document.getElementById('registration-modal').style.display = 'none';
+            } else {
+                alert(`Error: ${data.msg}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error.message);
         }
     });
 }
