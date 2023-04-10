@@ -2,18 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch MyIdleRPG",
+      "name": "Attach to MyIdleRPG",
       "type": "firefox",
-      "request": "launch",
-      "reAttach": true,
+      "request": "attach",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}",
-      "pathMappings": [
-        {
-          "url": "webpack:///",
-          "path": "${workspaceFolder}/"
-        }
-      ]
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
