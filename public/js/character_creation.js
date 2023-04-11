@@ -4,6 +4,7 @@ const characterRaceSelect = document.getElementById('characterRace');
 
 document.addEventListener("DOMContentLoaded", () => {
     const createCharacterButton = document.getElementById("createCharacter");
+
     createCharacterButton.addEventListener('click', () => {
         const characterName = characterNameInput.value;
         const characterRace = characterRaceSelect.value;

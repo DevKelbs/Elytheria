@@ -119,8 +119,14 @@ io.on('connection', (socket) => {
     try {
       const characters = await Character.find({ user: userId });
 
-      // Emit the characters data to the client
-      socket.emit("charactersData", characters);
+      if (characters.length === 0) {
+        // Redirect the user to the character creation page
+        socket.emit("redirect", "/character_creation.html");
+        return;
+      } else {
+        // Emit the characters data to the client
+        socket.emit("charactersData", characters);
+      }
     } catch (err) {
       console.log("Error fetching characters:", err);
       socket.emit("characterError", "Error fetching characters.");
