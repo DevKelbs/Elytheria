@@ -28,8 +28,10 @@ app.use(cors());
 // Passport middleware for handling authentication
 app.use(passport.initialize());
 
-// Serve static files from the public directory
+// Serve static files
 app.use(express.static('public'));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
 
 // Define the Content Security Policy middleware
 const contentSecurityPolicy = (req, res, next) => {
