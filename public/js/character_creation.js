@@ -1,5 +1,3 @@
-import io from './node_modules/socket.io-client/dist/socket.io.min.js';
-
 const socket = io();
 const createCharacterButton = document.getElementById('createCharacterButton');
 const characterNameInput = document.getElementById('characterName');

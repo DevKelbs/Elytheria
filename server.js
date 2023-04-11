@@ -30,7 +30,7 @@ app.use(passport.initialize());
 
 // Serve static files
 app.use(express.static('public'));
-app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/node_modules', express.static('node_modules'));
 
 
 // Define the Content Security Policy middleware

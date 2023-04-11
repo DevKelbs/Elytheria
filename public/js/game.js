@@ -3,7 +3,6 @@ import {
     enableUserInterface,
     displayErrorMessage,
 } from "./utils.js";
-import io from "./node_modules/socket.io-client/dist/socket.io.min.js";
 
 const config = {
     type: Phaser.AUTO,
