@@ -198,6 +198,10 @@ socket.on("connect", async () => {
     }
 });
 
+socket.on("charactersData", (characters) => {
+    console.log("Received characters data:", characters);
+});
+
 // Run the functions after the DOM content has loaded
 window.addEventListener("DOMContentLoaded", () => {
     handleRegistrationModal();

@@ -107,27 +107,23 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on("fetchAllCharacters", async () => {
-    const userId = socket.request.session.user_id;
+  socket.on("fetchAllCharacters", async (userId) => {
+    if (!userId) {
+      console.log("Error: userId is undefined");
+      socket.emit("characterError", "Error fetching characters: userId is undefined");
+      return;
+    }
+
     console.log("Fetching characters for user:", userId);
 
     try {
       const characters = await Character.find({ user: userId });
-      socket.emit("fetchAllCharacters", characters);
+
+      // Emit the characters data to the client
+      socket.emit("charactersData", characters);
     } catch (err) {
       console.log("Error fetching characters:", err);
       socket.emit("characterError", "Error fetching characters.");
-    }
-  });
-
-  app.get('/api/characters/:userId', async (req, res) => {
-    const userId = req.params.userId;
-    try {
-      const user = await User.findById(userId).populate('characters');
-      res.json({ success: true, characters: user.characters });
-    } catch (err) {
-      console.log('Error fetching characters:', err);
-      res.json({ success: false, error: 'Error fetching characters' });
     }
   });
 
