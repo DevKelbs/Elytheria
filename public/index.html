@@ -18,6 +18,11 @@
       src="https://kit.fontawesome.com/c5d770fabf.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap"
@@ -29,64 +34,71 @@
 
   <body>
     <header>
+      <h1>My Idle RPG</h1>
+      <div class="character-info">
+          <span class="character-name">Character Name</span>
+          <span class="character-level">Level 1</span>
+          <span class="character-exp">0 / 100 EXP</span>
+          <span class="character-currency">0 Gold</span>
+      </div>
       <nav>
-        <ul>
-          <li>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-chart-bar"></i> Stats</a>
-          </li>
-          <li>
-            <a href="#" id="open-registration-modal"
-              ><i class="fas fa-user-circle"></i> Register</a
-            >
-          </li>
-          <li><a>|</a></li>
-          <li><a href="#" id="open-login-modal">Login</a></li>
-          <li><a href="#" id="logout">Logout</a></li>
-          <li><a>|</a></li>
-          <li><a id="username-display"></a></li>
-        </ul>
+          <ul>
+              <li><a href="#skills" class="nav-skills"><i class="fas fa-tools"></i> Skills</a></li>
+              <li><a href="#activities" class="nav-activities"><i class="fas fa-chart-bar"></i> Activities</a></li>
+              <li><a href="#inventory" class="nav-inventory"><i class="fas fa-suitcase"></i> Inventory</a></li>
+              <li><a href="#quests" class="nav-quests"><i class="fas fa-scroll"></i> Quests</a></li>
+              <li><a href="#settings" class="nav-settings"><i class="fas fa-cog"></i> Settings</a></li>
+              <li><a href="#"><i class="fas fa-shopping-cart"></i> Shop</a></li>
+              <li><a href="#" id="open-registration-modal"><i class="fas fa-user-circle"></i> Register</a></li>
+              <li><a>|</a></li>
+              <li><a href="#" id="open-login-modal">Login</a></li>
+              <li><a href="#" id="logout">Logout</a></li>
+              <li><a>|</a></li>
+              <li><a id="username-display"></a></li>
+              <li><<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#characterCreationModal">
+                Create Character
+              </button></li>
+              
+          </ul>
       </nav>
-    </header>
-    <main>
-      <section id="skills">
-        <ul>
-          <li>
-            <div class="skill-icon">
-              <img
-                src="assets/icons/skill-icons/icon_woodcutting_elvish.png"
-                alt="Mining"
-              />
-            </div>
-            <h3>Mining</h3>
-          </li>
-          <li>
-            <div class="skill-icon">
-              <img
-                src="assets/icons/skill-icons/icon_woodcutting_elvish.png"
-                alt="Woodcutting"
-              />
-            </div>
-            <h3>Woodcutting</h3>
-          </li>
-          <li>
-            <div class="skill-icon">
-              <img
-                src="assets/icons/skill-icons/icon_woodcutting_elvish.png"
-                alt="Fishing"
-              />
-            </div>
-            <h3>Fishing</h3>
-          </li>
-          <!-- Add more skills here -->
-        </ul>
-      </section>
-    </main>
+  </header>
+  <main>
+    <section id="skills" class="tab-content">
+        <div id="skillsContainer">
+            <ul>
+                <!-- Add your skills content here -->
+            </ul>
+        </div>
+      </ul>
+        </div>
+    </section>
+    <section id="activities" class="tab-content">
+        <div id="activitiesContainer">
+            <ul>
+                <!-- Add your activities content here -->
+            </ul>
+        </div>
+    </section>
+    <section id="inventory" class="tab-content">
+        <div id="inventoryContainer">
+            <ul>
+                <!-- Add your inventory content here -->
+            </ul>
+        </div>
+    </section>
+    <section id="quests" class="tab-content">
+        <div id="questsContainer">
+            <ul>
+                <!-- Add your quests content here -->
+            </ul>
+        </div>
+    </section>
+    <section id="settings" class="tab-content">
+        <div id="settingsContainer">
+            <!-- Add your settings content here -->
+        </div>
+    </section>
+</main>
     <div id="registration-modal" class="modal">
       <div class="registration-modal-content">
         <span class="registration-modal-close">&times;</span>
@@ -121,6 +133,37 @@
         </form>
       </div>
     </div>
+    <div class="modal" id="characterCreationModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Character Creation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h1>Create Your Character</h1>
+            <label for="characterName">Character Name:</label>
+            <input type="text" id="characterName" name="characterName" required />
+            <br />
+            <label for="characterRace">Select Race:</label>
+            <select id="characterRace" name="characterRace">
+              <option value="elf">Elf</option>
+              <option value="gnome">Gnome</option>
+              <option value="shadowkin">Shadowkin</option>
+              <option value="dragonborn">Dragonborn</option>
+              <option value="arakkari">Arakkari</option>
+              <option value="merfolk">Merfolk</option>
+            </select>
+            <br />
+            <button id="createCharacter">Create Character</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Create Character</button>
+          </div>
+        </div>
+      </div>
+    </div>    
     <script>
       // Get the modal elements
       const registrationModal = document.getElementById("registration-modal");
@@ -169,5 +212,32 @@
         }
       });
     </script>
+        <script>
+          // New script to handle navigation
+          const navItems = document.querySelectorAll('nav ul li a');
+          const tabContents = document.querySelectorAll('.tab-content');
+  
+          navItems.forEach(navItem => {
+              navItem.addEventListener('click', event => {
+                  event.preventDefault();
+  
+                  navItems.forEach(item => item.classList.remove('active'));
+                  navItem.classList.add('active');
+  
+                  const target = navItem.getAttribute('href');
+                  tabContents.forEach(content => {
+                      if (content.id === target.substr(1)) {
+                          content.style.display = 'block';
+                      } else {
+                          content.style.display = 'none';
+                      }
+                  });
+              });
+          });
+  
+          // Set the first navigation item as active and its content visible
+          navItems[0].classList.add('active');
+          tabContents[0].style.display = 'block';
+      </script>
   </body>
 </html>

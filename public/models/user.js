@@ -50,13 +50,15 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-UserSchema.methods.comparePassword = async function (candidatePassword) {
+// In User model file
+userSchema.methods.comparePassword = async function (candidatePassword) {
   try {
-    const isMatch = await bcrypt.compare(candidatePassword, this.password);
-    return isMatch;
+    return await bcrypt.compare(candidatePassword, this.password);
   } catch (err) {
-    throw new Error(err);
+    console.error("Error comparing passwords:", err);
+    return false;
   }
 };
+
 
 module.exports = mongoose.model('User', UserSchema);
