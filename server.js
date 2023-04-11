@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const path = require('path');
 const http = require('http');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 // Initialize express app
 const app = express();
@@ -16,22 +18,6 @@ const server = http.createServer(app);
 
 // Initialize Socket.io
 const io = require('socket.io')(server);
-
-// Middleware setup
-// Body-parser middleware for parsing request bodies
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// CORS middleware to enable Cross-Origin Resource Sharing
-app.use(cors());
-
-// Passport middleware for handling authentication
-app.use(passport.initialize());
-
-// Serve static files
-app.use(express.static('public'));
-app.use('/node_modules', express.static('node_modules'));
-
 
 // Define the Content Security Policy middleware
 const contentSecurityPolicy = (req, res, next) => {
@@ -46,26 +32,26 @@ const contentSecurityPolicy = (req, res, next) => {
   next();
 };
 
-// Apply the Content Security Policy middleware
+// Middleware setup
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
+app.use(passport.initialize());
+app.use(express.static('public'));
+app.use('/node_modules', express.static('node_modules'));
+
 app.use(contentSecurityPolicy);
 
-// Routes
-// Serve the index.html file located in the public folder
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Import authRoutes
 const authRoutes = require('./public/routes/authRoutes');
-
-// Use authRoutes with /api/auth prefix
 app.use('/api/auth', authRoutes);
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-// Connect to MongoDB
 const dbUrl = process.env.DATABASE_URL;
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
@@ -74,10 +60,34 @@ mongoose.connect(dbUrl, {
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
 
+const sessionStore = MongoStore.create({
+  mongoUrl: dbUrl,
+  collectionName: 'sessions',
+});
+
+const sessionSecret = process.env.SESSION_SECRET
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+  }),
+);
+
+io.use((socket, next) => {
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+  })(socket.request, {}, next);
+});
+
 const Character = require('./public/models/character');
 const User = require('./public/models/user');
 
-// Socket.io connection event
 io.on('connection', (socket) => {
   console.log('A user connected');
 
@@ -90,7 +100,6 @@ io.on('connection', (socket) => {
       user.characters.push(newCharacter);
       await user.save();
 
-      // Emit an event to notify the client that the character has been created
       socket.emit('characterCreated', { success: true, character: newCharacter });
     } catch (err) {
       console.log('Error creating character:', err);
@@ -98,6 +107,18 @@ io.on('connection', (socket) => {
     }
   });
 
+  socket.on("fetchAllCharacters", async () => {
+    const userId = socket.request.session.user_id;
+    console.log("Fetching characters for user:", userId);
+
+    try {
+      const characters = await Character.find({ user: userId });
+      socket.emit("fetchAllCharacters", characters);
+    } catch (err) {
+      console.log("Error fetching characters:", err);
+      socket.emit("characterError", "Error fetching characters.");
+    }
+  });
 
   app.get('/api/characters/:userId', async (req, res) => {
     const userId = req.params.userId;
