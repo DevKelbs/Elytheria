@@ -8,6 +8,7 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
     scene: {
         preload: preload,
         create: create,
@@ -63,7 +64,15 @@ function handleRegistrationModal() {
         const data = await response.json();
 
         if (data.success) {
+            console.log("Registered user:", document.getElementById("register-email").value);
             displaySuccessMessage("Registration successful!");
+
+            // Reset the form
+            document.getElementById("register-username").value = "";
+            document.getElementById("register-email").value = "";
+            document.getElementById("register-password").value = "";
+
+            // Hide the modal
             document.getElementById("registration-modal").style.display = "none";
         } else {
             alert(`Error: ${data.msg}`);
@@ -102,7 +111,7 @@ function handleLoginModal() {
 
             if (data.success) {
                 localStorage.setItem("token", data.token);
-                localStorage.setItem("userID", data.user._id);
+                localStorage.setItem("userId", data.user._id);
                 localStorage.setItem("username", data.user.username); // Save the username to localStorage
                 displaySuccessMessage("Login successful!");
                 document.getElementById("login-modal").style.display = "none";
@@ -175,7 +184,7 @@ socket.on("connect", async () => {
     updateUsernameDisplay();
 
     try {
-        const userId = localStorage.getItem("userID"); // Get the actual user ID from localStorage
+        const userId = localStorage.getItem("userId"); // Get the actual user ID from localStorage
 
         if (!userId) {
             console.log("User not logged in");

@@ -42,6 +42,8 @@ app.use('/node_modules', express.static('node_modules'));
 
 app.use(contentSecurityPolicy);
 
+require('./public/config/passport')(passport);
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

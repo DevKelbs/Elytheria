@@ -26,13 +26,29 @@ router.post("/register", async (req, res) => {
             password: hashedPassword,
         });
 
+        console.log('New user password hash:', newUser.password);
+
         await newUser.save();
-        res.json({ success: true, msg: "User registered" });
+
+        // Sign a token for the registered user
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.json({
+            success: true,
+            msg: "User registered",
+            token: `Bearer ${token}`,
+            user: {
+                id: newUser._id,
+                email: newUser.email,
+                username: newUser.username,
+            },
+        });
+
     } catch (err) {
         console.error(err);
         res.status(400).json({ success: false, msg: "Failed to register user" });
     }
-});
+}); // <-- Add the missing closing bracket here
 
 // Login route
 router.post('/login', async (req, res) => {
@@ -44,6 +60,8 @@ router.post('/login', async (req, res) => {
         if (!user) {
             return res.status(404).json({ success: false, msg: 'User not found' });
         }
+
+        console.log('Candidate password:', password);
 
         const isMatch = await user.comparePassword(password);
 

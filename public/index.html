@@ -19,10 +19,9 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap"
@@ -33,44 +32,42 @@
   </head>
 
   <body>
-    <header>
-      <h1>My Idle RPG</h1>
-      <div class="character-info">
-          <span class="character-name">Character Name</span>
-          <span class="character-level">Level 1</span>
-          <span class="character-exp">0 / 100 EXP</span>
-          <span class="character-currency">0 Gold</span>
-      </div>
+    <aside class="sidebar">
       <nav>
           <ul>
-              <li><a href="#skills" class="nav-skills"><i class="fas fa-tools"></i> Skills</a></li>
+            <h1>My Idle RPG</h1>
+              <li><a href="#skills" class="nav-skills active"><i class="fas fa-tools"></i> Skills</a></li>
               <li><a href="#activities" class="nav-activities"><i class="fas fa-chart-bar"></i> Activities</a></li>
               <li><a href="#inventory" class="nav-inventory"><i class="fas fa-suitcase"></i> Inventory</a></li>
               <li><a href="#quests" class="nav-quests"><i class="fas fa-scroll"></i> Quests</a></li>
               <li><a href="#settings" class="nav-settings"><i class="fas fa-cog"></i> Settings</a></li>
               <li><a href="#"><i class="fas fa-shopping-cart"></i> Shop</a></li>
               <li><a href="#" id="open-registration-modal"><i class="fas fa-user-circle"></i> Register</a></li>
-              <li><a>|</a></li>
               <li><a href="#" id="open-login-modal">Login</a></li>
               <li><a href="#" id="logout">Logout</a></li>
-              <li><a>|</a></li>
-              <li><a id="username-display"></a></li>
-              <li><<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#characterCreationModal">
-                Create Character
-              </button></li>
-              
-          </ul>
-      </nav>
-  </header>
+      <li><a id="username-display"></a></li>
+      <li><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#characterCreationModal">
+        Create Character
+      </button></li>
+    </ul>
+  </nav>
+</aside>
+    <header>
+      <div class="character-info">
+          <span class="character-name">Character Name</span>
+          <span class="character-level">Level 1</span>
+          <span class="character-exp">0 / 100 EXP</span>
+          <span class="character-currency">0 Gold</span>
+      </div>
+        </header>
   <main>
     <section id="skills" class="tab-content">
-        <div id="skillsContainer">
-            <ul>
-                <!-- Add your skills content here -->
-            </ul>
-        </div>
-      </ul>
-        </div>
+      <div id="skillsContainer">
+        <ul>
+          <!-- Add your skills content here -->
+        </ul>
+      </div>
+    </section>
     </section>
     <section id="activities" class="tab-content">
         <div id="activitiesContainer">
@@ -99,10 +96,10 @@
         </div>
     </section>
 </main>
-    <div id="registration-modal" class="modal">
-      <div class="registration-modal-content">
-        <span class="registration-modal-close">&times;</span>
-        <form id="register-form">
+<div id="registration-modal" class="modal">
+  <form class="registration-modal-content">
+    <span class="close-button registration-modal-close">&times;</span>
+        <div id="register-form">
           <h2>Register</h2>
           <label for="register-username">Username</label>
           <input type="text" id="register-username" name="username" required />
@@ -116,13 +113,13 @@
             required
           />
           <button type="submit">Register</button>
-        </form>
+        </div>
       </div>
     </div>
     <div id="login-modal" class="modal">
       <div class="login-modal-content">
-        <span class="login-modal-close">&times;</span>
-        <form id="login-form">
+        <span class="close-button login-modal-close">&times;</span>
+        <div id="login-form">
           <h2>Login</h2>
           <label for="login-email">Email</label>
           <input type="text" id="login-email" name="email" required />
@@ -130,7 +127,7 @@
           <input type="password" id="login-password" name="password" required />
           <button id="login-button" type="submit">Login</button>
           <p id="error-message" style="display: none; color: red"></p>
-        </form>
+        </div>
       </div>
     </div>
     <div class="modal" id="characterCreationModal">

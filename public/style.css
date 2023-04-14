@@ -1,22 +1,22 @@
 body {
   margin: 0;
   font-family: "Cinzel", serif;
-  color: #f5f5f0;
-  background-color: #2d2d2d;
+  color: #ebe6dc;
+  background-color: #22303c;
 }
 
 header {
-  background-color: #333333;
+  background-color: #2c3e4f;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  border-bottom: 3px solid #3d5565;
+  margin-left: 250px;
 }
 
 .character-info {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
 }
 
 .character-info span {
@@ -36,11 +36,13 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #f5f5f0;
+  color: #ebe6dc;
 }
 
-nav ul li a.active {
+nav ul li a.active,
+nav ul li a:hover {
   font-weight: bold;
+  color: #d4af37; /* Gold color accent */
 }
 
 main {
@@ -48,6 +50,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 250px;
 }
 
 .tab-content ul {
@@ -65,14 +68,16 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #3d3d3d;
-  border-radius: 5px;
+  background-color: #324755;
+  border-radius: 10px;
   padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tab-content ul li h3 {
   font-size: 1.5rem;
   margin-top: 0.5rem;
+  color: #d4af37; /* Gold color accent */
 }
 
 .skill-icon img {
@@ -137,35 +142,56 @@ main {
   background-color: #555;
 }
 
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .success-message {
   position: fixed;
   top: 20px;
   right: 20px;
   background-color: #4caf50;
-  color: #f5f5f0;
+  color: #ebe6dc;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  display: none;
   z-index: 2;
 }
 
 .fade-in {
   animation: fadeIn 1s ease-out;
+}
+
+/* New CSS rules */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: #2c3e4f;
+  width: 250px; /* Change this to your desired width */
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  border-right: 3px solid #3d5565;
+}
+
+.sidebar nav ul {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 0.5rem;
+  margin-right: 0;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper {
+    margin-left: 250px; /* This should match the width of the sidebar */
+  }
 }
 
 @keyframes fadeIn {

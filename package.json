@@ -30,6 +30,7 @@
     "mongodb": "^5.2.0",
     "mongoose": "^7.0.3",
     "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "phaser": "^3.55.2",
     "socket.io": "^4.6.1",

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         socket.emit('createCharacter', {
-            userId: localStorage.getItem('userID'),
+            userId: localStorage.getItem('userId'),
             name: characterName,
             race: characterRace,
         });

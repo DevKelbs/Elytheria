@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CharacterSchema = new Schema({
+const characterSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'user',
@@ -18,4 +18,4 @@ const CharacterSchema = new Schema({
     // Add any other character attributes as needed
 });
 
-module.exports = mongoose.model('characters', CharacterSchema);
+module.exports = mongoose.model('characters', characterSchema);
