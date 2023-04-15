@@ -36,6 +36,7 @@ function preload() {
 }
 
 function create() {
+    this.levelText = this.add.text(10, 10, `Level: ${player.level}`, { font: '16px Arial', fill: '#ffffff' });
     this.levelUpButton = this.add.text(10, 50, 'Level Up', { font: '16px Arial', fill: '#ffffff' });
     this.levelUpButton.setInteractive();
     this.levelUpButton.on('pointerdown', () => {
@@ -214,7 +215,8 @@ function updateUsernameDisplay() {
     if (username) {
         usernameDisplay.textContent = `${username}`
         usernameDisplay.style.color = "#d4af37";
-        usernameDisplay.style.fontSize = "20px";
+        usernameDisplay.style.fontSize = "2rem";
+        usernameDisplay.style.fontWeight = "bold";
     } else {
         usernameDisplay.textContent = "";
     }
