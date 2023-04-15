@@ -60,5 +60,14 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
+// Add the getUserByUsername function as a static method
+userSchema.statics.getUserByUsername = async function (username) {
+  try {
+    const user = await this.findOne({ username: username });
+    return user;
+  } catch (err) {
+    throw err;
+  }
+};
 
 module.exports = mongoose.model('User', userSchema);

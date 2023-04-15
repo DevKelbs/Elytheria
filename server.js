@@ -36,9 +36,47 @@ const contentSecurityPolicy = (req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use(passport.initialize());
 app.use(express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
+
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.DATABASE_URL,
+  collectionName: 'sessions',
+});
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+  }),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({
+    success: false,
+    msg: 'Internal Server Error',
+    error: err.message
+  });
+});
 
 app.use(contentSecurityPolicy);
 
@@ -54,29 +92,12 @@ app.use('/api/auth', authRoutes);
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-const dbUrl = process.env.DATABASE_URL;
-mongoose.connect(dbUrl, {
+mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
-
-const sessionStore = MongoStore.create({
-  mongoUrl: dbUrl,
-  collectionName: 'sessions',
-});
-
-const sessionSecret = process.env.SESSION_SECRET
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
-  }),
-);
 
 io.use((socket, next) => {
   session({

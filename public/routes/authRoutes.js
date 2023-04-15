@@ -5,85 +5,81 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
 const bcrypt = require("bcrypt");
 
-// Register route
-router.post("/register", async (req, res) => {
-    try {
-        const { username, email, password } = req.body;
+// register route
+router.post('/register', async (req, res) => {
+    const { email, username, password } = req.body;
 
-        // Check if the email already exists
-        const existingUser = await User.findOne({ email });
+    // Check if all the required fields are provided
+    if (!email || !username || !password) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    try {
+        // Check if a user with the given username already exists
+        const existingUser = await User.findOne({ username });
         if (existingUser) {
-            return res.status(400).json({ success: false, msg: "Email already exists" });
+            return res.status(400).json({ message: 'Username is already taken' });
         }
 
-        // Hash the password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        const newUser = new User({
-            username,
-            email,
-            password: hashedPassword,
-        });
-
-        console.log('New user password hash:', newUser.password);
-
+        // Create a new user and save it to the database
+        const newUser = new User({ email, username, password });
         await newUser.save();
 
-        // Sign a token for the registered user
-        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-        res.json({
-            success: true,
-            msg: "User registered",
-            token: `Bearer ${token}`,
-            user: {
-                id: newUser._id,
-                email: newUser.email,
-                username: newUser.username,
-            },
+        // Log the user in after successful registration
+        req.login(newUser, (err) => {
+            if (err) {
+                console.error('Login failed after registration:', err);
+                return res.status(500).json({ success: false, message: 'Login failed after registration' });
+            }
+            return res.status(200).json({ success: true, message: 'Registration and login successful' });
         });
 
+
     } catch (err) {
-        console.error(err);
-        res.status(400).json({ success: false, msg: "Failed to register user" });
+        console.error('Error registering user:', err);
+        res.status(500).json({ message: 'Error registering user' });
     }
-}); // <-- Add the missing closing bracket here
+});
 
-// Login route
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
 
+// authenticate route
+router.post('/authenticate', async (req, res) => {
     try {
-        const user = await User.findOne({ email });
+        const username = req.body.username;
+        const password = req.body.password;
 
+        const user = await User.getUserByUsername(username);
         if (!user) {
-            return res.status(404).json({ success: false, msg: 'User not found' });
+            return res.json({ success: false, msg: 'User not found' });
         }
 
-        console.log('Candidate password:', password);
-
         const isMatch = await user.comparePassword(password);
-
         if (isMatch) {
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
+                expiresIn: 604800 // 1 week
+            });
 
             res.json({
                 success: true,
-                token: `Bearer ${token}`,
+                token: 'JWT ' + token,
                 user: {
                     id: user._id,
-                    email: user.email,
                     username: user.username,
-                },
+                    email: user.email,
+                }
             });
         } else {
-            return res.status(401).json({ success: false, msg: 'Wrong password' });
+            return res.json({ success: false, msg: 'Wrong password' });
         }
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ success: false, msg: 'Server Error' });
+        console.log(err);
+        res.status(500).json({ success: false, msg: 'An error occurred' });
     }
+});
+
+// profile route
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.json({ user: req.user });
 });
 
 module.exports = router;

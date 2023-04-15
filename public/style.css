@@ -14,6 +14,10 @@ header {
   margin-left: 250px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .character-info {
   display: inline-block;
   flex-direction: column;
@@ -110,6 +114,7 @@ main {
   max-width: 300px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   border: 1px solid #444;
+  border-radius: 10px;
 }
 
 .modal input,
@@ -136,10 +141,37 @@ main {
   background-color: #444;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 5px;
 }
 
 .modal button:hover {
-  background-color: #555;
+  background-color: #3d5565;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #222;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid #444;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #fff;
 }
 
 .success-message {

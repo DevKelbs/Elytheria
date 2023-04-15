@@ -20,82 +20,67 @@ const game = new Phaser.Game(config);
 
 function preload() {
     // Load your game assets here
-    this.load.image(
-        "woodcutting_icon",
-        "public/assets/icons/skill-icons/icon_woodcutting_elvish.png"
-    );
 }
 
 function create() {
     // Initialize your game objects here
-    this.add.image(400, 300, "woodcutting_icon");
 }
 
 function update() {
     // Update your game logic here
 }
 
+function updateAuthButtons(isAuthenticated) {
+    const loginButton = document.getElementById("open-authenticate-modal");
+    const logoutButton = document.getElementById("logout");
+    const createCharacter = document.getElementById("create-character");
+
+    if (isAuthenticated) {
+        loginButton.classList.add("hidden");
+        logoutButton.classList.remove("hidden");
+        createCharacter.classList.remove("hidden");
+    } else {
+        loginButton.classList.remove("hidden");
+        logoutButton.classList.add("hidden");
+        createCharacter.classList.add("hidden");
+    }
+}
+
+function checkLoginStatus() {
+    const token = localStorage.getItem("token");
+    const isAuthenticated = !!token;
+    updateAuthButtons(isAuthenticated);
+}
+
 const socket = io();
 
 // Functions related to authentication
 function handleRegistrationModal() {
-    const registerModal = document.getElementById("register-form");
+    const registrationModal = document.getElementById("registration-form");
 
-    registerModal.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
-
-        const username = document.getElementById("register-username").value;
-        const email = document.getElementById("register-email").value;
-        const password = document.getElementById("register-password").value;
-
-        // Send a fetch request to register the user
-        const response = await fetch("/api/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username,
-                email,
-                password,
-            }),
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            console.log("Registered user:", document.getElementById("register-email").value);
-            displaySuccessMessage("Registration successful!");
-
-            // Reset the form
-            document.getElementById("register-username").value = "";
-            document.getElementById("register-email").value = "";
-            document.getElementById("register-password").value = "";
-
-            // Hide the modal
-            document.getElementById("registration-modal").style.display = "none";
-        } else {
-            alert(`Error: ${data.msg}`);
-        }
-    });
-}
-
-function handleLoginModal() {
-    const loginModal = document.getElementById("login-form");
-
-    loginModal.addEventListener("submit", async (e) => {
+    registrationModal.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById("login-email").value;
-        const password = document.getElementById("login-password").value;
+        const username = document.getElementById("registration-username").value;
+        const email = document.getElementById("registration-email").value;
+        const password = document.getElementById("registration-password").value;
+        const passwordConfirm = document.getElementById(
+            "registration-password-confirm"
+        ).value;
+
+        if (password !== passwordConfirm) {
+            alert("Passwords do not match!");
+            return;
+        }
 
         try {
-            const response = await fetch("/api/auth/login", {
+            const response = await fetch("/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                    username,
                     email,
                     password,
                 }),
@@ -110,15 +95,60 @@ function handleLoginModal() {
             const data = await response.json();
 
             if (data.success) {
+                displaySuccessMessage("Registration successful!");
+                document.getElementById("registration-modal").style.display =
+                    "none";
+                updateUsernameDisplay();
+            } else {
+                alert(`Error: ${data.msg}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert(error.message);
+        }
+    });
+}
+
+function handleAuthenticateModal() {
+    const authenticateModal = document.getElementById("authenticate-form");
+
+    authenticateModal.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("authenticate-username").value;
+        const password = document.getElementById("authenticate-password").value;
+
+        try {
+            const response = await fetch("/api/auth/authenticate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(
+                    `HTTP error ${response.status}: ${response.statusText}`
+                );
+            }
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Save the token and username to localStorage
                 localStorage.setItem("token", data.token);
-                localStorage.setItem("userId", data.user._id);
-                localStorage.setItem("username", data.user.username); // Save the username to localStorage
+                localStorage.setItem("username", data.user.username);
+                localStorage.setItem("userId", data.user.id);
                 displaySuccessMessage("Login successful!");
-                document.getElementById("login-modal").style.display = "none";
-                // You can also add any action to perform after a successful login
-                // Redirect to home page after 2 seconds
+                document.getElementById("authenticate-modal").style.display =
+                    "none";
                 setTimeout(() => {
                     window.location.href = "/";
+                    updateUsernameDisplay();
                 }, 1000);
             } else {
                 alert(`Error: ${data.msg}`);
@@ -132,7 +162,9 @@ function handleLoginModal() {
 
 function logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("username"); // Remove the username from localStorage
+    localStorage.removeItem("username");// Remove the username from localStorage
+    localStorage.removeItem("userId"); // Remove the user ID from localStorage
+
     // Redirect to home page after 2 seconds
     setTimeout(() => {
         window.location.href = "/";
@@ -146,7 +178,7 @@ function updateUsernameDisplay() {
     if (username) {
         usernameDisplay.textContent = `Logged in as: ${username}`;
     } else {
-        usernameDisplay.textContent = "Not logged in";
+        usernameDisplay.textContent = "";
     }
 }
 
@@ -214,10 +246,11 @@ socket.on("charactersData", (characters) => {
 // Run the functions after the DOM content has loaded
 window.addEventListener("DOMContentLoaded", () => {
     handleRegistrationModal();
-    handleLoginModal();
+    handleAuthenticateModal();
+    checkLoginStatus(); // Add this line to check the login status when the page loads
 
-    const loginButton = document.getElementById("open-login-modal");
-    loginButton.addEventListener("click", handleLoginModal);
+    const loginButton = document.getElementById("open-authenticate-modal");
+    loginButton.addEventListener("click", handleAuthenticateModal);
 
     const logoutButton = document.getElementById("logout");
     logoutButton.addEventListener("click", logout);
