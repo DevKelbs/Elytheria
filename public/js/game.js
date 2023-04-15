@@ -214,9 +214,6 @@ function updateUsernameDisplay() {
 
     if (username) {
         usernameDisplay.textContent = `${username}`
-        usernameDisplay.style.color = "#d4af37";
-        usernameDisplay.style.fontSize = "2rem";
-        usernameDisplay.style.fontWeight = "bold";
     } else {
         usernameDisplay.textContent = "";
     }
