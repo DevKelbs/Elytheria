@@ -66,20 +66,24 @@
           <li>
             <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
           </li>
-          <li>
+          <li class="hidden" id="register-link">
             <a href="#" id="open-registration-modal"
               ><i class="fas fa-user-circle"></i> Register</a
             >
           </li>
-          <li><a href="#" id="open-authenticate-modal">Login</a></li>
-          <li><a href="#" id="logout" class="hidden">Logout</a></li>
-          <li><a id="username-display"></a></li>
-          <li>
+          <li class="hidden" id="login-link">
+            <a href="#" id="open-authenticate-modal"
+              ><i class="fas fa-sign-in"></i> Login</a
+            >
+          </li>
+          <li class="hidden" id="logout-link">
+            <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
+          </li>
+          <li class="hidden" id="create-character-link">
             <button
               id="create-character"
               type="button"
               class="btn btn-primary"
-              class="hidden"
               data-bs-toggle="modal"
               data-bs-target="#characterCreationModal"
             >
@@ -91,17 +95,21 @@
     </aside>
     <header>
       <div class="character-info">
-        <span class="character-name">Character Name</span>
-        <span class="character-level">Level 1</span>
-        <span class="character-health">100 / 100 HP</span>
-        <span class="character-mana">100 / 100 MP</span>
-        <span class="character-stamina">100 / 100 SP</span>
-        <span class="character-exp">0 / 100 EXP</span>
-        <span class="character-currency">0 Gold</span>
-        <span class="character-exp">0 / 100 EXP</span>
-        <span class="character-currency">0 Gold</span>
+        <div class="character-info-col1">
+          <span id="username-display" class="character-name"></span>
+          <span class="character-level">Level 1</span>
+          <span class="character-health">100 / 100 HP</span>
+          <span class="character-mana">100 / 100 MP</span>
+          <span class="character-stamina">100 / 100 SP</span>
+        </div>
+        <div class="character-info-col2">
+          <span class="character-exp">0 / 100 EXP</span>
+          <span class="character-currency">0 Gold</span>
+          <span class="character-exp">0 / 100 EXP</span>
+        </div>
       </div>
     </header>
+
     <main>
       <section id="skills" class="tab-content">
         <div id="skillsContainer">
