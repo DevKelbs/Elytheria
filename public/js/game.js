@@ -8,26 +8,59 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
     scene: {
         preload: preload,
         create: create,
-        update: update,
+        update: update
+    }
+};
+
+const player = {
+    level: 1,
+    experience: 0,
+    nextLevelExp: 100,
+    experienceRate: 10,
+    levelUp: function () {
+        this.level++;
+        this.experience -= this.nextLevelExp;
+        this.nextLevelExp *= 1.25;
     },
 };
 
 const game = new Phaser.Game(config);
 
 function preload() {
-    // Load your game assets here
+    this.load.image('background', 'assets/images/backgrounds/ground_tile_2.png');
+    this.load.image('player', 'assets/characters/hero.png');
+    this.load.image('enemy', 'assets/characters/monster.png');
 }
 
 function create() {
-    // Initialize your game objects here
+    this.levelUpButton = this.add.text(10, 50, 'Level Up', { font: '16px Arial', fill: '#ffffff' });
+    this.levelUpButton.setInteractive();
+    this.levelUpButton.on('pointerdown', () => {
+        player.level++;
+        this.levelText.setText(`Level: ${player.level}`);
+    });
+
+    // Create a save button using text
+    this.saveButton = this.add.text(10, 100, 'Save', { font: '16px Arial', fill: '#ffffff' });
+
+    // Make the text interactive
+    this.saveButton.setInteractive();
+
+    // Attach the saveGame function to the 'pointerdown' event
+    this.saveButton.on('pointerdown', () => {
+        saveGame();
+    });
 }
 
-function update() {
-    // Update your game logic here
+function update(time, delta) {
+    player.experience += player.experienceRate * delta / 1000;
+    if (player.experience >= player.nextLevelExp) {
+        player.levelUp();
+        this.levelText.setText(`Level: ${player.level}`);
+    }
 }
 
 function updateAuthButtons(isAuthenticated) {
@@ -179,7 +212,9 @@ function updateUsernameDisplay() {
     const username = localStorage.getItem("username");
 
     if (username) {
-        usernameDisplay.textContent = `Logged in as: ${username}`;
+        usernameDisplay.textContent = `${username}`
+        usernameDisplay.style.color = "#d4af37";
+        usernameDisplay.style.fontSize = "20px";
     } else {
         usernameDisplay.textContent = "";
     }

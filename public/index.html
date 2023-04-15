@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elytheria Idle</title>
-    <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
     <script
       src="https://cdn.socket.io/4.1.2/socket.io.min.js"
       integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
       crossorigin="anonymous"
     ></script>
-    <script src="js/phaser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.50.0/phaser.min.js"></script>
     <script src="js/utils.js" type="module"></script>
     <script src="js/character_creation.js" type="module"></script>
     <script type="module" src="js/game.js"></script>
@@ -39,7 +38,12 @@
         <ul>
           <h1>Elytheria Idle</h1>
           <li>
-            <a href="#skills" class="nav-skills active"
+            <a href="#cove" class="nav-cove active"
+              ><i class="fas fa-house"></i> The Cove</a
+            >
+          </li>
+          <li>
+            <a href="#skills" class="nav-skills"
               ><i class="fas fa-tools"></i> Skills</a
             >
           </li>
@@ -83,7 +87,7 @@
             <button
               id="create-character"
               type="button"
-              class="btn btn-primary"
+              class="btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#characterCreationModal"
             >
@@ -109,8 +113,14 @@
         </div>
       </div>
     </header>
-
     <main>
+      <section id="cove" class="tab-content">
+        <div id="coveContainer">
+          <ul>
+            <!-- Add your Cove content here -->
+          </ul>
+        </div>
+      </section>
       <section id="skills" class="tab-content">
         <div id="skillsContainer">
           <ul>
@@ -238,17 +248,8 @@
             </select>
             <br />
             <button id="createCharacter">Create Character</button>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
+            <button type="button" class="btn-secondary" data-bs-dismiss="modal">
               Cancel
-            </button>
-            <button type="button" class="btn btn-primary">
-              Create Character
             </button>
           </div>
         </div>
