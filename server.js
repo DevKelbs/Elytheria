@@ -11,6 +11,7 @@ const http = require('http');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./public/database.js'); // Path to your database.js file
+const jwt = require('jsonwebtoken');
 
 // Initialize express app
 const app = express();
@@ -79,15 +80,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send({
-    success: false,
-    msg: 'Internal Server Error',
-    error: err.message
-  });
-});
-
 app.use(contentSecurityPolicy);
 
 require('./public/config/passport')(passport);
@@ -99,10 +91,27 @@ app.get('/', (req, res) => {
 const authRoutes = require('./public/routes/authRoutes');
 const characterRoutes = require('./public/routes/characterRoutes');
 app.use('/api/auth', authRoutes);
-app.use('/api/characters', characterRoutes);
+app.use('/api/characters', authenticateToken ,characterRoutes);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+//JWT Authentication Verification process
+function authenticateToken(req, res, next){
+  console.log('authentiactionToken called');
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.replace('JWT ', '');
+  console.log(token);
+  if (token == null) return res.sendStatus(401);
+  
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    //console.log('verify',token);
+    if (err) return res.sendStatus(403);
+    req.user = user
+    console.log(user);
+    next()
+  })
+}
 
 // Sync the models with the database
 sequelize.sync({ force: false }) // Set force to true if you want to recreate tables on every startup

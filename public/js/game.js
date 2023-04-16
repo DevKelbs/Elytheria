@@ -184,9 +184,9 @@ function displaySuccessMessage(message) {
 }
 
 async function handleCharacterCreation() {
-    const characterName = "Test"; // Replace this with the actual value from an input field
-    const characterClass = "elf"; // Replace this with the actual value from a dropdown/select field
-    const characterColor = "#000000"; // Replace this with the actual value from a color input field
+    //const characterName = "Test"; // Replace this with the actual value from an input field
+    //const characterClass = "elf"; // Replace this with the actual value from a dropdown/select field
+    //const characterColor = "#000000"; // Replace this with the actual value from a color input field
 
     try {
         const response = await fetch('/api/characters/create', {
