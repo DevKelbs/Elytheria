@@ -5,12 +5,12 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // MongoDB ODM for Node.js (Object Document Mapper) 
 const passport = require('passport');
 const path = require('path');
 const http = require('http');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo'); // MongoDB session store for Express/Connect apps
 
 // Initialize express app
 const app = express();
