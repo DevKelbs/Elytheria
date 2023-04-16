@@ -41,6 +41,8 @@ header {
   border-bottom: 3px solid var(--color-bg-active-gold);
   border-left: 3px solid var(--color-bg-active-gold);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .hidden {
@@ -83,6 +85,7 @@ header {
 .character-info {
   display: flex;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .character-info-col1,
@@ -106,7 +109,6 @@ header {
   font-size: 2rem;
   font-weight: bold;
   color: var(--color-bg-active-gold);
-  text-shadow: 0 0 3px rgba(0, 0, 0, 1);
 }
 
 nav {

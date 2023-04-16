@@ -4,18 +4,6 @@ import {
     displayErrorMessage,
 } from "./utils.js";
 
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    parent: "gameCanvas", // Add the canvas element ID here
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
-
 const player = {
     level: 1,
     experience: 0,
@@ -27,43 +15,6 @@ const player = {
         this.nextLevelExp *= 1.25;
     },
 };
-
-const game = new Phaser.Game(config);
-
-function preload() {
-    this.load.image('background', 'assets/images/backgrounds/ground_tile_2.png');
-    this.load.image('player', 'assets/characters/hero.png');
-    this.load.image('enemy', 'assets/characters/monster.png');
-}
-
-function create() {
-    this.levelText = this.add.text(10, 10, `Level: ${player.level}`, { font: '16px Arial', fill: '#ffffff' });
-    this.levelUpButton = this.add.text(10, 50, 'Level Up', { font: '16px Arial', fill: '#ffffff' });
-    this.levelUpButton.setInteractive();
-    this.levelUpButton.on('pointerdown', () => {
-        player.level++;
-        this.levelText.setText(`Level: ${player.level}`);
-    });
-
-    // Create a save button using text
-    this.saveButton = this.add.text(10, 100, 'Save', { font: '16px Arial', fill: '#ffffff' });
-
-    // Make the text interactive
-    this.saveButton.setInteractive();
-
-    // Attach the saveGame function to the 'pointerdown' event
-    this.saveButton.on('pointerdown', () => {
-        saveGame();
-    });
-}
-
-function update(time, delta) {
-    player.experience += player.experienceRate * delta / 1000;
-    if (player.experience >= player.nextLevelExp) {
-        player.levelUp();
-        this.levelText.setText(`Level: ${player.level}`);
-    }
-}
 
 function updateAuthButtons(isAuthenticated) {
     const loginButton = document.getElementById("login-link");
