@@ -10,7 +10,7 @@ const createCharacter = async () => {
   const hairColor = hairColorInput.value;
   const skinColor = skinColorInput.value;
   const eyeColor = eyeColorInput.value;
-
+  
   try {
     const response = await fetch('/api/characters/create', {
       method: 'POST',

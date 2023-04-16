@@ -5,10 +5,10 @@ const Character = require('../models/character.js');
 const User = require('../models/user.js'); // Import the User model
 
 router.post('/create', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    const { name, class: characterClass, color } = req.body;
+    const { name, class: characterClass, eyeColor, hairColor, skinColor } = req.body;
 
     // Check if all the required fields are provided
-    if (!name || !characterClass || !color) {
+    if (!name || !characterClass || !eyeColor || !hairColor || !skinColor) {
         return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
@@ -18,7 +18,9 @@ router.post('/create', passport.authenticate('jwt', { session: false }), async (
             userId: req.user.id,
             name,
             class: characterClass,
-            color,
+            eyeColor,
+            hairColor,
+            skinColor
         });
 
         return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter });

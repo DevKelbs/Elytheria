@@ -60,7 +60,7 @@ router.post('/authenticate', async (req, res) => {
 
             res.json({
                 success: true,
-                token: 'JWT ' + token,
+                token: token,
                 user: {
                     id: user.id,
                     username: user.username,

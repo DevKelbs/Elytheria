@@ -91,24 +91,23 @@ app.get('/', (req, res) => {
 const authRoutes = require('./public/routes/authRoutes');
 const characterRoutes = require('./public/routes/characterRoutes');
 app.use('/api/auth', authRoutes);
-app.use('/api/characters', authenticateToken ,characterRoutes);
+app.use('/api/characters', authenticateToken, characterRoutes);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 //JWT Authentication Verification process
 function authenticateToken(req, res, next){
-  console.log('authentiactionToken called');
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.replace('JWT ', '');
-  console.log(token);
-  if (token == null) return res.sendStatus(401);
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  console.log('authentiactionToken',token)
+  if (token == null) return res.sendStatus(401)
   
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    //console.log('verify',token);
-    if (err) return res.sendStatus(403);
+    console.log('verify',token)
+    if (err) return res.sendStatus(403)
     req.user = user
-    console.log(user);
+    console.log(user)
     next()
   })
 }
