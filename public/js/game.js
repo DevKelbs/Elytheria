@@ -183,44 +183,6 @@ function displaySuccessMessage(message) {
     }, 3000);
 }
 
-async function handleCharacterCreation() {
-    //const characterName = "Test"; // Replace this with the actual value from an input field
-    //const characterClass = "elf"; // Replace this with the actual value from a dropdown/select field
-    //const characterColor = "#000000"; // Replace this with the actual value from a color input field
-
-    try {
-        const response = await fetch('/api/characters/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: JSON.stringify({
-                name: characterName,
-                class: characterClass,
-                color: characterColor,
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-
-        if (data.success) {
-            // Successfully created the character
-            // Redirect to the main game screen or perform other actions
-            console.log("Character created successfully");
-        } else {
-            throw new Error(`Error creating character: ${data.message}`);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert(error.message);
-    }
-}
-
 function updateUIBasedOnLoginStatus() {
     if (checkLoginStatus()) {
         // Show character creation link and other UI elements for logged-in users
@@ -290,6 +252,5 @@ window.addEventListener("DOMContentLoaded", () => {
     logoutButton.addEventListener("click", logout);
     // Add this code at the end of the "DOMContentLoaded" event listener
     const createCharacterButton = document.getElementById("create-character-link");
-    createCharacterButton.addEventListener("click", handleCharacterCreation);
 
 });
