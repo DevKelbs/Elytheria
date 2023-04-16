@@ -32,21 +32,21 @@ router.post('/create', passport.authenticate('jwt', { session: false }), async (
 
 router.get('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
-        const characterId = req.params.id;
-        const character = await Character.findOne({
-            where: { id: characterId, userId: req.user.id },
+        const characters = await Character.findAll({
+            where: { userId: req.user.id },
         });
 
-        if (!character) {
-            return res.status(404).json({ success: false, message: 'Character not found' });
+        if (!characters) {
+            return res.status(404).json({ success: false, message: 'No characters found' });
         }
 
-        res.status(200).json({ success: true, character });
+        res.status(200).json({ success: true, characters });
     } catch (err) {
-        console.error('Error fetching character:', err);
-        res.status(500).json({ success: false, message: 'Error fetching character' });
+        console.error('Error fetching characters:', err);
+        res.status(500).json({ success: false, message: 'Error fetching characters' });
     }
 });
+
 
 
 
