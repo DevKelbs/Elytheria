@@ -221,32 +221,6 @@ async function handleCharacterCreation() {
     }
 }
 
-
-function showCharacterCreationUI() {
-    // Hide the main game container or any other elements currently displayed
-    document.getElementById("gameContainer").style.display = "none";
-
-    // Create an iframe to load the character creation page
-    const iframe = document.createElement("iframe");
-    iframe.src = "character_creation.html";
-    iframe.id = "characterCreationIframe";
-    iframe.style.width = "100%";
-    iframe.style.height = "100%";
-    iframe.style.border = "none";
-
-    // Add the iframe to the DOM
-    document.body.appendChild(iframe);
-}
-
-// Add this function to handle hiding the character creation iframe and displaying the main game UI
-function hideCharacterCreationUI() {
-    const iframe = document.getElementById("characterCreationIframe");
-    if (iframe) {
-        document.body.removeChild(iframe);
-    }
-    document.getElementById("gameContainer").style.display = "block";
-}
-
 function updateUIBasedOnLoginStatus() {
     if (checkLoginStatus()) {
         // Show character creation link and other UI elements for logged-in users
@@ -293,18 +267,6 @@ socket.on("connect", async () => {
         const data = await response.json();
         const characters = data.characters;
         console.log(characters)
-
-        if (characters.length === 0) {
-            // If the user has no characters, show the character creation UI
-            showCharacterCreationUI();
-        } else {
-            // If the user has existing characters, initialize the game
-            // Example: loadCharacter(characters[0]);
-
-            // Hide the character creation UI and show the main game UI
-            hideCharacterCreationUI();
-        }
-
 
     } catch (err) {
         console.error("Error checking existing characters:", err);
