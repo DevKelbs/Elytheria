@@ -280,7 +280,16 @@ socket.on("connect", async () => {
             return;
         }
 
-        const response = await fetch(`/api/characters/${userId}`);
+        const response = await fetch(`/api/characters/${userId}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+        }
+
         const data = await response.json();
         const characters = data.characters;
         console.log(characters)
@@ -295,6 +304,8 @@ socket.on("connect", async () => {
             // Hide the character creation UI and show the main game UI
             hideCharacterCreationUI();
         }
+
+
     } catch (err) {
         console.error("Error checking existing characters:", err);
     }
