@@ -183,6 +183,45 @@ function displaySuccessMessage(message) {
     }, 3000);
 }
 
+async function handleCharacterCreation() {
+    const characterName = "Test"; // Replace this with the actual value from an input field
+    const characterClass = "elf"; // Replace this with the actual value from a dropdown/select field
+    const characterColor = "#000000"; // Replace this with the actual value from a color input field
+
+    try {
+        const response = await fetch('/api/characters/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({
+                name: characterName,
+                class: characterClass,
+                color: characterColor,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Successfully created the character
+            // Redirect to the main game screen or perform other actions
+            console.log("Character created successfully");
+        } else {
+            throw new Error(`Error creating character: ${data.message}`);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert(error.message);
+    }
+}
+
+
 function showCharacterCreationUI() {
     // Hide the main game container or any other elements currently displayed
     document.getElementById("gameContainer").style.display = "none";
@@ -198,6 +237,35 @@ function showCharacterCreationUI() {
     // Add the iframe to the DOM
     document.body.appendChild(iframe);
 }
+
+// Add this function to handle hiding the character creation iframe and displaying the main game UI
+function hideCharacterCreationUI() {
+    const iframe = document.getElementById("characterCreationIframe");
+    if (iframe) {
+        document.body.removeChild(iframe);
+    }
+    document.getElementById("gameContainer").style.display = "block";
+}
+
+function updateUIBasedOnLoginStatus() {
+    if (checkLoginStatus()) {
+        // Show character creation link and other UI elements for logged-in users
+        document.getElementById("create-character-link").classList.remove("hidden");
+        // Hide the register and login links
+        document.getElementById("register-link").classList.add("hidden");
+        document.getElementById("login-link").classList.add("hidden");
+    } else {
+        // Hide character creation link and other UI elements for logged-out users
+        document.getElementById("create-character-link").classList.add("hidden");
+        // Show the register and login links
+        document.getElementById("register-link").classList.remove("hidden");
+        document.getElementById("login-link").classList.remove("hidden");
+    }
+}
+
+// Call this function when the login status changes
+updateUIBasedOnLoginStatus();
+
 
 socket.on("connect", async () => {
     console.log("Connected to server");
@@ -222,6 +290,9 @@ socket.on("connect", async () => {
         } else {
             // If the user has existing characters, initialize the game
             // Example: loadCharacter(characters[0]);
+
+            // Hide the character creation UI and show the main game UI
+            hideCharacterCreationUI();
         }
     } catch (err) {
         console.error("Error checking existing characters:", err);
@@ -243,4 +314,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const logoutButton = document.getElementById("logout");
     logoutButton.addEventListener("click", logout);
+    // Add this code at the end of the "DOMContentLoaded" event listener
+    const createCharacterButton = document.getElementById("create-character-link");
+    createCharacterButton.addEventListener("click", handleCharacterCreation);
+
 });

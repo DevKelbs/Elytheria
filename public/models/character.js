@@ -15,6 +15,16 @@ const characterSchema = new Schema({
         type: String,
         required: true,
     },
+    // Add the character class attribute
+    class: {
+        type: String,
+        required: true,
+    },
+    // Add the character color attribute for appearance customization
+    color: {
+        type: String,
+        required: true,
+    },
     // Add any other character attributes as needed
 });
 
