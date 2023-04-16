@@ -1,7 +1,3 @@
-Here's a suggested README.md file for your Elytheria repository:
-
-csharp
-
 # Elytheria
 
 Elytheria is an idle RPG game project where players can create and manage characters, complete quests, and engage in battles. The game is built using Node.js, Express, and PostgreSQL, with Socket.IO for real-time updates.
