@@ -5,16 +5,32 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose'); // MongoDB ODM for Node.js (Object Document Mapper) 
 const passport = require('passport');
 const path = require('path');
 const http = require('http');
 const session = require('express-session');
-const MongoStore = require('connect-mongo'); // MongoDB session store for Express/Connect apps
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require('./public/database.js'); // Path to your database.js file
 
 // Initialize express app
 const app = express();
 const server = http.createServer(app);
+const sessionStore = new SequelizeStore({
+  db: sequelize,
+});
+
+// Sync the session store with the database
+sessionStore.sync()
+  .then(() => {
+    app.use(
+      session({
+        secret: process.env.SESSION_SECRET,
+        store: sessionStore,
+        resave: false,
+        saveUninitialized: false,
+      })
+    )
+  });
 
 // Initialize Socket.io
 const io = require('socket.io')(server);
@@ -39,17 +55,11 @@ app.use(cors());
 app.use(express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
 
-const sessionStore = MongoStore.create({
-  mongoUrl: process.env.DATABASE_URL,
-  collectionName: 'sessions',
-});
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: sessionStore,
   }),
 );
 
@@ -94,12 +104,14 @@ app.use('/api/characters', characterRoutes);
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+// Sync the models with the database
+sequelize.sync({ force: false }) // Set force to true if you want to recreate tables on every startup
+  .then(() => {
+    console.log('Database synchronized');
+  })
+  .catch((error) => {
+    console.error('Error synchronizing database:', error);
+  });
 
 io.use((socket, next) => {
   session({

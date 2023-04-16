@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Character = require('../models/character.js');
+const User = require('../models/user.js'); // Import the User model
 
 router.post('/create', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { name, class: characterClass, color } = req.body;
@@ -13,14 +14,12 @@ router.post('/create', passport.authenticate('jwt', { session: false }), async (
 
     try {
         // Create a new character and save it to the database
-        const newCharacter = new Character({
-            user: req.user._id,
+        const newCharacter = await Character.create({
+            userId: req.user.id,
             name,
             class: characterClass,
-            color
+            color,
         });
-
-        await newCharacter.save();
 
         return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter });
     } catch (err) {

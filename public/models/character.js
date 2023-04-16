@@ -1,31 +1,33 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../database'); // Path to your database.js file
 
-const characterSchema = new Schema({
+const Character = sequelize.define('Character', {
     userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: true,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Users', // The name of the User model, ensure it matches the exported name
+            key: 'id',
+        },
     },
     name: {
-        type: String,
-        required: true,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     race: {
-        type: String,
-        required: true,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    // Add the character class attribute
     class: {
-        type: String,
-        required: true,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    // Add the character color attribute for appearance customization
     color: {
-        type: String,
-        required: true,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    // Add any other character attributes as needed
+    // Add other fields as needed
+    // ...
 });
 
-module.exports = mongoose.model('characters', characterSchema);
+module.exports = Character;

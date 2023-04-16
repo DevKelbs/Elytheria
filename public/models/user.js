@@ -1,57 +1,35 @@
-const mongoose = require('mongoose');
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../database'); // Path to your database.js file
 const bcrypt = require('bcrypt');
 
-const userSchema = new mongoose.Schema({
+const User = sequelize.define('User', {
   email: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
     validate: {
-      validator: function (email) {
-        const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        return emailRegex.test(email);
-      },
-      message: props => `${props.value} is not a valid email address`
-    }
+      isEmail: true,
+    },
   },
   username: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
   },
   password: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
-  gameData: {
-    // Define game-related data fields here
-  },
-  characters: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Character',
-    },
-  ],
+  // Add other fields as needed
+  // ...
 });
 
-userSchema.pre('save', function (next) {
-  const user = this;
-  if (!user.isModified('password')) return next();
-
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) return next(err);
-
-    bcrypt.hash(user.password, salt, (err, hash) => {
-      if (err) return next(err);
-
-      user.password = hash;
-      next();
-    });
-  });
+User.beforeCreate(async (user, options) => {
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
 });
 
-// In User model file
-userSchema.methods.comparePassword = async function (candidatePassword) {
+User.prototype.comparePassword = async function (candidatePassword) {
   try {
     return await bcrypt.compare(candidatePassword, this.password);
   } catch (err) {
@@ -60,14 +38,13 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
-// Add the getUserByUsername function as a static method
-userSchema.statics.getUserByUsername = async function (username) {
+User.getUserByUsername = async function (username) {
   try {
-    const user = await this.findOne({ username: username });
+    const user = await this.findOne({ where: { username } });
     return user;
   } catch (err) {
     throw err;
   }
 };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = User;

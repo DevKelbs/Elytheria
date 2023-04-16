@@ -16,14 +16,13 @@ router.post('/register', async (req, res) => {
 
     try {
         // Check if a user with the given username already exists
-        const existingUser = await User.findOne({ username });
+        const existingUser = await User.findOne({ where: { username } });
         if (existingUser) {
             return res.status(400).json({ message: 'Username is already taken' });
         }
 
         // Create a new user and save it to the database
-        const newUser = new User({ email, username, password });
-        await newUser.save();
+        const newUser = await User.create({ email, username, password });
 
         // Log the user in after successful registration
         req.login(newUser, (err) => {
@@ -48,14 +47,14 @@ router.post('/authenticate', async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
 
-        const user = await User.getUserByUsername(username);
+        const user = await User.findOne({ where: { username } });
         if (!user) {
             return res.json({ success: false, msg: 'User not found' });
         }
 
         const isMatch = await user.comparePassword(password);
         if (isMatch) {
-            const token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
+            const token = jwt.sign(user.get(), process.env.JWT_SECRET, {
                 expiresIn: 604800 // 1 week
             });
 
@@ -63,7 +62,7 @@ router.post('/authenticate', async (req, res) => {
                 success: true,
                 token: 'JWT ' + token,
                 user: {
-                    id: user._id,
+                    id: user.id,
                     username: user.username,
                     email: user.email,
                 }
