@@ -39,7 +39,7 @@ To get started with the project, follow these steps:
 
 4. Run the server:
 
-        npm start
+        node server.js
 
 The server should now be running on http://localhost:3000.
 
