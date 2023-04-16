@@ -45,6 +45,24 @@ header {
   border-bottom-right-radius: 5px;
 }
 
+.character-info-container.collapsed {
+  display: none;
+}
+
+.toggle-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-button i {
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-button.collapsed i {
+  transform: rotate(180deg);
+}
+
 .hidden {
   display: none;
 }

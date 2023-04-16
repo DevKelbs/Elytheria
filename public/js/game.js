@@ -199,6 +199,18 @@ function updateUIBasedOnLoginStatus() {
     }
 }
 
+function setupCharacterInfoToggle() {
+    const toggleButton = document.getElementById('toggle-character-info');
+    const characterInfoContainer = document.querySelector('.character-info-container');
+  
+    toggleButton.addEventListener('click', () => {
+      characterInfoContainer.classList.toggle('collapsed');
+      toggleButton.classList.toggle('collapsed');
+    });
+  }
+  
+  setupCharacterInfoToggle();  
+
 // Call this function when the login status changes
 updateUIBasedOnLoginStatus();
 
