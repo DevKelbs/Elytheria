@@ -33,6 +33,7 @@ const createCharacter = async () => {
 
     const data = await response.json();
     console.log('Character created:', data);
+    window.location.href = '/index.html';
   } catch (error) {
     console.error('Error:', error);
   }

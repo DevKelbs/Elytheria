@@ -207,47 +207,6 @@
         </form>
       </div>
     </div>
-    <!--character creation modal-->
-    <div class="modal" id="characterCreationModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Character Creation</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h1>Create Your Character</h1>
-            <label for="character-name-input">Character Name:</label>
-            <input
-              type="text"
-              id="characterName"
-              name="characterName"
-              required
-            />
-            <br />
-            <label for="character-class-select">Select Race:</label>
-            <select id="characterRace" name="characterRace">
-              <option value="elf">Elf</option>
-              <option value="gnome">Gnome</option>
-              <option value="shadowkin">Shadowkin</option>
-              <option value="dragonborn">Dragonborn</option>
-              <option value="arakkari">Arakkari</option>
-              <option value="merfolk">Merfolk</option>
-            </select>
-            <br />
-            <button id="create-character-link">Create Character</button>
-            <button type="button" class="btn-secondary" data-bs-dismiss="modal">
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
     <script>
       // Get the modal elements
       const registrationModal = document.getElementById("registration-modal");

@@ -283,6 +283,7 @@ socket.on("connect", async () => {
         const response = await fetch(`/api/characters/${userId}`);
         const data = await response.json();
         const characters = data.characters;
+        console.log(characters)
 
         if (characters.length === 0) {
             // If the user has no characters, show the character creation UI
