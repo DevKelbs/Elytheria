@@ -8,6 +8,7 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    parent: "gameCanvas", // Add the canvas element ID here
     scene: {
         preload: preload,
         create: create,
