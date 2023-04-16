@@ -14,18 +14,22 @@ const Character = sequelize.define('Character', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    race: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     class: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    color: {
+    eyeColor: {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    hairColor: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    skinColor: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
     // Add other fields as needed
     // ...
 });
