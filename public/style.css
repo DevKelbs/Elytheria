@@ -357,15 +357,19 @@ main > * {
   flex-direction: column;
   align-items: center;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 5rem auto;
   padding: 20px;
-  border: 2px solid #ccc;
+  font-weight: bold;
+  color: var(--color-bg-active-dark-brown);
+  border: 2px solid var(--color-bg-active-gold);
   border-radius: 10px;
-  background-color: #f0f0f0;
+  background-color: var(--color-bg-active-sandstone);
 }
 
 .character-creation-container h1 {
-  font-size: 24px;
+  color: var(--color-bg-active-gold);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
@@ -383,6 +387,7 @@ main > * {
 /* Inputs and Select */
 input[type="text"],
 select {
+  font-family: "Cinzel", serif;
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -391,6 +396,7 @@ select {
 }
 
 input[type="color"] {
+  margin-left: 5px;
   width: 50px;
   padding: 0;
 }
@@ -403,7 +409,7 @@ input[type="color"] {
 
 /* Create Character Button */
 #create-character-button {
-  background-color: #4caf50;
+  background-color: var(--color-bg-light-hunter-green);
   color: white;
   padding: 8px 20px;
   border: none;
