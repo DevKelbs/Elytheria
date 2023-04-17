@@ -67,7 +67,7 @@ button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #2f4f4f;
+  background-color: var(--color-bg-light-hunter-green);
   color: white;
   font-weight: bold;
   border: none;
@@ -78,7 +78,7 @@ button {
 }
 
 button:hover {
-  background-color: #2c4b4b;
+  background-color: var(--color-bg-dark-hunter-green);
 }
 
 .hidden {
@@ -101,19 +101,16 @@ button:hover {
 }
 
 .welcome-container {
+  height: auto; /* Make the container expand based on content */
+  display: flex; /* Use a flex container to center the form vertically */
+  flex-direction: column; /* Stack flex items vertically */
+  justify-content: center; /* Center the form vertically */
+  align-items: center; /* Center the form horizontally */
+  padding: 1rem; /* Add some padding to prevent content from sticking to the edges */
   position: fixed;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
-  margin: auto auto;
-  padding: 20px;
-  font-weight: bold;
   color: var(--color-bg-active-dark-brown);
   border: 2px solid var(--color-bg-active-gold);
   border-radius: 10px;
@@ -256,7 +253,7 @@ main > * {
 
 .tab-btn {
   flex: 1;
-  background-color: #d3d3d3;
+  background-color: var(--color-bg-light-hunter-green);
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -264,19 +261,19 @@ main > * {
 }
 
 .tab-btn:hover {
-  background-color: #c0c0c0;
+  background-color: var(--color-bg-dark-hunter-green);
 }
 
 .tab-btn.active {
-  background-color: #a9a9a9;
+  background-color: var(--color-bg-active-gold);
 }
 
 .form-content {
   position: relative;
+  width: 100%;
 }
 
 .form {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -466,8 +463,8 @@ main > * {
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 12rem;
   width: 100%;
+  height: auto;
 }
 
 .form-group label {
@@ -483,16 +480,26 @@ main > * {
 label {
   display: block;
   margin-bottom: 5px;
+  font-size: 20px;
 }
 
 /* Inputs and Select */
 input[type="text"],
 select {
   font-family: "Cinzel", serif;
-  padding: 0 0 20px 0;
+  padding: 0 0 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
+  width: 100%;
+  font-size: 20px;
+}
+
+input[type="email"] {
+  font-family: "Cinzel", serif;
+  padding: 0 0 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 20px;
   width: 100%;
 }
 
@@ -504,10 +511,10 @@ input[type="color"] {
 
 input[type="password"] {
   font-family: "Cinzel", serif;
-  padding: 0 0 20px 0;
+  padding: 0 0 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 20px;
   width: 100%;
 }
 
