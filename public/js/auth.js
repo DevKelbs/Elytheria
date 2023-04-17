@@ -119,13 +119,26 @@ export function logout() {
 
   setTimeout(() => {
     window.location.href = "/welcome.html";
-  }, 1000);
+  }, 500);
 }
 
 export function isAuthenticated() {
   return !!localStorage.getItem("token");
 }
 window.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("registration-form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("registration-username").value;
+      const email = document.getElementById("registration-email").value;
+      const password = document.getElementById("registration-password").value;
+      const passwordConfirm = document.getElementById("registration-password-confirm").value;
+
+      await register(username, email, password, passwordConfirm);
+    });
+
   document
     .getElementById("authenticate-form")
     .addEventListener("submit", async (e) => {

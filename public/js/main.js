@@ -75,32 +75,6 @@ window.addEventListener("DOMContentLoaded", () => { // When the DOM is loaded, r
     checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
     document
-        .getElementById("registration-form")
-        .addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const username = document.getElementById("registration-username").value;
-            const email = document.getElementById("registration-email").value;
-            const password = document.getElementById("registration-password").value;
-            const passwordConfirm = document.getElementById(
-                "registration-password-confirm"
-            ).value;
-
-            await register(username, email, password, passwordConfirm);
-        });
-
-    document
-        .getElementById("authenticate-form")
-        .addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const username = document.getElementById("authenticate-username").value;
-            const password = document.getElementById("authenticate-password").value;
-
-            await authenticate(username, password);
-        });
-
-    document
         .getElementById("logout")
         .addEventListener("click", () => {
             logout();
