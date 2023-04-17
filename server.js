@@ -100,14 +100,11 @@ server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
-  console.log('authentiactionToken', token)
   if (token == null) return res.sendStatus(401)
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    console.log('verify', token)
     if (err) return res.sendStatus(403)
     req.user = user
-    console.log(user)
     next()
   })
 }
