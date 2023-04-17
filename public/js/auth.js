@@ -125,28 +125,37 @@ export function logout() {
 export function isAuthenticated() {
   return !!localStorage.getItem("token");
 }
-window.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("registration-form")
-    .addEventListener("submit", async (e) => {
-      e.preventDefault();
+if (window.location.pathname === "/welcome.html") {
+  window.addEventListener("DOMContentLoaded", () => {
+    document
+      .getElementById("registration-form")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      const username = document.getElementById("registration-username").value;
-      const email = document.getElementById("registration-email").value;
-      const password = document.getElementById("registration-password").value;
-      const passwordConfirm = document.getElementById("registration-password-confirm").value;
+        const username = document.getElementById("registration-username").value;
+        const email = document.getElementById("registration-email").value;
+        const password = document.getElementById("registration-password").value;
+        const passwordConfirm = document.getElementById(
+          "registration-password-confirm"
+        ).value;
 
-      await register(username, email, password, passwordConfirm);
-    });
+        await register(username, email, password, passwordConfirm);
 
-  document
-    .getElementById("authenticate-form")
-    .addEventListener("submit", async (e) => {
-      e.preventDefault();
+        // Reload the page after successful registration
+        setTimeout(() => {
+            location.reload();
+          }, 3000);
+        });
 
-      const username = document.getElementById("authenticate-username").value;
-      const password = document.getElementById("authenticate-password").value;
+    document
+      .getElementById("authenticate-form")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      await authenticate(username, password);
-    });
-});
+        const username = document.getElementById("authenticate-username").value;
+        const password = document.getElementById("authenticate-password").value;
+
+        await authenticate(username, password);
+      });
+  });
+}
