@@ -127,7 +127,7 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--color-bg-active-dark-brown);
-  border: 2px solid var(--color-bg-active-gold);
+  border: 2px solid var(--color-bg-active-dark-brown);
   border-radius: 10px;
   background-color: var(--color-bg-active-sandstone);
 }
