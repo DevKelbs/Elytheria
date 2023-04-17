@@ -50,7 +50,7 @@ header {
 }
 
 .toggle-button {
-  background-color: transparent;
+  background-color: var(--color-bg-active-gold);
   border: none;
   cursor: pointer;
 }
@@ -73,6 +73,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 1rem;
   transition: background-color 0.3s;
 }
 
@@ -100,11 +101,17 @@ button:hover {
 }
 
 .welcome-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   max-width: 500px;
-  margin: 5rem auto;
+  margin: auto auto;
   padding: 20px;
   font-weight: bold;
   color: var(--color-bg-active-dark-brown);
@@ -459,7 +466,7 @@ main > * {
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 12rem;
   width: 100%;
 }
 
@@ -482,7 +489,7 @@ label {
 input[type="text"],
 select {
   font-family: "Cinzel", serif;
-  padding: 8px 10px;
+  padding: 0 0 20px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
@@ -495,13 +502,22 @@ input[type="color"] {
   padding: 0;
 }
 
-input {
-  display: block;
+input[type="password"] {
+  font-family: "Cinzel", serif;
+  padding: 0 0 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
   width: 100%;
-  margin-bottom: 15px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
+}
+
+input[type="submit"] {
+  font-family: "Cinzel", serif;
+  padding: 0 0 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
 }
 
 /* Appearance Options */
