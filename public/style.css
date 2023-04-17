@@ -26,6 +26,17 @@ body {
   );
 }
 
+body.welcome-page {
+  background-image: url("/assets/images/backgrounds/ghiblibackground.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed; /* Add this line to keep the background fixed during scrolling */
+  background-size: cover;
+  height: 100%; /* Add this line to make the body take the full height of the viewport */
+  margin: 0; /* Add this line to remove default margin */
+  overflow: auto; /* Add this line to enable scrolling for content that overflows the viewport */
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -43,6 +54,10 @@ header {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+html {
+  height: 100%;
 }
 
 .character-info-container.collapsed {
