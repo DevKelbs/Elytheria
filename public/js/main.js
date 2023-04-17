@@ -4,10 +4,8 @@
 
 // Import the socket.io-client module and the auth and player modules
 import {
-    authenticate,
-    register,
     isAuthenticated,
-    logout,
+    logout
 } from "./auth.js";
 import {
     updateAuthButtons,
