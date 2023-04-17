@@ -24,21 +24,12 @@ export function displaySuccessMessage(message) {
 }
 
 export function updateAuthButtons(isAuthenticated) {
-    const loginButton = document.getElementById("login-link");
-    const logoutButton = document.getElementById("logout-link");
     const createCharacter = document.getElementById("create-character-link");
-    const registerButton = document.getElementById("register-link");
 
     if (isAuthenticated) {
-        loginButton.classList.add("hidden");
-        logoutButton.classList.remove("hidden");
         createCharacter.classList.remove("hidden");
-        registerButton.classList.add("hidden");
     } else {
-        loginButton.classList.remove("hidden");
-        logoutButton.classList.add("hidden");
         createCharacter.classList.add("hidden");
-        registerButton.classList.remove("hidden");
     }
 }
 

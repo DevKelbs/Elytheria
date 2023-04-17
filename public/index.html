@@ -60,20 +60,10 @@
           <li>
             <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
           </li>
-          <li class="hidden" id="register-link">
-            <a href="#" id="open-registration-modal"
-              ><i class="fas fa-user-circle"></i> Register</a
-            >
-          </li>
-          <li class="hidden" id="login-link">
-            <a href="#" id="open-authenticate-modal"
-              ><i class="fas fa-sign-in"></i> Login</a
-            >
-          </li>
-          <li class="hidden" id="logout-link">
+          <li id="logout-link">
             <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
           </li>
-          <li class="hidden" id="create-character-link">
+          <li id="create-character-link">
             <a href="#" id="open-character-creation"
               ><i class="fas fa-user-plus"></i> Create Character</a
             >
@@ -265,116 +255,6 @@
         </div>
       </section>
     </main>
-    <!--registration-modal-->
-    <div id="registration-modal" class="modal">
-      <div class="registration-modal-content">
-        <span class="registration-modal-close">&times;</span>
-        <form id="registration-form">
-          <h2>Registration</h2>
-          <label for="registration-username">Username</label>
-          <input
-            type="text"
-            id="registration-username"
-            name="username"
-            required
-          />
-          <label for="registration-email">Email</label>
-          <input type="text" id="registration-email" name="email" required />
-          <label for="registration-password">Password</label>
-          <input
-            type="password"
-            id="registration-password"
-            name="password"
-            required
-          />
-          <label for="registration-password-confirm">Repeat Password</label>
-          <input
-            type="password"
-            id="registration-password-confirm"
-            name="password-confirm"
-            required
-          />
-          <button id="registration-button" type="submit">Register</button>
-          <p id="error-message" style="display: none; color: red"></p>
-        </form>
-      </div>
-    </div>
-    <!--authenticate-modal-->
-    <div id="authenticate-modal" class="modal">
-      <div class="authenticate-modal-content">
-        <span class="close-button authenticate-modal-close">&times;</span>
-        <form id="authenticate-form">
-          <h2>Login</h2>
-          <label for="authenticate-username">Username</label>
-          <input
-            type="text"
-            id="authenticate-username"
-            name="username"
-            required
-          />
-          <label for="authenticate-password">Password</label>
-          <input
-            type="password"
-            id="authenticate-password"
-            name="password"
-            required
-          />
-          <button id="authenticate-button" type="submit">Login</button>
-          <p id="error-message" style="display: none; color: red"></p>
-        </form>
-      </div>
-    </div>
-    <script>
-      // Get the modal elements
-      const registrationModal = document.getElementById("registration-modal");
-      const authenticateModal = document.getElementById("authenticate-modal");
-
-      // Get the buttons that open the modals
-      const openRegistrationModal = document.getElementById(
-        "open-registration-modal"
-      );
-      const openAuthenticateModal = document.getElementById(
-        "open-authenticate-modal"
-      );
-
-      // Get the <span> elements that close the modals
-      const closeRegistrationModal = document.getElementsByClassName(
-        "registration-modal-close"
-      )[0];
-      const closeAuthenticateModal = document.getElementsByClassName(
-        "authenticate-modal-close"
-      )[0];
-
-      // When the user clicks the button, open the registration modal
-      openRegistrationModal.addEventListener("click", function () {
-        registrationModal.style.display = "block";
-      });
-
-      // When the user clicks the button, open the login modal
-      openAuthenticateModal.addEventListener("click", function () {
-        authenticateModal.style.display = "block";
-      });
-
-      // When the user clicks the <span> element, close the registration modal
-      closeRegistrationModal.addEventListener("click", function () {
-        registrationModal.style.display = "none";
-      });
-
-      // When the user clicks the <span> element, close the login modal
-      closeAuthenticateModal.addEventListener("click", function () {
-        authenticateModal.style.display = "none";
-      });
-
-      // When the user clicks anywhere outside of the modals, close them
-      window.addEventListener("click", function (event) {
-        if (event.target == registrationModal) {
-          registrationModal.style.display = "none";
-        }
-        if (event.target == authenticateModal) {
-          authenticateModal.style.display = "none";
-        }
-      });
-    </script>
     <script>
       // New script to handle navigation
       const navItems = document.querySelectorAll("nav ul li a");
@@ -412,7 +292,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/utils.js" type="module"></script>
-    <script src="js/auth.js" type="module"></script>
     <script src="js/ui.js" type="module"></script>
     <script src="js/main.js" type="module"></script>
     <script
