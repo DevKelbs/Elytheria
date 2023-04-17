@@ -4,13 +4,25 @@ const hairColorInput = document.getElementById('hair-color');
 const skinColorInput = document.getElementById('skin-color');
 const eyeColorInput = document.getElementById('eye-color');
 
+const displayErrorMessage = (message) => {
+  const errorMessage = document.createElement("div");
+  errorMessage.className = "error-message";
+  errorMessage.innerText = message;
+
+  document.body.appendChild(errorMessage);
+
+  setTimeout(() => {
+    errorMessage.remove();
+  }, 3000);
+};
+
 const createCharacter = async () => {
   const characterName = characterNameInput.value;
   const characterClass = characterClassSelect.value;
   const hairColor = hairColorInput.value;
   const skinColor = skinColorInput.value;
   const eyeColor = eyeColorInput.value;
-  
+
   try {
     const response = await fetch('/api/characters/create', {
       method: 'POST',
@@ -28,7 +40,12 @@ const createCharacter = async () => {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to create character');
+      const errorData = await response.json();
+      if (errorData && errorData.message) {
+        throw new Error(errorData.message);
+      } else {
+        throw new Error('Failed to create character');
+      }
     }
 
     const data = await response.json();
@@ -36,6 +53,7 @@ const createCharacter = async () => {
     window.location.href = '/index.html';
   } catch (error) {
     console.error('Error:', error);
+    displayErrorMessage(`Error: ${error.message}`);
   }
 };
 

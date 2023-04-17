@@ -1,8 +1,37 @@
 import { displayErrorMessage, displaySuccessMessage } from "./ui.js";
 
-export async function register(username, email, password, passwordConfirm) {
+function isValidEmail(email) {
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return emailRegex.test(email);
+}
+
+function validateUserInput(username, email, password, passwordConfirm) {
+    const errors = [];
+
+    if (!username || username.trim().length === 0) {
+        errors.push('Username is required');
+    }
+
+    if (!email || !isValidEmail(email)) {
+        errors.push('A valid email address is required');
+    }
+
+    if (!password || password.trim().length === 0) {
+        errors.push('Password is required');
+    }
+
     if (password !== passwordConfirm) {
-        alert("Passwords do not match!");
+        errors.push('Passwords do not match');
+    }
+
+    return errors;
+}
+
+export async function register(username, email, password, passwordConfirm) {
+    const errors = validateUserInput(username, email, password, passwordConfirm);
+
+    if (errors.length > 0) {
+        alert(errors.join('\n'));
         return;
     }
 
@@ -39,6 +68,16 @@ export async function register(username, email, password, passwordConfirm) {
 }
 
 export async function authenticate(username, password) {
+    if (!username || username.trim().length === 0) {
+        alert('Username is required');
+        return;
+    }
+
+    if (!password || password.trim().length === 0) {
+        alert('Password is required');
+        return;
+    }
+
     try {
         const response = await fetch("/api/auth/authenticate", {
             method: "POST",

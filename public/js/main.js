@@ -1,10 +1,14 @@
+// This file is the main entry point for the client-side code
+// It is responsible for setting up the socket connection and handling the UI
+// It also contains the code for the login and registration forms
+
+// Import the socket.io-client module and the auth and player modules
 import {
     authenticate,
     register,
     isAuthenticated,
     logout,
 } from "./auth.js";
-import { player } from "./player.js";
 import {
     updateAuthButtons,
     updateUsernameDisplay,
@@ -14,12 +18,16 @@ import {
 
 const socket = io();
 
+
+// Check if the user is logged in and update the UI accordingly
 function checkLoginStatus() {
     const isLoggedIn = isAuthenticated();
     updateAuthButtons(isLoggedIn);
     return isLoggedIn;
 }
 
+
+// When the socket connects to the server (i.e. when the page loads) run the following code
 socket.on("connect", async () => {
     console.log("Connected to server");
 
@@ -51,13 +59,15 @@ socket.on("connect", async () => {
     }
 });
 
+
+// When the socket receives the charactersData event, run the following code
 socket.on("charactersData", (characters) => {
     console.log("Received characters data:", characters);
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-    setupCharacterInfoToggle();
-    checkLoginStatus();
+window.addEventListener("DOMContentLoaded", () => { // When the DOM is loaded, run the following code 
+    setupCharacterInfoToggle(); // Set up the character info toggle button
+    checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
     document
         .getElementById("registration-form")
