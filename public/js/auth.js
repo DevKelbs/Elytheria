@@ -104,7 +104,7 @@ export async function authenticate(username, password) {
             localStorage.setItem("userId", data.user.id);
             displaySuccessMessage("Login successful!");
             setTimeout(() => {
-                window.location.href = "/";
+                window.location.href = "/index.html";
             }, 1000);
         } else {
             alert(`Error: ${data.msg}`);
@@ -121,7 +121,7 @@ export function logout() {
     localStorage.removeItem("userId");
 
     setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/welcome.html";
     }, 1000);
 }
 

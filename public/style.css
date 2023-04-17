@@ -63,6 +63,23 @@ header {
   transform: rotate(180deg);
 }
 
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2f4f4f;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2c4b4b;
+}
+
 .hidden {
   display: none;
 }
@@ -80,6 +97,20 @@ header {
   border-radius: 4px;
   transition: background-color 0.2s ease, border-color 0.2s ease,
     color 0.2s ease;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 5rem auto;
+  padding: 20px;
+  font-weight: bold;
+  color: var(--color-bg-active-dark-brown);
+  border: 2px solid var(--color-bg-active-gold);
+  border-radius: 10px;
+  background-color: var(--color-bg-active-sandstone);
 }
 
 .btn-primary:hover {
@@ -208,6 +239,40 @@ main > * {
   margin-top: 0.5rem;
   color: var(--color-bg-active-gold);
   text-shadow: 0 0 10px rgba(255, 175, 100, 0.5);
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  flex: 1;
+  background-color: #d3d3d3;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-btn:hover {
+  background-color: #c0c0c0;
+}
+
+.tab-btn.active {
+  background-color: #a9a9a9;
+}
+
+.form-content {
+  position: relative;
+}
+
+.form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .skill-icon img {
@@ -402,6 +467,17 @@ main > * {
   margin-bottom: 5px;
 }
 
+.form-container {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
 /* Inputs and Select */
 input[type="text"],
 select {
@@ -417,6 +493,15 @@ input[type="color"] {
   margin-left: 5px;
   width: 50px;
   padding: 0;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
 }
 
 /* Appearance Options */
