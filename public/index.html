@@ -18,260 +18,262 @@
   </head>
 
   <body>
-    <aside class="sidebar">
-      <nav>
-        <ul>
-          <img
-            src="./assets/icons/ui-icons/elytheria.logo3.png"
-            alt="Elytheria Logo"
-            id="game-logo"
-          />
-          <span class="game-title">Elytheria</span>
-          <li>
-            <a href="#cove" class="nav-cove active"
-              ><i class="fas fa-house"></i> The Cove</a
-            >
-          </li>
-          <li>
-            <a href="#skills" class="nav-skills"
-              ><i class="fas fa-tools"></i> Skills</a
-            >
-          </li>
-          <li>
-            <a href="#activities" class="nav-activities"
-              ><i class="fas fa-chart-bar"></i> Activities</a
-            >
-          </li>
-          <li>
-            <a href="#inventory" class="nav-inventory"
-              ><i class="fas fa-box-archive"></i> Inventory</a
-            >
-          </li>
-          <li>
-            <a href="#quests" class="nav-quests"
-              ><i class="fas fa-scroll"></i> Quests</a
-            >
-          </li>
-          <li>
-            <a href="#settings" class="nav-settings"
-              ><i class="fas fa-cog"></i> Settings</a
-            >
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
-          </li>
-          <li id="logout-link">
-            <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
-          </li>
-          <li id="create-character-link">
-            <a href="#" id="open-character-creation"
-              ><i class="fas fa-user-plus"></i> Create Character</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </aside>
-    <header>
-      <button id="toggle-character-info" class="toggle-button collapsed">
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <div class="character-info-container">
-        <div class="character-info">
-          <div class="character-info-col1">
-            <span id="username-display" class="character-name"></span>
-            <span class="character-health">HP: 100 / 100</span>
-            <span class="character-mana">MP: 100 / 100</span>
+    <div id="page-content">
+      <aside class="sidebar">
+        <nav>
+          <ul>
+            <img
+              src="./assets/icons/ui-icons/elytheria.logo3.png"
+              alt="Elytheria Logo"
+              id="game-logo"
+            />
+            <span class="game-title">Elytheria</span>
+            <li>
+              <a href="#cove" class="nav-cove active"
+                ><i class="fas fa-house"></i> The Cove</a
+              >
+            </li>
+            <li>
+              <a href="#skills" class="nav-skills"
+                ><i class="fas fa-tools"></i> Skills</a
+              >
+            </li>
+            <li>
+              <a href="#activities" class="nav-activities"
+                ><i class="fas fa-chart-bar"></i> Activities</a
+              >
+            </li>
+            <li>
+              <a href="#inventory" class="nav-inventory"
+                ><i class="fas fa-box-archive"></i> Inventory</a
+              >
+            </li>
+            <li>
+              <a href="#quests" class="nav-quests"
+                ><i class="fas fa-scroll"></i> Quests</a
+              >
+            </li>
+            <li>
+              <a href="#settings" class="nav-settings"
+                ><i class="fas fa-cog"></i> Settings</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
+            </li>
+            <li id="logout-link">
+              <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
+            </li>
+            <li id="create-character-link">
+              <a href="#" id="open-character-creation"
+                ><i class="fas fa-user-plus"></i> Create Character</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <header>
+        <button id="toggle-character-info" class="toggle-button collapsed">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="character-info-container">
+          <div class="character-info">
+            <div class="character-info-col1">
+              <span id="username-display" class="character-name"></span>
+              <span class="character-health">HP: 100 / 100</span>
+              <span class="character-mana">MP: 100 / 100</span>
+            </div>
+            <div class="character-info-col2">
+              <span class="character-level">level 1</span>
+              <span class="character-exp">XP: 0 / 100</span>
+              <span class="character-currency">Gold: 0</span>
+            </div>
           </div>
-          <div class="character-info-col2">
-            <span class="character-level">level 1</span>
-            <span class="character-exp">XP: 0 / 100</span>
-            <span class="character-currency">Gold: 0</span>
+        </div>
+      </header>
+      <main>
+        <section id="cove" class="tab-content">
+          <div id="coveContainer">
+            <ul>
+              <!-- Add your Cove content here -->
+            </ul>
           </div>
-        </div>
-      </div>
-    </header>
-    <main>
-      <section id="cove" class="tab-content">
-        <div id="coveContainer">
-          <ul>
-            <!-- Add your Cove content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="skills" class="tab-content">
-        <div id="skillsContainer">
-          <ul>
-            <li>
-              <h3>Attack</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 80%"></div>
-              </div>
-              <button>START</button>
-            </li>
-            <li>
-              <h3>Strength</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 80%"></div>
-              </div>
-              <button>START</button>
-            </li>
-            <li>
-              <h3>Defence</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 80%"></div>
-              </div>
-              <button>START</button>
-            </li>
-            <li>
-              <h3>Ranged</h3>
-              <p>
-                Training in the use of ranged weapons to attack opponents from a
-                distance.
-              </p>
-            </li>
-            <li>
-              <h3>Prayer</h3>
-              <p>
-                Ability to pray to the gods to gain combat advantages and other
-                benefits.
-              </p>
-            </li>
-            <li>
-              <h3>Magic</h3>
-              <p>
-                Training in the use of magical spells to attack opponents and
-                gain other advantages.
-              </p>
-            </li>
-            <li>
-              <h3>Runecrafting</h3>
-              <p>
-                Ability to craft runes, which are used to cast magic spells.
-              </p>
-            </li>
-            <li>
-              <h3>Construction</h3>
-              <p>Ability to build and furnish player-owned houses.</p>
-            </li>
-            <li>
-              <h3>Hitpoints</h3>
-              <p>Measurement of the player's current and maximum health.</p>
-            </li>
-            <li>
-              <h3>Agility</h3>
-              <p>
-                Training in agility and dexterity, allowing the player to
-                navigate obstacles and perform other physical feats.
-              </p>
-            </li>
-            <li>
-              <h3>Herblore</h3>
-              <p>
-                Ability to make potions, which provide various benefits to the
-                player.
-              </p>
-            </li>
-            <li>
-              <h3>Thieving</h3>
-              <p>
-                Ability to steal from non-player characters and other players.
-              </p>
-            </li>
-            <li>
-              <h3>Crafting</h3>
-              <p>Ability to create various items from raw materials.</p>
-            </li>
-            <li>
-              <h3>Fletching</h3>
-              <p>Ability to make bows and arrows from raw materials.</p>
-            </li>
-            <li>
-              <h3>Slayer</h3>
-              <p>Ability to kill specific monsters for rewards.</p>
-            </li>
-            <li>
-              <h3>Hunter</h3>
-              <p>Ability to trap and catch creatures in the wild.</p>
-            </li>
-            <li>
-              <h3>Mining</h3>
-              <p>Ability to mine ores and other resources from rocks.</p>
-            </li>
-            <li>
-              <h3>Smithing</h3>
-              <p>
-                Ability to smelt ores into metal bars and craft items from those
-                bars.
-              </p>
-            </li>
-            <li>
-              <h3>Fishing</h3>
-              <p>Ability to catch fish and other sea creatures.</p>
-            </li>
-            <li>
-              <h3>Cooking</h3>
-              <p>
-                Ability to cook food, which can provide various benefits to the
-                player.
-              </p>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section id="activities" class="tab-content">
-        <div id="activitiesContainer">
-          <ul>
-            <!-- Add your activities content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="inventory" class="tab-content">
-        <div id="inventoryContainer">
-          <ul>
-            <!-- Add your inventory content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="quests" class="tab-content">
-        <div id="questsContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="settings" class="tab-content">
-        <div id="settingsContainer">
-          <!-- Add your settings content here -->
-        </div>
-      </section>
-    </main>
-    <script>
-      // New script to handle navigation
-      const navItems = document.querySelectorAll("nav ul li a");
-      const tabContents = document.querySelectorAll(".tab-content");
+        </section>
+        <section id="skills" class="tab-content">
+          <div id="skillsContainer">
+            <ul>
+              <li>
+                <h3>Attack</h3>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 80%"></div>
+                </div>
+                <button>START</button>
+              </li>
+              <li>
+                <h3>Strength</h3>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 80%"></div>
+                </div>
+                <button>START</button>
+              </li>
+              <li>
+                <h3>Defence</h3>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 80%"></div>
+                </div>
+                <button>START</button>
+              </li>
+              <li>
+                <h3>Ranged</h3>
+                <p>
+                  Training in the use of ranged weapons to attack opponents from
+                  a distance.
+                </p>
+              </li>
+              <li>
+                <h3>Prayer</h3>
+                <p>
+                  Ability to pray to the gods to gain combat advantages and
+                  other benefits.
+                </p>
+              </li>
+              <li>
+                <h3>Magic</h3>
+                <p>
+                  Training in the use of magical spells to attack opponents and
+                  gain other advantages.
+                </p>
+              </li>
+              <li>
+                <h3>Runecrafting</h3>
+                <p>
+                  Ability to craft runes, which are used to cast magic spells.
+                </p>
+              </li>
+              <li>
+                <h3>Construction</h3>
+                <p>Ability to build and furnish player-owned houses.</p>
+              </li>
+              <li>
+                <h3>Hitpoints</h3>
+                <p>Measurement of the player's current and maximum health.</p>
+              </li>
+              <li>
+                <h3>Agility</h3>
+                <p>
+                  Training in agility and dexterity, allowing the player to
+                  navigate obstacles and perform other physical feats.
+                </p>
+              </li>
+              <li>
+                <h3>Herblore</h3>
+                <p>
+                  Ability to make potions, which provide various benefits to the
+                  player.
+                </p>
+              </li>
+              <li>
+                <h3>Thieving</h3>
+                <p>
+                  Ability to steal from non-player characters and other players.
+                </p>
+              </li>
+              <li>
+                <h3>Crafting</h3>
+                <p>Ability to create various items from raw materials.</p>
+              </li>
+              <li>
+                <h3>Fletching</h3>
+                <p>Ability to make bows and arrows from raw materials.</p>
+              </li>
+              <li>
+                <h3>Slayer</h3>
+                <p>Ability to kill specific monsters for rewards.</p>
+              </li>
+              <li>
+                <h3>Hunter</h3>
+                <p>Ability to trap and catch creatures in the wild.</p>
+              </li>
+              <li>
+                <h3>Mining</h3>
+                <p>Ability to mine ores and other resources from rocks.</p>
+              </li>
+              <li>
+                <h3>Smithing</h3>
+                <p>
+                  Ability to smelt ores into metal bars and craft items from
+                  those bars.
+                </p>
+              </li>
+              <li>
+                <h3>Fishing</h3>
+                <p>Ability to catch fish and other sea creatures.</p>
+              </li>
+              <li>
+                <h3>Cooking</h3>
+                <p>
+                  Ability to cook food, which can provide various benefits to
+                  the player.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="activities" class="tab-content">
+          <div id="activitiesContainer">
+            <ul>
+              <!-- Add your activities content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="inventory" class="tab-content">
+          <div id="inventoryContainer">
+            <ul>
+              <!-- Add your inventory content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="quests" class="tab-content">
+          <div id="questsContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="settings" class="tab-content">
+          <div id="settingsContainer">
+            <!-- Add your settings content here -->
+          </div>
+        </section>
+      </main>
+      <script>
+        // New script to handle navigation
+        const navItems = document.querySelectorAll("nav ul li a");
+        const tabContents = document.querySelectorAll(".tab-content");
 
-      navItems.forEach((navItem) => {
-        navItem.addEventListener("click", (event) => {
-          event.preventDefault();
+        navItems.forEach((navItem) => {
+          navItem.addEventListener("click", (event) => {
+            event.preventDefault();
 
-          navItems.forEach((item) => item.classList.remove("active"));
-          navItem.classList.add("active");
+            navItems.forEach((item) => item.classList.remove("active"));
+            navItem.classList.add("active");
 
-          const target = navItem.getAttribute("href");
-          tabContents.forEach((content) => {
-            if (content.id === target.substr(1)) {
-              content.style.display = "block";
-            } else {
-              content.style.display = "none";
-            }
+            const target = navItem.getAttribute("href");
+            tabContents.forEach((content) => {
+              if (content.id === target.substr(1)) {
+                content.style.display = "block";
+              } else {
+                content.style.display = "none";
+              }
+            });
           });
         });
-      });
 
-      // Set the first navigation item as active and its content visible
-      navItems[0].classList.add("active");
-      tabContents[0].style.display = "block";
-    </script>
+        // Set the first navigation item as active and its content visible
+        navItems[0].classList.add("active");
+        tabContents[0].style.display = "block";
+      </script>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

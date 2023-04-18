@@ -63,12 +63,16 @@ socket.on("charactersData", (characters) => {
     console.log("Received characters data:", characters);
 });
 
-window.addEventListener("DOMContentLoaded", () => { // When the DOM is loaded, run the following code 
+window.addEventListener("DOMContentLoaded", () => {
+    // When the DOM is loaded, run the following code
 
     // Redirect to the login page if the user is not authenticated
     if (!isAuthenticated()) {
         window.location.href = "/welcome.html";
+    } else {
+        document.getElementById("page-content").style.display = "block";
     }
+
     setupCharacterInfoToggle(); // Set up the character info toggle button
     checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 

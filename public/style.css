@@ -453,6 +453,10 @@ main > * {
   margin-right: 0;
 }
 
+#page-content {
+  display: none;
+}
+
 /* Character Creation Container */
 .character-creation-container {
   height: auto; /* Make the container expand based on content */
