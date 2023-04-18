@@ -124,8 +124,7 @@ const Character = require('./public/models/character');
 const User = require('./public/models/user');
 
 io.on('connection', (socket) => {
-  console.log('A user connected');
-
+  
   socket.on('createCharacter', async ({ userId, name, race }) => {
     try {
       const user = await User.findById(userId);
