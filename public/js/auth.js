@@ -138,10 +138,9 @@ export function logout() {
   }, 500);
 }
 
-export async function isAuthenticated() {
+export function isAuthenticated() {
   return !!localStorage.getItem("token");
 }
-
 if (window.location.pathname === "/welcome.html") {
   window.addEventListener("DOMContentLoaded", () => {
     document
