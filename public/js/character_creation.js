@@ -50,7 +50,7 @@ const createCharacter = async () => {
 
     const data = await response.json();
     console.log('Character created:', data);
-    window.location.href = 'game.html';
+    window.location.href = 'index.html';
   } catch (error) {
     console.error('Error:', error);
     displayErrorMessage(`Error: ${error.message}`);
