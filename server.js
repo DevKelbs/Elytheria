@@ -20,18 +20,22 @@ const sessionStore = new SequelizeStore({
   db: sequelize,
 });
 
+// Set up express-session middleware
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Initialize Passport.js and set up its middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Sync the session store with the database
-sessionStore.sync()
-  .then(() => {
-    app.use(
-      session({
-        secret: process.env.SESSION_SECRET,
-        store: sessionStore,
-        resave: false,
-        saveUninitialized: false,
-      })
-    )
-  });
+sessionStore.sync();
 
 // Initialize Socket.io
 const io = require('socket.io')(server);
@@ -56,24 +60,13 @@ app.use(cors());
 app.use(express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  }),
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await User.findById(id);
+    const user = await User.findByPk(id);
     done(null, user);
   } catch (err) {
     done(err);

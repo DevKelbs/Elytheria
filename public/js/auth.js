@@ -28,6 +28,7 @@ function validateUserInput(username, email, password, passwordConfirm) {
 }
 
 export async function register(username, email, password, passwordConfirm) {
+  console.log("Authenticating user...");
   const errors = validateUserInput(username, email, password, passwordConfirm);
 
   if (errors.length > 0) {
@@ -48,24 +49,38 @@ export async function register(username, email, password, passwordConfirm) {
       }),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
-    }
-
     const data = await response.json();
 
-    if (data.success) {
-      displaySuccessMessage("Registration successful!");
+    if (response.ok) {
+      if (data.success) {
+        displaySuccessMessage("Registration successful!");
+        // Log the user in after successful registration
+        await authenticate(username, password);
+        setTimeout(() => {
+          window.location.href = '/character_creation.html';
+        }, 1000);
+      } else {
+        alert(`Error: ${data.msg}`);
+      }
     } else {
-      alert(`Error: ${data.msg}`);
+      switch (response.status) {
+        case 400:
+          alert("Error: Bad Request. Invalid input provided.");
+          break;
+        case 500:
+          alert("Error: Internal Server Error. Please try again later.");
+          break;
+        default:
+          alert(`Error ${response.status}: ${response.statusText}`);
+      }
     }
   } catch (error) {
     console.error("Error:", error);
-    alert(error.message);
+    alert("Error: Network error. Please check your internet connection and try again.");
   }
 }
 
-export async function authenticate(username, password) {
+export async function authenticate(username, password, redirectTo = "/index.html") {
   console.log("Authenticating user...");
   if (!username || username.trim().length === 0) {
     alert("Username is required");
@@ -101,7 +116,7 @@ export async function authenticate(username, password) {
       localStorage.setItem("userId", data.user.id);
       displaySuccessMessage("Login successful!");
       setTimeout(() => {
-        window.location.href = "/index.html";
+        window.location.href = redirectTo;
       }, 1000);
     } else {
       alert(`Error: ${data.msg}`);
@@ -116,15 +131,17 @@ export function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("username");
   localStorage.removeItem("userId");
+  localStorage.removeItem("user");
 
   setTimeout(() => {
     window.location.href = "/welcome.html";
   }, 500);
 }
 
-export function isAuthenticated() {
+export async function isAuthenticated() {
   return !!localStorage.getItem("token");
 }
+
 if (window.location.pathname === "/welcome.html") {
   window.addEventListener("DOMContentLoaded", () => {
     document
@@ -143,9 +160,9 @@ if (window.location.pathname === "/welcome.html") {
 
         // Reload the page after successful registration
         setTimeout(() => {
-            location.reload();
-          }, 3000);
-        });
+          location.reload();
+        }, 3000);
+      });
 
     document
       .getElementById("authenticate-form")

@@ -455,15 +455,18 @@ main > * {
 
 /* Character Creation Container */
 .character-creation-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 500px;
-  margin: 5rem auto;
-  padding: 20px;
-  font-weight: bold;
+  height: auto; /* Make the container expand based on content */
+  display: flex; /* Use a flex container to center the form vertically */
+  flex-direction: column; /* Stack flex items vertically */
+  justify-content: center; /* Center the form vertically */
+  align-items: center; /* Center the form horizontally */
+  padding: 1rem; /* Add some padding to prevent content from sticking to the edges */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--color-bg-active-dark-brown);
-  border: 2px solid var(--color-bg-active-gold);
+  border: 2px solid var(--color-bg-active-dark-brown);
   border-radius: 10px;
   background-color: var(--color-bg-active-sandstone);
 }
@@ -480,6 +483,7 @@ main > * {
   flex-direction: column;
   width: 100%;
   height: auto;
+  margin: 5px auto;
 }
 
 .form-group label {

@@ -9,36 +9,25 @@ const bcrypt = require("bcrypt");
 router.post('/register', async (req, res) => {
     const { email, username, password } = req.body;
 
-    // Check if all the required fields are provided
     if (!email || !username || !password) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
     try {
-        // Check if a user with the given username already exists
         const existingUser = await User.findOne({ where: { username } });
         if (existingUser) {
             return res.status(400).json({ message: 'Username is already taken' });
         }
 
-        // Create a new user and save it to the database
         const newUser = await User.create({ email, username, password });
-
-        // Log the user in after successful registration
-        req.login(newUser, (err) => {
-            if (err) {
-                console.error('Login failed after registration:', err);
-                return res.status(500).json({ success: false, message: 'Login failed after registration' });
-            }
-            return res.status(200).json({ success: true, message: 'Registration and login successful' });
-        });
-
+        return res.status(200).json({ success: true, user: newUser });
 
     } catch (err) {
         console.error('Error registering user:', err);
         res.status(500).json({ message: 'Error registering user' });
     }
 });
+
 
 
 // authenticate route
