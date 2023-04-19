@@ -16,11 +16,25 @@ import {
 
 const socket = io();
 
+function show(elementId) {
+    document.getElementById("mainGameContent").style.display = "block";
+}
+
+function hide(elementId) {
+    document.getElementById("mainGameContent").style.display = "none";
+}
 
 // Check if the user is logged in and update the UI accordingly
 function checkLoginStatus() {
     const isLoggedIn = isAuthenticated();
     updateAuthButtons(isLoggedIn);
+
+    if (isLoggedIn) {
+        show("mainGameContent");
+    } else {
+        hide("mainGameContent");
+    }
+
     return isLoggedIn;
 }
 
@@ -68,21 +82,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Redirect to the login page if the user is not authenticated
     if (!isAuthenticated()) {
-        window.location.href = "/welcome.html";
+        window.location.href = "/welcome.html"; // Redirect to the login page if the user is not authenticated
     } else {
-        document.getElementById("page-content").style.display = "block";
+        document.getElementById("mainGameContent").style.display = "block"; // Show the page content once the DOM is loaded and the user is authenticated (i.e. the page is ready to be displayed)
     }
 
     setupCharacterInfoToggle(); // Set up the character info toggle button
     checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
     document
-        .getElementById("logout")
-        .addEventListener("click", () => {
-            logout();
-            displaySuccessMessage("Logout successful!");
-            setTimeout(() => {
-                window.location.href = "/";
-            }, 1000);
+        .getElementById("logout") // Get the logout button element from the DOM
+        .addEventListener("click", () => { // Add a click event listener to the logout button
+            logout(); // Log the user out
+            displaySuccessMessage("Logout successful!"); // Display a success message
         });
 });
