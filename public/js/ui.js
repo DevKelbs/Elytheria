@@ -53,3 +53,10 @@ export function setupCharacterInfoToggle() {
         toggleButton.classList.toggle('collapsed');
     });
 }
+
+const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2");
+toggleEye.addEventListener("click", function () {
+  toggleEye.classList.toggle("fa-eye-slash");
+  toggleEye.classList.toggle("fa-eye");
+  toggleEye.classList.toggle("text-muted");
+});
