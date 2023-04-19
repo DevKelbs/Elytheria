@@ -133,9 +133,7 @@ export function logout() {
   localStorage.removeItem("userId");
   localStorage.removeItem("user");
 
-  setTimeout(() => {
-    window.location.href = "/welcome.html";
-  }, 500);
+  window.location.href = "/welcome.html";
 }
 
 export function isAuthenticated() {

@@ -20,6 +20,7 @@
   <body>
     <div id="characterCreationContent" style="display: none">
       <div class="character-creation-container">
+        <button onClick="closeCharacterCreationContent()">Close Form</button>
         <h1>Character Creation</h1>
 
         <div class="form-group">
@@ -116,9 +117,9 @@
               <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
             </li>
             <li id="create-character-link">
-              <a href="#" id="open-character-creation"
-                ><i class="fas fa-user-plus"></i> Create Character</a
-              >
+              <button onClick="openCharacterCreationContent()">
+                Create Character
+              </button>
             </li>
           </ul>
         </nav>

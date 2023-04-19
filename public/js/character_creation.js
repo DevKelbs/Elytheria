@@ -1,8 +1,12 @@
+let lastElementID = '';
 const characterNameInput = document.getElementById('character-name');
 const characterClassSelect = document.getElementById('class-selection');
 const hairColorInput = document.getElementById('hair-color');
 const skinColorInput = document.getElementById('skin-color');
 const eyeColorInput = document.getElementById('eye-color');
+const characterCreationContent = document.getElementById('characterCreationContent');
+const mainGameContent = document.getElementById('mainGameContent');
+
 
 const displayErrorMessage = (message) => {
   const errorMessage = document.createElement("div");
@@ -15,6 +19,32 @@ const displayErrorMessage = (message) => {
     errorMessage.remove();
   }, 3000);
 };
+
+// Function to open the character creation content
+function openCharacterCreationContent() {
+  // Save the last element's ID
+  lastElementID = document.activeElement.id;
+
+  // Hide the main game content
+  mainGameContent.style.display = 'none';
+
+  // Show the character creation content
+  characterCreationContent.style.display = 'block';
+}
+
+// Function to close the character creation form
+function closeCharacterCreationContent() {
+  // Hide the character creation form
+  characterCreationContent.style.display = 'none';
+
+  // If lastElementID has a value, show that element
+  if (lastElementID) {
+    document.getElementById(lastElementID).style.display = 'block';
+  } else {
+    // If lastElementID is empty, show the main game content
+    mainGameContent.style.display = 'block';
+  }
+}
 
 const createCharacter = async () => {
   const characterName = characterNameInput.value;
@@ -61,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openCharacterCreationButton = document.getElementById('open-character-creation');
   if (openCharacterCreationButton) {
     openCharacterCreationButton.addEventListener('click', () => {
-      window.location.href = 'character_creation.html';
+      document.getElementById("characterCreationContent").style.display = "block";
     });
   }
 
