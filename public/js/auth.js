@@ -57,7 +57,7 @@ export async function register(username, email, password, passwordConfirm) {
         // Log the user in after successful registration
         await authenticate(username, password);
         setTimeout(() => {
-          window.location.href = '/character_creation.html';
+          window.location.href = '/characterCreation.html';
         }, 1000);
       } else {
         alert(`Error: ${data.msg}`);

@@ -124,7 +124,7 @@ const Character = require('./public/models/character');
 const User = require('./public/models/user');
 
 io.on('connection', (socket) => {
-  
+
   socket.on('createCharacter', async ({ userId, name, race }) => {
     try {
       const user = await User.findById(userId);
@@ -155,7 +155,7 @@ io.on('connection', (socket) => {
 
       if (characters.length === 0) {
         // Redirect the user to the character creation page
-        socket.emit("redirect", "/character_creation.html");
+        socket.emit("redirect", "/characterCreation.html");
         return;
       } else {
         // Emit the characters data to the client

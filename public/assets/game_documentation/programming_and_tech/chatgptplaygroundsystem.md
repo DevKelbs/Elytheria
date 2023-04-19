@@ -12,7 +12,7 @@ user model: https://github.com/DevKelbs/Elytheria/blob/main/public/models/user.j
 
 character model: https://github.com/DevKelbs/Elytheria/blob/main/public/models/character.js
 
-character_creation: https://github.com/DevKelbs/Elytheria/blob/main/public/js/character_creation.js
+characterCreation: https://github.com/DevKelbs/Elytheria/blob/main/public/js/characterCreation.js
 
 game: https://github.com/DevKelbs/Elytheria/blob/main/public/js/game.js
 
