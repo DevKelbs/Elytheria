@@ -6,7 +6,7 @@ const characterClassSelect = document.getElementById('class-selection');
 const hairColorInput = document.getElementById('hair-color');
 const skinColorInput = document.getElementById('skin-color');
 const eyeColorInput = document.getElementById('eye-color');
-const characterCreationContent = document.getElementById('characterCreationContent');
+const characterCreationContentv2 = document.getElementById('characterCreationContentv2');
 const mainGameContent = document.getElementById('mainGameContent');
 
 const form = document.getElementById('createCharacterForm');
@@ -113,14 +113,7 @@ function openCharacterCreationContent() {
 function closeCharacterCreationContent() {
   // Hide the character creation form
   characterCreationContentv2.style.display = 'none';
-
-  // If lastElementID has a value, show that element
-  if (lastElementID) {
-    document.getElementById(lastElementID).style.display = 'block';
-  } else {
-    // If lastElementID is empty, show the main game content
-    mainGameContent.style.display = 'block';
-  }
+  mainGameContent.style.display = 'block';
 }
 
 // Function to open the character creation content
