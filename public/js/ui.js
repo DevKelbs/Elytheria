@@ -54,9 +54,14 @@ export function setupCharacterInfoToggle() {
     });
 }
 
-const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2");
-toggleEye.addEventListener("click", function () {
-  toggleEye.classList.toggle("fa-eye-slash");
-  toggleEye.classList.toggle("fa-eye");
-  toggleEye.classList.toggle("text-muted");
+document.addEventListener('DOMContentLoaded', () => {
+
+    const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2");
+    if (toggleEye) {
+        toggleEye.addEventListener("click", function () {
+            toggleEye.classList.toggle("fa-eye-slash");
+            toggleEye.classList.toggle("fa-eye");
+            toggleEye.classList.toggle("text-muted");
+        });
+    }
 });
