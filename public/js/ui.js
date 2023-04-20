@@ -55,8 +55,10 @@ export function setupCharacterInfoToggle() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2");
-    const navMainItems = document.querySelectorAll(".nav-main-item");
+    const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2.eye1");
+    const navMainItemsCombat = document.querySelectorAll(".combat");
+    const toggleEye2 = document.querySelector(".far.fa-eye.text-muted.ml-2.eye2");
+    const navMainItemsNonCombat = document.querySelectorAll(".non-combat");
 
     if (toggleEye) {
         toggleEye.addEventListener("click", () => {
@@ -64,7 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleEye.classList.toggle("fa-eye");
             toggleEye.classList.toggle("text-muted");
 
-            navMainItems.forEach((item) => {
+            navMainItemsCombat.forEach((item) => {
+                if (item.style.display === "none") {
+                    item.style.display = "list-item";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    }
+    if (toggleEye2) {
+        toggleEye2.addEventListener("click", () => {
+            toggleEye2.classList.toggle("fa-eye-slash");
+            toggleEye2.classList.toggle("fa-eye");
+            toggleEye2.classList.toggle("text-muted");
+
+            navMainItemsNonCombat.forEach((item) => {
                 if (item.style.display === "none") {
                     item.style.display = "list-item";
                 } else {
