@@ -225,11 +225,11 @@ nav ul li a:hover {
 }
 
 .nav-main-link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: .5rem 1.25rem;
-    line-height: 1.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  line-height: 1.25rem;
 }
 
 .nav-main-link small {
@@ -325,6 +325,40 @@ main > * {
   top: 0;
   left: 0;
   width: 100%;
+}
+
+#createCharacterForm {
+  height: auto; /* Make the container expand based on content */
+  display: flex; /* Use a flex container to center the form vertically */
+  flex-direction: column; /* Stack flex items vertically */
+  justify-content: center; /* Center the form vertically */
+  align-items: center; /* Center the form horizontally */
+  padding: 1rem; /* Add some padding to prevent content from sticking to the edges */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-bg-active-dark-brown);
+  border: 2px solid var(--color-bg-active-dark-brown);
+  border-radius: 10px;
+  background-color: var(--color-bg-active-sandstone);
+}
+
+#characterDisplay {
+  height: auto; /* Make the container expand based on content */
+  display: flex; /* Use a flex container to center the form vertically */
+  flex-direction: column; /* Stack flex items vertically */
+  justify-content: center; /* Center the form vertically */
+  align-items: center; /* Center the form horizontally */
+  padding: 1rem; /* Add some padding to prevent content from sticking to the edges */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-bg-active-dark-brown);
+  border: 2px solid var(--color-bg-active-dark-brown);
+  border-radius: 10px;
+  background-color: var(--color-bg-active-sandstone);
 }
 
 .skill-icon img {

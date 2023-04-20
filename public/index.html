@@ -70,6 +70,30 @@
         </div>
       </div>
     </div>
+    <div id="characterCreationContentv2" style="display: none">
+      <form id="createCharacterForm">
+        <button onClick="closeCharacterCreationContent()">Close Form</button>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="race">Race:</label>
+        <select id="race" name="race" required>
+          <option value="Solarian Knights">Solarian Knights</option>
+          <option value="Feyborn">Feyborn</option>
+          <!-- Add other races -->
+        </select>
+
+        <label for="faction">Faction:</label>
+        <select id="faction" name="faction" required>
+          <option value="Order of the Sun">Order of the Sun</option>
+          <option value="Nature's Guardians">Nature's Guardians</option>
+          <!-- Add other factions -->
+        </select>
+
+        <button type="submit">Create Character</button>
+      </form>
+    </div>
+    <div id="characterDisplay" style="display: none"></div>
     <div id="mainGameContent" style="display: none">
       <aside class="sidebar">
         <nav>
@@ -95,231 +119,233 @@
                 ><i class="fas fa-scroll"></i> Quests</a
               >
             </li>
+            <li>
             <div class="nav-main-heading">
               <span>Combat</span>
               <i class="far ml-2 fa-eye text-muted"> </i>
             </div>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Attack</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Strength</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Defence</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Hitpoints</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Ranged</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Magic</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Prayer</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Slayer</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
+            </li>
             </li>
             <div class="nav-main-heading">
               <span>Non-Combat</span>
               <i class="far ml-2 fa-eye text-muted"> </i>
             </div>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Woodcutting</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Fishing</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Firemaking</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Cooking</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Mining</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Smithing</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Thieving</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Fletching</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Crafting</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Runecrafting</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Herblore</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
-            <li class ="nav-main-item">
+            <li class="nav-main-item">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
                 <span class="nav-main-link-name">Agility</span>
                 <small>
                   (
                   <span>1</span>
-                   / 99)
+                  / 99)
                 </small>
               </a>
             </li>
@@ -340,9 +366,8 @@
               <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
             </li>
             <li id="create-character-link">
-              <button onClick="openCharacterCreationContent()">
-                Create Character
-              </button>
+              <button id="openCharacterCreation">Create Character</button>
+              <button id="showCharacters">Show All Characters</button>
             </li>
           </ul>
         </nav>
@@ -432,15 +457,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/js/characterCreation.js"></script>
     <script
       src="https://cdn.socket.io/4.1.2/socket.io.min.js"
       integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
       crossorigin="anonymous"
     ></script>
-    <script src="js/utils.js" type="module"></script>
-    <script src="js/ui.js" type="module"></script>
-    <script src="js/main.js" type="module"></script>
+    <script src="/js/character.js" type="module"></script>
+    <script src="/js/characterCreation.js" type="module"></script>
+    <script src="/js/utils.js" type="module"></script>
+    <script src="/js/ui.js" type="module"></script>
+    <script src="/js/main.js" type="module"></script>
     <script
       src="https://kit.fontawesome.com/c5d770fabf.js"
       crossorigin="anonymous"
