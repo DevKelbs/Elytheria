@@ -10,8 +10,7 @@ import {
 import {
     updateAuthButtons,
     updateUsernameDisplay,
-    setupCharacterInfoToggle,
-    displaySuccessMessage,
+    displaySuccessMessage
 } from "./ui.js";
 
 const socket = io();
@@ -87,7 +86,6 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("mainGameContent").style.display = "block"; // Show the page content once the DOM is loaded and the user is authenticated (i.e. the page is ready to be displayed)
     }
 
-    setupCharacterInfoToggle(); // Set up the character info toggle button
     checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
     document

@@ -44,15 +44,6 @@ export function updateUsernameDisplay() {
     }
 }
 
-export function setupCharacterInfoToggle() {
-    const toggleButton = document.getElementById('toggle-character-info');
-    const characterInfoContainer = document.querySelector('.character-info-container');
-
-    toggleButton.addEventListener('click', () => {
-        characterInfoContainer.classList.toggle('collapsed');
-        toggleButton.classList.toggle('collapsed');
-    });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2.eye1");
