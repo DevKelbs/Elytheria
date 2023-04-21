@@ -120,10 +120,12 @@
               >
             </li>
             <li>
-            <div class="nav-main-heading">
-              <span>Combat</span>
-              <i class="far ml-2 fa-eye text-muted eye1"> </i>
-            </div>
+              <div class="nav-main-heading">
+                <span>Combat</span>
+                <i class="far ml-2 fa-eye text-muted eye1"> </i>
+              </div>
+            </li>
+
             <li class="nav-main-item combat">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
@@ -212,12 +214,13 @@
                 </small>
               </a>
             </li>
-            </li>
             <li>
-            <div class="nav-main-heading">
-              <span>Non-Combat</span>
-              <i class="far ml-2 fa-eye text-muted eye2"> </i>
-            </div>
+              <div class="nav-main-heading">
+                <span>Non-Combat</span>
+                <i class="far ml-2 fa-eye text-muted eye2"> </i>
+              </div>
+            </li>
+
             <li class="nav-main-item non-combat">
               <a class="nav-main-link nav-compact pointer-enabled">
                 <span class="nav-img"></span>
@@ -350,7 +353,6 @@
                 </small>
               </a>
             </li>
-            </li>
             <li>
               <a href="#activities" class="nav-activities"
                 ><i class="fas fa-chart-bar"></i> Activities</a
@@ -390,11 +392,13 @@
           </div>
         </div>
       </header>
-      <main>
+      <main id="coveMain">
         <section id="cove" class="tab-content">
           <div id="coveContainer">
             <ul>
-              <!-- Add your Cove content here -->
+              <div id="cove">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+              </div>
             </ul>
           </div>
         </section>
@@ -453,6 +457,9 @@
         tabContents[0].style.display = "block";
       </script>
     </div>
+    <div class="loading-screen">
+      <div class="spinner"></div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -465,6 +472,7 @@
     <script src="/js/characterCreation.js" type="module"></script>
     <script src="/js/utils.js" type="module"></script>
     <script src="/js/ui.js" type="module"></script>
+    <script src="/js/game.js" type="module"></script>
     <script src="/js/main.js" type="module"></script>
     <script
       src="https://kit.fontawesome.com/c5d770fabf.js"

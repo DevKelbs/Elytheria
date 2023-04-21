@@ -27,13 +27,6 @@ function hide(elementId) {
 function checkLoginStatus() {
     const isLoggedIn = isAuthenticated();
     updateAuthButtons(isLoggedIn);
-
-    if (isLoggedIn) {
-        show("mainGameContent");
-    } else {
-        hide("mainGameContent");
-    }
-
     return isLoggedIn;
 }
 
