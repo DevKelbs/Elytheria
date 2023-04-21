@@ -39,12 +39,18 @@ const displayErrorMessage = (message) => {
 // });
 
 async function displayAllCharacters() {
-  try {
-    const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  const currentLocation = window.location.pathname;
 
+  if (currentLocation !== "/index.html" || !token || !userId) {
+    return;
+  }
+
+  try {
     const response = await fetch(`/api/characters/${userId}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
