@@ -83,7 +83,7 @@ async function displayAllCharacters() {
 
 function displayCharacter(character) {
   characterDisplay.innerHTML = `
-  <button id="closeCharacterCreation">Close</button>
+  <button id="closeCharacterCreationSub">Close</button>
     <h2>${character.name}</h2>
     <p>Race: ${character.race}</p>
     <p>Faction: ${character.faction}</p>
@@ -102,6 +102,14 @@ function displayCharacter(character) {
     <button id="edit-character">Edit character</button>
     <button id="save-character">Save character</button>
   `;
+  
+  const closeCharacterCreationButton = document.getElementById("closeCharacterCreationSub");
+
+  closeCharacterCreationButton.addEventListener("click", () => {
+    characterDisplay.style.display = "none";
+    characterCreationContentv2.style.display = "none";
+    mainGameContent.style.display = "block";
+    });
 }
 
 // function addCharacterToStorage(character) {
@@ -216,15 +224,15 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  const closeCharacterCreationButton = document.getElementById(
-    "closeCharacterCreation"
-  );
-  if (closeCharacterCreationButton) {
-    closeCharacterCreationButton.addEventListener(
-      "click",
-      closeCharacterCreationContent
-    );
-  }
+  // const closeCharacterCreationButton = document.getElementById(
+  //   "closeCharacterCreation"
+  // );
+  // if (closeCharacterCreationButton) {
+  //   closeCharacterCreationButton.addEventListener(
+  //     "click",
+  //     closeCharacterCreationContent
+  //   );
+  // }
 
   const openCharacterDisplayButton = document.getElementById("showCharacters");
   if (openCharacterDisplayButton) {
