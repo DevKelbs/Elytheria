@@ -14,19 +14,11 @@ const Character = sequelize.define('Character', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    class: {
+    race: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    eyeColor: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    hairColor: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    skinColor: {
+    faction: {
         type: DataTypes.STRING,
         allowNull: false,
     }

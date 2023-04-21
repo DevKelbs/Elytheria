@@ -18,58 +18,6 @@
   </head>
 
   <body>
-    <div id="characterCreationContent" style="display: none">
-      <div class="character-creation-container">
-        <button onClick="closeCharacterCreationContent()">Close Form</button>
-        <h1>Character Creation</h1>
-
-        <div class="form-group">
-          <label for="character-name">Character Name:</label>
-          <input
-            type="text"
-            id="character-name"
-            name="character-name"
-            placeholder="Enter character name"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="class-selection">Class Selection:</label>
-          <select id="class-selection" name="class-selection">
-            <option value="Solarian Knights">Solarian Knights</option>
-            <option value="Feyborn">Feyborn</option>
-            <option value="Earthforged">Earthforged</option>
-            <option value="Shadowdancers">Shadowdancers</option>
-            <option value="Gnomes">Gnomes</option>
-            <option value="Dragonborn">Dragonborn</option>
-            <option value="Merfolk">Merfolk</option>
-            <!-- Add more classes here -->
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Appearance:</label>
-          <div class="appearance-options">
-            <div>
-              <label for="hair-color">Hair Color:</label>
-              <input type="color" id="hair-color" name="hair-color" />
-            </div>
-            <div>
-              <label for="skin-color">Skin Color:</label>
-              <input type="color" id="skin-color" name="skin-color" />
-            </div>
-            <div>
-              <label for="eye-color">Eye Color:</label>
-              <input type="color" id="eye-color" name="eye-color" />
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <button id="create-character-button">Create Character</button>
-        </div>
-      </div>
-    </div>
     <div id="characterCreationContentv2" style="display: none">
       <form id="createCharacterForm">
         <button id="closeCharacterCreation">Close Form</button>
@@ -80,6 +28,11 @@
         <select id="race" name="race" required>
           <option value="Solarian Knights">Solarian Knights</option>
           <option value="Feyborn">Feyborn</option>
+          <option value="Earthforged">Earthforged</option>
+          <option value="Shadowdancers">Shadowdancers</option>
+          <option value="Gnomes">Gnomes</option>
+          <option value="Dragonborn">Dragonborn</option>
+          <option value="Merfolk">Merfolk</option>
           <!-- Add other races -->
         </select>
 
@@ -90,7 +43,7 @@
           <!-- Add other factions -->
         </select>
 
-        <button type="submit">Create Character</button>
+        <button id="create-character-button" type="submit">Create Character</button>
       </form>
     </div>
     <div id="characterDisplay" style="display: none"></div>

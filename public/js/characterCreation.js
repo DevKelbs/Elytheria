@@ -1,11 +1,9 @@
 import { Character } from '/js/character.js';
 
 let lastElementID = '';
-const characterNameInput = document.getElementById('character-name');
-const characterClassSelect = document.getElementById('class-selection');
-const hairColorInput = document.getElementById('hair-color');
-const skinColorInput = document.getElementById('skin-color');
-const eyeColorInput = document.getElementById('eye-color');
+const characterNameInput = document.getElementById('name');
+const characterRaceSelect = document.getElementById('race');
+const characterFactionSelect = document.getElementById('faction');
 const characterCreationContentv2 = document.getElementById('characterCreationContentv2');
 const mainGameContent = document.getElementById('mainGameContent');
 
@@ -26,76 +24,76 @@ const displayErrorMessage = (message) => {
   }, 3000);
 };
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+// form.addEventListener('submit', (event) => {
+//   event.preventDefault();
 
-  const name = form.elements.name.value;
-  const race = form.elements.race.value;
-  const faction = form.elements.faction.value;
+//   const name = form.elements.name.value;
+//   const race = form.elements.race.value;
+//   const faction = form.elements.faction.value;
 
-  const character = new Character(name, race, faction);
-  addCharacterToStorage(character);
+//   const character = new Character(name, race, faction);
+//   addCharacterToStorage(character);
 
-  displayCharacter(character);
-});
+//   displayCharacter(character);
+// });
 
-function displayAllCharacters() {
-  const characters = JSON.parse(localStorage.getItem('characters')) || [];
+// function displayAllCharacters() {
+//   const characters = JSON.parse(localStorage.getItem('characters')) || [];
 
-  characterDisplay.innerHTML = '';
+//   characterDisplay.innerHTML = '';
 
-  characters.forEach((characterData, index) => {
-    console.log('Character data:', characterData);
-    const character = Character.fromJSON(characterData);
-    const characterElement = document.createElement('div');
-    characterElement.classList.add('character');
-    characterElement.innerHTML = `
-      <h3>${character.name}</h3>
-      <button>Select</button>
-    `;
+//   characters.forEach((characterData, index) => {
+//     console.log('Character data:', characterData);
+//     const character = Character.fromJSON(characterData);
+//     const characterElement = document.createElement('div');
+//     characterElement.classList.add('character');
+//     characterElement.innerHTML = `
+//       <h3>${character.name}</h3>
+//       <button>Select</button>
+//     `;
 
-    characterElement.querySelector('button').addEventListener('click', () => {
-      displayCharacter(character);
-    });
+//     characterElement.querySelector('button').addEventListener('click', () => {
+//       displayCharacter(character);
+//     });
 
-    characterDisplay.appendChild(characterElement);
-  });
-}
+//     characterDisplay.appendChild(characterElement);
+//   });
+// }
 
-function displayCharacter(character) {
-  characterDisplay.innerHTML = `
-  <button id="closeCharacterCreation">Close</button>
-    <h2>${character.name}</h2>
-    <p>Race: ${character.race}</p>
-    <p>Faction: ${character.faction}</p>
-    <p>Level: ${character.level}</p>
-    <p>Experience: ${character.experience}</p>
-    <p>Stats:</p>
-    <ul>
-      <li>Strength: ${character.stats.strength}</li>
-      <li>Agility: ${character.stats.agility}</li>
-      <li>Intelligence: ${character.stats.intelligence}</li>
-      <li>Endurance: ${character.stats.endurance}</li>
-    </ul>
-    <!-- Add other relevant information here -->
-    <button id="back-to-character-list">Back to character list</button>
-    <button id="delete-character">Delete character</button>
-    <button id="edit-character">Edit character</button>
-    <button id="save-character">Save character</button>
-  `;
-}
+// function displayCharacter(character) {
+//   characterDisplay.innerHTML = `
+//   <button id="closeCharacterCreation">Close</button>
+//     <h2>${character.name}</h2>
+//     <p>Race: ${character.race}</p>
+//     <p>Faction: ${character.faction}</p>
+//     <p>Level: ${character.level}</p>
+//     <p>Experience: ${character.experience}</p>
+//     <p>Stats:</p>
+//     <ul>
+//       <li>Strength: ${character.stats.strength}</li>
+//       <li>Agility: ${character.stats.agility}</li>
+//       <li>Intelligence: ${character.stats.intelligence}</li>
+//       <li>Endurance: ${character.stats.endurance}</li>
+//     </ul>
+//     <!-- Add other relevant information here -->
+//     <button id="back-to-character-list">Back to character list</button>
+//     <button id="delete-character">Delete character</button>
+//     <button id="edit-character">Edit character</button>
+//     <button id="save-character">Save character</button>
+//   `;
+// }
 
-function addCharacterToStorage(character) {
-  let characters = JSON.parse(localStorage.getItem('characters')) || [];
+// function addCharacterToStorage(character) {
+//   let characters = JSON.parse(localStorage.getItem('characters')) || [];
 
-  if (characters.length >= maxCharactersAllowed) {
-    alert('You have reached the maximum number of characters allowed.');
-    return;
-  }
+//   if (characters.length >= maxCharactersAllowed) {
+//     alert('You have reached the maximum number of characters allowed.');
+//     return;
+//   }
 
-  characters.push(character);
-  localStorage.setItem('characters', JSON.stringify(characters));
-}
+//   characters.push(character);
+//   localStorage.setItem('characters', JSON.stringify(characters));
+// }
 
 // Function to open the character creation content
 function openCharacterCreationContent() {
@@ -144,12 +142,11 @@ function closeCharacterDisplay() {
 
 const createCharacter = async () => {
   const characterName = characterNameInput.value;
-  const characterClass = characterClassSelect.value;
-  const hairColor = hairColorInput.value;
-  const skinColor = skinColorInput.value;
-  const eyeColor = eyeColorInput.value;
+  const characterRace = characterRaceSelect.value;
+  const characterFaction = characterFactionSelect.value;
 
   try {
+    console.log('sending character create request...')
     const response = await fetch('/api/characters/create', {
       method: 'POST',
       headers: {
@@ -158,10 +155,8 @@ const createCharacter = async () => {
       },
       body: JSON.stringify({
         name: characterName,
-        class: characterClass,
-        hairColor: hairColor,
-        skinColor: skinColor,
-        eyeColor: eyeColor,
+        race: characterRace,
+        faction: characterFaction
       }),
     });
 
@@ -214,9 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const showCharactersButton = document.getElementById('showCharacters');
-  if (showCharactersButton) {
-    showCharactersButton.addEventListener('click', displayAllCharacters);
-    displayAllCharacters();
-  }
+  // const showCharactersButton = document.getElementById('showCharacters');
+  // if (showCharactersButton) {
+  //   showCharactersButton.addEventListener('click', displayAllCharacters);
+  //   displayAllCharacters();
+  // }
 });
