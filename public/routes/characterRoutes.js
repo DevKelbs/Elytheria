@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Character = require('../models/character.js');
+const Stats = require('../models/stats.js')
 const User = require('../models/user.js'); // Import the User model
 
 router.post('/create', passport.authenticate('jwt', { session: false }), async (req, res) => {
@@ -21,7 +22,14 @@ router.post('/create', passport.authenticate('jwt', { session: false }), async (
             faction
         });
 
-        return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter });
+        const statsInstance = await Stats.create({
+            characterId: newCharacter.id,
+            attack: Stats.attack,
+            strength: Stats.strength,
+            defence: Stats.defence,
+          });
+
+        return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter, stats: statsInstance });
     } catch (err) {
         console.error('Error creating character:', err);
         res.status(500).json({ success: false, message: 'Error creating character' });

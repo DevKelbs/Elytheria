@@ -180,14 +180,17 @@ const createCharacter = async () => {
       }
     }
 
-    const data = await response.json();
-    console.log("Character created:", data);
+    const character = await response.json();
+    console.log("created character:");
     window.location.href = "index.html";
+
+
   } catch (error) {
-    console.error("Error:", error);
-    displayErrorMessage(`Error: ${error.message}`);
+    console.error("Error creating character:", error);
   }
 };
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // const openCharacterCreationButton = document.getElementById('open-character-creation');
