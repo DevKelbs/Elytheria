@@ -43,7 +43,9 @@
           <!-- Add other factions -->
         </select>
 
-        <button id="create-character-button" type="submit">Create Character</button>
+        <button id="create-character-button" type="submit">
+          Create Character
+        </button>
       </form>
     </div>
     <div id="characterDisplay" style="display: none"></div>
@@ -329,24 +331,24 @@
           </ul>
         </nav>
       </aside>
-      <header>
-        <div class="character-info-container">
-          <div class="character-info">
-            <div class="character-info-col1">
-              <span id="username-display" class="character-name"></span>
-              <span class="character-health">HP: 100 / 100</span>
-              <span class="character-mana">MP: 100 / 100</span>
-            </div>
-            <div class="character-info-col2">
-              <span class="character-level">level 1</span>
-              <span class="character-exp">XP: 0 / 100</span>
-              <span class="character-currency">Gold: 0</span>
+      <main id="coveMain">
+        <header id="page-header" class="bg-combat">
+          <div class="character-info-container">
+            <div class="character-info">
+              <div class="character-info-col1">
+                <span id="username-display" class="character-name"></span>
+                <span class="character-health">HP: 100 / 100</span>
+                <span class="character-mana">MP: 100 / 100</span>
+              </div>
+              <div class="character-info-col2">
+                <span class="character-level">level 1</span>
+                <span class="character-exp">XP: 0 / 100</span>
+                <span class="character-currency">Gold: 0</span>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
-      <main id="coveMain">
-        <section id="cove" class="tab-content">
+        </header>
+        <section id="cove" class="tab-content" style="display: none;">
           <div id="coveContainer">
             <ul>
               <div id="cove">
@@ -355,30 +357,75 @@
             </ul>
           </div>
         </section>
-        <section id="inventory" class="tab-content">
+        <section id="inventory" class="tab-content" style="display: none;">
           <div id="inventoryContainer">
             <ul>
               <!-- Add your inventory content here -->
             </ul>
           </div>
         </section>
-        <section id="quests" class="tab-content">
+        <section id="quests" class="tab-content" style="display: none;">
           <div id="questsContainer">
             <ul>
               <!-- Add your quests content here -->
             </ul>
           </div>
         </section>
-        <section id="activities" class="tab-content">
+        <section id="activities" class="tab-content" style="display: none;">
           <div id="activitiesContainer">
             <ul>
               <!-- Add your activities content here -->
             </ul>
           </div>
         </section>
-        <section id="settings" class="tab-content">
+        <section id="settings" class="tab-content" style="display: none;">
           <div id="settingsContainer">
-            <!-- Add your settings content here -->
+            <div class="row row-deck">
+              <div class="col-md-12">
+                <div
+                  class="block block-rounded block-link-pop border-top border-settings border-4x"
+                >
+                  <div class="block-content">
+                    <h2 class="content-heading border-bottom mb-4 pb-2">
+                      <lang-string lang-id="SETTINGS_CATEGORY_0"
+                        >Combat Settings</lang-string
+                      >
+                    </h2>
+                    <div class="row">
+                      <div class="col-md-6 offset-md-3">
+                        <settings-switch
+                          class="mb-4 d-block"
+                          data-setting-id="enableOfflineCombat"
+                          data-size="large"
+                          data-init="true"
+                        >
+                          <div
+                            class="custom-control custom-switch custom-control-lg"
+                          >
+                            <input
+                              type="checkbox"
+                              class="custom-control-input"
+                              id="settings-switch-3"
+                            />
+                            <label
+                              class="custom-control-label font-size-sm text-muted"
+                              for="settings-switch-3"
+                            >
+                              "Toggle Offline Combat"
+                              <br />
+                              <small>
+                                Toggles the Offline Combat Capability.
+                              </small>
+                            </label>
+                          </div>
+                        </settings-switch>
+                        <settings-dropdown> </settings-dropdown>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
