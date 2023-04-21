@@ -1,16 +1,17 @@
-import { Character } from '/js/character.js';
+import { Character } from "/js/character.js";
 
-let lastElementID = '';
-const characterNameInput = document.getElementById('name');
-const characterRaceSelect = document.getElementById('race');
-const characterFactionSelect = document.getElementById('faction');
-const characterCreationContentv2 = document.getElementById('characterCreationContentv2');
-const mainGameContent = document.getElementById('mainGameContent');
+let lastElementID = "";
+const characterNameInput = document.getElementById("name");
+const characterRaceSelect = document.getElementById("race");
+const characterFactionSelect = document.getElementById("faction");
+const characterCreationContentv2 = document.getElementById(
+  "characterCreationContentv2"
+);
+const mainGameContent = document.getElementById("mainGameContent");
 
-const form = document.getElementById('createCharacterForm');
-const characterDisplay = document.getElementById('characterDisplay');
+const form = document.getElementById("createCharacterForm");
+const characterDisplay = document.getElementById("characterDisplay");
 const maxCharactersAllowed = 5;
-
 
 const displayErrorMessage = (message) => {
   const errorMessage = document.createElement("div");
@@ -37,63 +38,73 @@ const displayErrorMessage = (message) => {
 //   displayCharacter(character);
 // });
 
-// function displayAllCharacters() {
-//   const characters = JSON.parse(localStorage.getItem('characters')) || [];
+async function displayAllCharacters() {
+  try {
+    const userId = localStorage.getItem("userId");
 
-//   characterDisplay.innerHTML = '';
+    const response = await fetch(`/api/characters/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
 
-//   characters.forEach((characterData, index) => {
-//     console.log('Character data:', characterData);
-//     const character = Character.fromJSON(characterData);
-//     const characterElement = document.createElement('div');
-//     characterElement.classList.add('character');
-//     characterElement.innerHTML = `
-//       <h3>${character.name}</h3>
-//       <button>Select</button>
-//     `;
+    const data = await response.json();
+    const characters = data.characters;
 
-//     characterElement.querySelector('button').addEventListener('click', () => {
-//       displayCharacter(character);
-//     });
+    characterDisplay.innerHTML = "";
 
-//     characterDisplay.appendChild(characterElement);
-//   });
-// }
+    characters.forEach((characterData, index) => {
+      console.log("Character data:", characterData);
+      const character = Character.fromJSON(characterData);
+      const characterElement = document.createElement("div");
+      characterElement.classList.add("character");
+      characterElement.innerHTML = `
+        <h3>${character.name}</h3>
+        <button>Select</button>
+      `;
 
-// function displayCharacter(character) {
-//   characterDisplay.innerHTML = `
-//   <button id="closeCharacterCreation">Close</button>
-//     <h2>${character.name}</h2>
-//     <p>Race: ${character.race}</p>
-//     <p>Faction: ${character.faction}</p>
-//     <p>Level: ${character.level}</p>
-//     <p>Experience: ${character.experience}</p>
-//     <p>Stats:</p>
-//     <ul>
-//       <li>Strength: ${character.stats.strength}</li>
-//       <li>Agility: ${character.stats.agility}</li>
-//       <li>Intelligence: ${character.stats.intelligence}</li>
-//       <li>Endurance: ${character.stats.endurance}</li>
-//     </ul>
-//     <!-- Add other relevant information here -->
-//     <button id="back-to-character-list">Back to character list</button>
-//     <button id="delete-character">Delete character</button>
-//     <button id="edit-character">Edit character</button>
-//     <button id="save-character">Save character</button>
-//   `;
-// }
+      characterElement.querySelector("button").addEventListener("click", () => {
+        displayCharacter(character);
+      });
+
+      characterDisplay.appendChild(characterElement);
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error fetching characters. Please try again later.");
+  }
+}
+
+function displayCharacter(character) {
+  characterDisplay.innerHTML = `
+  <button id="closeCharacterCreation">Close</button>
+    <h2>${character.name}</h2>
+    <p>Race: ${character.race}</p>
+    <p>Faction: ${character.faction}</p>
+    <p>Level: ${character.level}</p>
+    <p>Experience: ${character.experience}</p>
+    <p>Stats:</p>
+    <ul>
+      <li>Strength: ${character.stats.strength}</li>
+      <li>Agility: ${character.stats.agility}</li>
+      <li>Intelligence: ${character.stats.intelligence}</li>
+      <li>Endurance: ${character.stats.endurance}</li>
+    </ul>
+    <!-- Add other relevant information here -->
+    <button id="back-to-character-list">Back to character list</button>
+    <button id="delete-character">Delete character</button>
+    <button id="edit-character">Edit character</button>
+    <button id="save-character">Save character</button>
+  `;
+}
 
 // function addCharacterToStorage(character) {
 //   let characters = JSON.parse(localStorage.getItem('characters')) || [];
 
-//   if (characters.length >= maxCharactersAllowed) {
-//     alert('You have reached the maximum number of characters allowed.');
-//     return;
-//   }
-
-//   characters.push(character);
-//   localStorage.setItem('characters', JSON.stringify(characters));
-// }
+  // if (characters.length >= maxCharactersAllowed) {
+  //   alert('You have reached the maximum number of characters allowed.');
+  //   return;
+  // }
 
 // Function to open the character creation content
 function openCharacterCreationContent() {
@@ -101,17 +112,17 @@ function openCharacterCreationContent() {
   lastElementID = document.activeElement.id;
 
   // Hide the main game content
-  mainGameContent.style.display = 'none';
+  mainGameContent.style.display = "none";
 
   // Show the character creation content
-  characterCreationContentv2.style.display = 'block';
+  characterCreationContentv2.style.display = "block";
 }
 
 // Function to close the character creation form
 function closeCharacterCreationContent() {
   // Hide the character creation form
-  characterCreationContentv2.style.display = 'none';
-  mainGameContent.style.display = 'block';
+  characterCreationContentv2.style.display = "none";
+  mainGameContent.style.display = "block";
 }
 
 // Function to open the character creation content
@@ -120,23 +131,23 @@ function openCharacterDisplay() {
   lastElementID = document.activeElement.id;
 
   // Hide the main game content
-  mainGameContent.style.display = 'none';
+  mainGameContent.style.display = "none";
 
   // Show the character creation content
-  characterDisplay.style.display = 'block';
+  characterDisplay.style.display = "block";
 }
 
 // Function to close the character creation form
 function closeCharacterDisplay() {
   // Hide the character creation form
-  characterDisplay.style.display = 'none';
+  characterDisplay.style.display = "none";
 
   // If lastElementID has a value, show that element
   if (lastElementID) {
-    document.getElementById(lastElementID).style.display = 'block';
+    document.getElementById(lastElementID).style.display = "block";
   } else {
     // If lastElementID is empty, show the main game content
-    mainGameContent.style.display = 'block';
+    mainGameContent.style.display = "block";
   }
 }
 
@@ -146,17 +157,17 @@ const createCharacter = async () => {
   const characterFaction = characterFactionSelect.value;
 
   try {
-    console.log('sending character create request...')
-    const response = await fetch('/api/characters/create', {
-      method: 'POST',
+    console.log("sending character create request...");
+    const response = await fetch("/api/characters/create", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         name: characterName,
         race: characterRace,
-        faction: characterFaction
+        faction: characterFaction,
       }),
     });
 
@@ -165,20 +176,20 @@ const createCharacter = async () => {
       if (errorData && errorData.message) {
         throw new Error(errorData.message);
       } else {
-        throw new Error('Failed to create character');
+        throw new Error("Failed to create character");
       }
     }
 
     const data = await response.json();
-    console.log('Character created:', data);
-    window.location.href = 'index.html';
+    console.log("Character created:", data);
+    window.location.href = "index.html";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
     displayErrorMessage(`Error: ${error.message}`);
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // const openCharacterCreationButton = document.getElementById('open-character-creation');
   // if (openCharacterCreationButton) {
   //   openCharacterCreationButton.addEventListener('click', () => {
@@ -186,32 +197,44 @@ document.addEventListener('DOMContentLoaded', () => {
   //   });
   // }
 
-  const openCharacterCreationButton = document.getElementById('openCharacterCreation');
+  const openCharacterCreationButton = document.getElementById(
+    "openCharacterCreation"
+  );
   if (openCharacterCreationButton) {
-    openCharacterCreationButton.addEventListener('click', openCharacterCreationContent);
+    openCharacterCreationButton.addEventListener(
+      "click",
+      openCharacterCreationContent
+    );
   }
 
-  const closeCharacterCreationButton = document.getElementById('closeCharacterCreation');
+  const closeCharacterCreationButton = document.getElementById(
+    "closeCharacterCreation"
+  );
   if (closeCharacterCreationButton) {
-    closeCharacterCreationButton.addEventListener('click', closeCharacterCreationContent);
+    closeCharacterCreationButton.addEventListener(
+      "click",
+      closeCharacterCreationContent
+    );
   }
 
-  const openCharacterDisplayButton = document.getElementById('showCharacters');
+  const openCharacterDisplayButton = document.getElementById("showCharacters");
   if (openCharacterDisplayButton) {
-    openCharacterDisplayButton.addEventListener('click', openCharacterDisplay);
+    openCharacterDisplayButton.addEventListener("click", openCharacterDisplay);
   }
 
-  const createCharacterButton = document.getElementById('create-character-button');
+  const createCharacterButton = document.getElementById(
+    "create-character-button"
+  );
   if (createCharacterButton) {
-    createCharacterButton.addEventListener('click', async (event) => {
+    createCharacterButton.addEventListener("click", async (event) => {
       event.preventDefault();
       createCharacter();
     });
   }
 
-  // const showCharactersButton = document.getElementById('showCharacters');
-  // if (showCharactersButton) {
-  //   showCharactersButton.addEventListener('click', displayAllCharacters);
-  //   displayAllCharacters();
-  // }
+  const showCharactersButton = document.getElementById("showCharacters");
+  if (showCharactersButton) {
+    showCharactersButton.addEventListener("click", displayAllCharacters);
+    displayAllCharacters();
+  }
 });

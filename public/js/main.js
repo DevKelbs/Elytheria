@@ -57,7 +57,6 @@ socket.on("connect", async () => {
 
         const data = await response.json();
         const characters = data.characters;
-        console.log(characters);
     } catch (err) {
         console.error("Error checking existing characters:", err);
     }
