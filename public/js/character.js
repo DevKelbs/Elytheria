@@ -12,10 +12,39 @@ export class Character {
             endurance: 0
         };
         this.skills = {
+            // Non-combat skills
             mining: 1,
             fishing: 1,
             woodcutting: 1,
-            // ... and any other skills
+            explortation: 1,
+            elementalism: 1,
+            alchemy: 1,
+            trading: 1,
+            taming: 1,
+            artificery: 1,
+            runesmithing: 1,
+            archaeology: 1,
+            blacksmithing: 1,
+            tailoring: 1,
+            tinkerery: 1,
+            cooking: 1,
+            firemaking: 1,
+            farming: 1,
+            construction: 1,
+            fletching: 1,
+            crafting: 1,
+            slayer: 1,
+            hunter: 1,
+            thieving: 1,
+            // Combat skills
+            range: 1,
+            prayer: 1,
+            attack: 1,
+            defense: 1,
+            magic: 1,
+            agility: 1,
+            strength: 1,
+            hitpoints: 1,
         };
         this.equipment = {
             weapon: null,

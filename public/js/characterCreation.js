@@ -43,7 +43,7 @@ async function displayAllCharacters() {
   const userId = localStorage.getItem("userId");
   const currentLocation = window.location.pathname;
 
-  if (currentLocation !== "/index.html" || !token || !userId) {
+  if (currentLocation !== "/" || !token || !userId) {
     return;
   }
 
@@ -102,23 +102,23 @@ function displayCharacter(character) {
     <button id="edit-character">Edit character</button>
     <button id="save-character">Save character</button>
   `;
-  
+
   const closeCharacterCreationButton = document.getElementById("closeCharacterCreationSub");
 
   closeCharacterCreationButton.addEventListener("click", () => {
     characterDisplay.style.display = "none";
     characterCreationContentv2.style.display = "none";
     mainGameContent.style.display = "block";
-    });
+  });
 }
 
 // function addCharacterToStorage(character) {
 //   let characters = JSON.parse(localStorage.getItem('characters')) || [];
 
-  // if (characters.length >= maxCharactersAllowed) {
-  //   alert('You have reached the maximum number of characters allowed.');
-  //   return;
-  // }
+// if (characters.length >= maxCharactersAllowed) {
+//   alert('You have reached the maximum number of characters allowed.');
+//   return;
+// }
 
 // Function to open the character creation content
 function openCharacterCreationContent() {
