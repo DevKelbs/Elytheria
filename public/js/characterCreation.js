@@ -43,7 +43,7 @@ async function displayAllCharacters() {
   const userId = localStorage.getItem("userId");
   const currentLocation = window.location.pathname;
 
-  if (currentLocation !== "/" || !token || !userId) {
+  if (currentLocation !== "/index.html" || !token || !userId) {
     return;
   }
 
