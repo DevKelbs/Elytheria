@@ -24,9 +24,6 @@ router.post('/create', passport.authenticate('jwt', { session: false }), async (
 
         const statsInstance = await Stats.create({
             characterId: newCharacter.id,
-            attack: Stats.attack,
-            strength: Stats.strength,
-            defence: Stats.defence,
           });
 
         return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter, stats: statsInstance });
