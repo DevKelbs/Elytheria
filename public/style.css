@@ -193,7 +193,7 @@ button:hover {
 .character-info-col1,
 .character-info-col2 {
   display: inline-block;
-  margin-left: 0.5rem;
+  font-size: small;
   font-weight: bold;
 }
 
