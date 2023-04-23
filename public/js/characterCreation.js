@@ -41,9 +41,8 @@ const displayErrorMessage = (message) => {
 async function displayAllCharacters() {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
-  const currentLocation = window.location.pathname;
 
-  if (currentLocation !== "/index.html" || !token || !userId) {
+  if (!token || !userId) {
     return;
   }
 
@@ -65,51 +64,41 @@ async function displayAllCharacters() {
       const characterElement = document.createElement("div");
       characterElement.classList.add("character");
       characterElement.innerHTML = `
-        <h3>${character.name}</h3>
+        <h3>Name: ${character.name}</h3>
+        <p>Level: ${character.level}</p>
+        <p>Race: ${character.race}</p>
+        <p>Faction: ${character.faction}</p>
         <button>Select</button>
       `;
 
       characterElement.querySelector("button").addEventListener("click", () => {
-        displayCharacter(character);
+        selectCharacter(character, characterElement);
       });
 
       characterDisplay.appendChild(characterElement);
     });
+
+    function selectCharacter(character, characterElement) {
+      // Set the selected character as the active character
+      // (this is just an example, you would need to implement this logic)
+      setActiveCharacter(character);
+      window.location.href = "index.html";
+
+      // Update the UI to reflect the selected character
+      const selectedCharacter = document.querySelector(".selected-character");
+      if (selectedCharacter) {
+        selectedCharacter.classList.remove("selected-character");
+      }
+      characterElement.classList.add("selected-character");
+    }
+    function setActiveCharacter(character) {
+      localStorage.setItem("activeCharacter", JSON.stringify(character));
+      console.log("Selected character:", character);
+    }    
   } catch (error) {
     console.error("Error:", error);
     alert("Error fetching characters. Please try again later.");
   }
-}
-
-function displayCharacter(character) {
-  characterDisplay.innerHTML = `
-  <button id="closeCharacterCreationSub">Close</button>
-    <h2>${character.name}</h2>
-    <p>Race: ${character.race}</p>
-    <p>Faction: ${character.faction}</p>
-    <p>Level: ${character.level}</p>
-    <p>Experience: ${character.experience}</p>
-    <p>Stats:</p>
-    <ul>
-      <li>Strength: ${character.stats.strength}</li>
-      <li>Agility: ${character.stats.agility}</li>
-      <li>Intelligence: ${character.stats.intelligence}</li>
-      <li>Endurance: ${character.stats.endurance}</li>
-    </ul>
-    <!-- Add other relevant information here -->
-    <button id="back-to-character-list">Back to character list</button>
-    <button id="delete-character">Delete character</button>
-    <button id="edit-character">Edit character</button>
-    <button id="save-character">Save character</button>
-  `;
-
-  const closeCharacterCreationButton = document.getElementById("closeCharacterCreationSub");
-
-  closeCharacterCreationButton.addEventListener("click", () => {
-    characterDisplay.style.display = "none";
-    characterCreationContentv2.style.display = "none";
-    mainGameContent.style.display = "block";
-  });
 }
 
 // function addCharacterToStorage(character) {
@@ -197,14 +186,10 @@ const createCharacter = async () => {
     const character = await response.json();
     console.log("created character:");
     window.location.href = "index.html";
-
-
   } catch (error) {
     console.error("Error creating character:", error);
   }
 };
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   // const openCharacterCreationButton = document.getElementById('open-character-creation');

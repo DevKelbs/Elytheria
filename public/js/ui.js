@@ -35,14 +35,14 @@ export function updateAuthButtons(isAuthenticated) {
 
 export function updateUsernameDisplay() {
     const usernameDisplay = document.getElementById("username-display");
-    const username = localStorage.getItem("username");
-
-    if (username) {
-        usernameDisplay.textContent = `${username}`
+    const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+  
+    if (activeCharacter) {
+      usernameDisplay.textContent = activeCharacter.name;
     } else {
-        usernameDisplay.textContent = "";
+      usernameDisplay.textContent = "";
     }
-}
+  }
 
 
 document.addEventListener('DOMContentLoaded', () => {

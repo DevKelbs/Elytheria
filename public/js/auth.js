@@ -115,6 +115,10 @@ export async function authenticate(username, password, redirectTo = "/index.html
       localStorage.setItem("username", data.user.username);
       localStorage.setItem("userId", data.user.id);
       displaySuccessMessage("Login successful!");
+      //gets activeCharacter from localstorage to load on sign-in
+      const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+      console.log("Active character:", activeCharacter);
+
       setTimeout(() => {
         window.location.href = redirectTo;
       }, 1000);

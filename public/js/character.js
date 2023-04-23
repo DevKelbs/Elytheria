@@ -61,6 +61,10 @@ export class Character {
         this.applyRaceBonuses(race);
         this.applyFactionBonuses(faction);
         this.setStartingEquipment(race);
+
+        setInterval(() => {
+            writeCharacterStatsToDB(this);
+        }, 5 * 60 * 1000); // 5 minutes
     }
 
     applyRaceBonuses(race) {
@@ -120,4 +124,35 @@ export class Character {
         Object.assign(character, characterData);
         return character;
     }
+    
+}
+//function to write stats to DB
+function writeCharacterStatsToDB() {
+    console.log('writing character to DB')
+    const url = '/api/stats/create';
+    const character = JSON.parse(localStorage.getItem("activeCharacter"));
+    const data = {
+        name: character.name,
+        race: character.race,
+        faction: character.faction,
+        level: character.level,
+        experience: character.experience,
+        stats: character.stats,
+        skills: character.skills
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Character stats written to DB:', data);
+    })
+    .catch(error => {
+        console.error('Error writing character stats to DB:', error);
+    });
 }
