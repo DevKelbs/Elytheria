@@ -1,0 +1,218 @@
+:root {
+  --color-bg-radiant-gold: #ffc300;
+  --color-bg-hover-gold: #eec903;
+  --color-bg-active-gold: #d1a408;
+  --color-bg-active-sandstone: #e6d8b6;
+  --color-bg-active-khaki: #f0e68c;
+  --color-bg-active-dark-brown: #654321;
+  --color-ui-blue-green: #172429;
+  --color-ui-lighter: #293a4e;
+  --color-ui-lighter-lighter: #3c4b62;
+  --color-ui-lighter-lighter-lighter: #4f5a76;
+}
+
+/* Set default font and box sizing */
+* {
+  font-family: "Cinzel", serif;
+  box-sizing: border-box;
+}
+
+/* Set background and text color */
+body {
+  font-family: "Cinzel", serif;
+  color: var(--color-main-text);
+  background-color: var(--color-ui-blue-green);
+  background-image: linear-gradient(
+    135deg,
+    var(--color-ui-blue-green) 0%,
+    var(--color-ui-lighter-lighter) 100%
+  );
+}
+
+body.welcome-page {
+  background-image: url("/assets/images/backgrounds/welcome_background.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-attachment: fixed; /* Add this line to keep the background fixed during scrolling */
+  background-size: cover;
+  height: 100%; /* Add this line to make the body take the full height of the viewport */
+  margin: 0; /* Add this line to remove default margin */
+  overflow: auto; /* Add this line to enable scrolling for content that overflows the viewport */
+}
+
+/* Set container styles */
+.welcome-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Set header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: var(--color-bg-radiant-gold);
+  text-shadow: 2px 2px 0 var(--color-bg-active-gold);
+}
+
+/* Set authentication buttons styles */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: var(--color-bg-active-dark-brown);
+  color: white;
+  cursor: pointer;
+}
+
+.auth-buttons button:hover {
+  background-color: var(--color-bg-active-khaki);
+}
+
+.auth-buttons button.active {
+  background-color: var(--color-bg-active-gold);
+}
+
+/* Set content styles */
+.content {
+  display: flex;
+}
+
+/* Set news section styles */
+.news {
+  flex-basis: 40%;
+  padding-right: 20px;
+}
+
+.news h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.news ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.news,
+.about {
+  flex: 1;
+}
+
+/* Set about section styles */
+.about {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Set authentication form styles */
+.auth-forms {
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  background-color: var(--color-ui-lighter-lighter);
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--color-bg-active-gold);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-bg-hover-gold);
+}
+
+.hidden {
+  display: none;
+}
+
+#error-message {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Set footer styles */
+.footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 1.2rem;
+  color: var(--color-ui-lighter-lighter-lighter);
+  margin-bottom: 10px;
+}
