@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../database'); // Path to your database.js file
-const Character = require('./character');
+const Character = require('./characters');
 
 const Stats = sequelize.define('Stats', {
     characterId: {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const Character = require('../models/character.js');
+const Character = require('../models/characters.js');
 const Stats = require('../models/stats.js')
 const User = require('../models/user.js'); // Import the User model
 

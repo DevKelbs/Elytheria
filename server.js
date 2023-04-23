@@ -120,7 +120,7 @@ io.use((socket, next) => {
   })(socket.request, {}, next);
 });
 
-const Character = require('./public/models/character');
+const Character = require('./public/models/characters');
 const User = require('./public/models/user');
 
 io.on('connection', (socket) => {
