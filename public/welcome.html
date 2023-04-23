@@ -4,19 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/welcome.css" />
     <title>Elytheria - Welcome</title>
   </head>
   <body class="welcome-page">
     <div class="welcome-container">
-      <h1>Welcome to Elytheria</h1>
-      <div class="form-group">
-        <div class="tab-buttons">
-          <button class="tab-btn active" id="authenticate-modal">Login</button>
-          <button class="tab-btn" id="registration-modal">Register</button>
+      <div class="header">
+        <h1>Welcome to Elytheria</h1>
+        <div class="auth-buttons">
+          <button class="auth-btn active" id="authenticate-modal">Login</button>
+          <button class="auth-btn" id="registration-modal">Register</button>
         </div>
-        <div class="form-content">
+      </div>
+      <div class="content">
+        <div class="news">
+          <h2>News and Updates</h2>
+          <ul>
+            <li>Added new quest: The Abandoned Tower</li>
+            <li>Fixed bug with sword damage calculation</li>
+            <li>Increased gold rewards for defeating monsters</li>
+          </ul>
+        </div>
+        <div class="about">
+          <h2>About Elytheria</h2>
+          <p>
+            Elytheria is a medieval idle RPG game where you play as a knight on
+            a quest to save the kingdom from the evil dragon. You will face many
+            challenges and battles, earn gold and experience, and upgrade your
+            weapons and armor. Will you be able to defeat the dragon and restore
+            peace to the land?
+          </p>
+        </div>
+        <div class="auth-forms">
           <form class="form login-form" id="authenticate-form">
+            <h2>Login</h2>
             <label for="authenticate-username">Username</label>
             <input type="text" id="authenticate-username" required />
             <label for="authenticate-password">Password</label>
@@ -25,6 +46,7 @@
             <p id="error-message" style="display: none; color: red"></p>
           </form>
           <form class="form register-form hidden" id="registration-form">
+            <h2>Register</h2>
             <label for="registration-username">Username</label>
             <input type="text" id="registration-username" required />
             <label for="registration-email">Email</label>
@@ -41,6 +63,9 @@
             <p id="error-message" style="display: none; color: red"></p>
           </form>
         </div>
+      </div>
+      <div class="footer">
+        <p>&copy; 2021 Elytheria. All rights reserved.</p>
       </div>
     </div>
     <script
