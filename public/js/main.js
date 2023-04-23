@@ -10,7 +10,8 @@ import {
 import {
     updateAuthButtons,
     updateUsernameDisplay,
-    displaySuccessMessage
+    displaySuccessMessage,
+    updateDropdown,
 } from "./ui.js";
 
 const socket = io();
@@ -36,6 +37,7 @@ socket.on("connect", async () => {
     console.log("Connected to server");
 
     updateUsernameDisplay();
+    updateDropdown();
 
     try {
         const userId = localStorage.getItem("userId");
