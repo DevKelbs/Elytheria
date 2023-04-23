@@ -48,13 +48,43 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
 router.put('/update/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
         const id = req.params.id;
-        const { level, experience, skills } = req.body;
+        const { level, experience, attack, strength, defense, hitpoints, ranged, magic, prayer, slayer, woodcutting, fishing, mining, firemaking, exploration, elementalism, alchemy, trading, taming, artificery, runesmithing, archaeology, blacksmithing, tailoring, tinkery, cooking, farming, construction, fletching, crafting, agility, hunter, thieving } = req.body;
 
-        console.log('Updating character stats in DB:', id, level, experience, skills);
+        console.log('Updating character stats in DB:', id, level, experience, attack, strength, defense, hitpoints, ranged, magic, prayer, slayer, woodcutting, fishing, mining, firemaking, exploration, elementalism, alchemy, trading, taming, artificery, runesmithing, archaeology, blacksmithing, tailoring, tinkery, cooking, farming, construction, fletching, crafting, agility, hunter, thieving);
         const updatedCharacter = await Character.update({
             level,
             experience,
-            skills
+            attack,
+            strength,
+            defense,
+            hitpoints,
+            ranged,
+            magic,
+            prayer,
+            slayer,
+            woodcutting,
+            fishing,
+            mining,
+            firemaking,
+            exploration,
+            elementalism,
+            alchemy,
+            trading,
+            taming,
+            artificery,
+            runesmithing,
+            archaeology,
+            blacksmithing,
+            tailoring,
+            tinkery,
+            cooking,
+            farming,
+            construction,
+            fletching,
+            crafting,
+            agility,
+            hunter,
+            thieving
         }, {
             where: {
                 id
@@ -67,7 +97,6 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), asyn
         res.status(500).json({ message: 'Server error.' });
     }
 });
-
 
 
 module.exports = router;
