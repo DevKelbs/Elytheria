@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Character = require('../models/characters.js');
-const Stats = require('../models/stats.js')
-const User = require('../models/user.js'); // Import the User model
+const User = require('../models/user.js'); // Import the User models
+const { writeCharacterStatsToDB } = require('../js/characterUpdate.js');
+
 
 router.post('/create', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { name, race, faction } = req.body;
@@ -22,11 +23,7 @@ router.post('/create', passport.authenticate('jwt', { session: false }), async (
             faction
         });
 
-        const statsInstance = await Stats.create({
-            characterId: newCharacter.id,
-          });
-
-        return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter, stats: statsInstance });
+        return res.status(200).json({ success: true, message: 'Character created successfully', character: newCharacter,});
     } catch (err) {
         console.error('Error creating character:', err);
         res.status(500).json({ success: false, message: 'Error creating character' });
@@ -50,7 +47,16 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
     }
 });
 
-
-
+router.put('/update/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {
+      const id = req.params.id;
+      await writeCharacterStatsToDB(id);
+      res.json({ message: 'Character stats updated in DB.' });
+    } catch (err) {
+      console.error('Error updating character stats in DB:', err);
+      res.status(500).json({ message: 'Server error.' });
+    }
+  });
+  
 
 module.exports = router;

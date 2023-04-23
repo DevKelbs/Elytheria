@@ -85,6 +85,7 @@ const authRoutes = require('./public/routes/authRoutes');
 const characterRoutes = require('./public/routes/characterRoutes');
 app.use('/api/auth', authRoutes);
 app.use('/api/characters', authenticateToken, characterRoutes);
+app.use('/api/update', authenticateToken, characterRoutes);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
