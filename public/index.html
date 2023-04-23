@@ -386,15 +386,36 @@
             </div>
           </div>
           <div class="dropdown">
-            <button class="dropdown-toggle" type="button" id="accountDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button
+              class="dropdown-toggle"
+              type="button"
+              id="accountDropdown"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
               <span id="activeUsername"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="accountDropdown">
               <div role="separator" class="dropdown-divider"></div>
-              <button class="dropdown-item" type="button" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
-              <button class="dropdown-item" type="button" id="logoutButton" onclick="logout()">Logout</button>
+              <button
+                class="dropdown-item"
+                type="button"
+                data-toggle="modal"
+                data-target="#changePasswordModal"
+              >
+                Change Password
+              </button>
+              <button
+                class="dropdown-item"
+                type="button"
+                id="logoutButton"
+                onclick="logout()"
+              >
+                Logout
+              </button>
             </div>
-          </div>          
+          </div>
         </header>
         <section id="cove" class="tab-content" style="display: none">
           <div id="coveContainer">
@@ -602,6 +623,7 @@
     ></script>
     <script src="/js/character.js" type="module"></script>
     <script src="/js/characterCreation.js" type="module"></script>
+    <script src="/js/characterUpdate.js"></script>
     <script src="/js/utils.js" type="module"></script>
     <script src="/js/ui.js" type="module"></script>
     <script src="/js/game.js" type="module"></script>
