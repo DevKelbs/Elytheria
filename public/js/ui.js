@@ -54,7 +54,31 @@ export function updateDropdown() {
     activeUsername.textContent = "";
   }
 }
-//set active character to dropdown menu name
+
+// Retrieve the skill stats from local storage
+const characterStats = JSON.parse(localStorage.getItem('activeCharacter'));
+
+// Loop through each nav-main-item element
+const navMainItems = document.querySelectorAll('.nav-main-item');
+navMainItems.forEach(navMainItem => {
+  // Get the skill name from the nav-main-link-name element
+  const skillName = navMainItem.querySelector('.nav-main-link-name').textContent.toLowerCase();
+  console.log(skillName);
+  // Get the span element inside the small element
+  const skillStatSpan = navMainItem.querySelector('.nav-main-link small span');
+  console.log(skillName, skillStatSpan.textContent);
+
+  // Update the text content of the span element with the corresponding skill stat
+  if (characterStats.skills.hasOwnProperty(skillName)) {
+    skillStatSpan.textContent = `${characterStats.skills[skillName]}`;
+  }
+});
+
+const activeCharacter = JSON.parse(localStorage.getItem('activeCharacter'));
+const characterLevel = document.querySelector('.character-level');
+if (activeCharacter) {
+  characterLevel.textContent = `Level:${activeCharacter.level}`;
+}
 
 
 
