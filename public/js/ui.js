@@ -74,6 +74,11 @@ navMainItems.forEach(navMainItem => {
   }
 });
 
+const activeCharacter = JSON.parse(localStorage.getItem('activeCharacter'));
+const characterLevel = document.querySelector('.character-level');
+if (activeCharacter) {
+  characterLevel.textContent = `Level:${activeCharacter.level}`;
+}
 
 
 
