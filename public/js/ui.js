@@ -68,8 +68,8 @@ if (localStorage.getItem('activeCharacter')) {
     const skillStatSpan = navMainItem.querySelector('.nav-main-link small span');
 
     // Update the text content of the span element with the corresponding skill stat
-    if (characterStats.skills.hasOwnProperty(skillName)) {
-      skillStatSpan.textContent = `${characterStats.skills[skillName]}`;
+    if (characterStats.hasOwnProperty(skillName)) {
+      skillStatSpan.textContent = `${characterStats[skillName]}`;
     }
   });
 } else {

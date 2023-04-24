@@ -66,27 +66,53 @@ async function displayAllCharacters() {
     });
 
     function selectCharacter(character, characterElement) {
-      // Set the selected character as the active character
-      // (this is just an example, you would need to implement this logic)
-      setActiveCharacter(character);
-      window.location.href = "index.html";
+      // Get the data for the selected character from the database
+      const characterId = character.id;
+      console.log('selecting char...');
+      console.log(characterId);
+      getCharacterData(characterId)
+        .then((data) => {
+          // Create a new Character instance from the retrieved data
+          const selectedCharacter = Character.fromJSON(data);
 
-      // Update the UI to reflect the selected character
-      const selectedCharacter = document.querySelector(".selected-character");
-      if (selectedCharacter) {
-        selectedCharacter.classList.remove("selected-character");
-      }
-      characterElement.classList.add("selected-character");
+          // Update the UI to reflect the selected character
+          const selectedCharacterElement = document.querySelector(".selected-character");
+          if (selectedCharacterElement) {
+            selectedCharacterElement.classList.remove("selected-character");
+          }
+          characterElement.classList.add("selected-character");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error selecting character. Please try again later.");
+        });
     }
-    function setActiveCharacter(character) {
-      localStorage.setItem("activeCharacter", JSON.stringify(character));
-      console.log("Selected character:", character);
+
+    async function getCharacterData(characterId) {
+      console.log('getting char data...')
+      const token = localStorage.getItem("token");
+        
+      const response = await fetch(`/api/characters/${characterId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+        
+      const data = await response.json();
+      console.log(data); // Log the data to the console
+      const activeCharacter = data.characters.find(character => character.id === characterId);
+      localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+      const indexUrl = 'index.html'; // Replace this with the URL of your index page
+      window.location.replace(indexUrl); // Redirect to index page
+      return activeCharacter;
     }
+    
   } catch (error) {
     console.error("Error:", error);
     alert("Error fetching characters. Please try again later.");
   }
 }
+
 
 // Function to open the character creation content
 function openCharacterCreationContent() {
