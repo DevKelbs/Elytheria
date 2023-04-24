@@ -3,6 +3,15 @@ const router = express.Router();
 const passport = require('passport');
 const Character = require('../models/characters.js');
 const User = require('../models/user.js'); // Import the User models
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+  });
 
 router.post('/create', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { name, race, faction } = req.body;
@@ -129,5 +138,29 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), asyn
     }
 });
 
+router.delete('/delete/:characterId', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {
+      const characterId = req.params.characterId;
+      const userId = req.user.id;
+  
+      const query = {
+        text: 'DELETE FROM "Characters" WHERE id = $1 AND "userId" = $2 RETURNING *',
+        values: [characterId, userId]
+      };
+  
+      const { rows } = await pool.query(query);
+  
+      if (rows.length === 0) {
+        return res.status(404).send({ error: 'Character not found' });
+      }
+  
+      res.sendStatus(204);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ error: 'Internal server error' });
+    }
+  });
+  
+  
 
 module.exports = router;

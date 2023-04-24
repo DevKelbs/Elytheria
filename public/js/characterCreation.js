@@ -55,15 +55,23 @@ async function displayAllCharacters() {
         <p>Level: ${character.level}</p>
         <p>Race: ${character.race}</p>
         <p>Faction: ${character.faction}</p>
-        <button>Select</button>
+        <button id="selectButton_${index}">Select</button>
+        <button id="deleteButton_${index}">Delete</button>
       `;
-
-      characterElement.querySelector("button").addEventListener("click", () => {
+    
+      const selectButton = characterElement.querySelector(`#selectButton_${index}`);
+      selectButton.addEventListener("click", () => {
         selectCharacter(character, characterElement);
       });
-
+    
+      const deleteButton = characterElement.querySelector(`#deleteButton_${index}`);
+      deleteButton.addEventListener("click", () => {
+        deleteCharacter(character, characterElement);
+      });
+    
       characterDisplay.appendChild(characterElement);
     });
+    
 
     function selectCharacter(character, characterElement) {
       // Get the data for the selected character from the database
@@ -113,6 +121,34 @@ async function displayAllCharacters() {
   }
 }
 
+async function deleteCharacter(character, characterElement) {
+  console.log(`Deleting character ${character.name}...`);
+  const token = localStorage.getItem("token");
+  const characterId = character.id;
+
+  try {
+    const response = await fetch(`/api/characters/delete/${characterId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 404) {
+      throw new Error("Character not found");
+    }
+
+    if (response.status !== 204) {
+      throw new Error(`Failed to delete character ${character.id}`);
+    }
+
+    // Remove the character element from the UI
+    characterElement.remove();
+  } catch (error) {
+    console.error(error);
+    alert(`Failed to delete character ${character.id}: ${error.message}`);
+  }
+}
 
 // Function to open the character creation content
 function openCharacterCreationContent() {
