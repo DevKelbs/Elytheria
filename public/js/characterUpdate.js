@@ -55,8 +55,34 @@ async function writeCharacterStatsToDB() {
         });
 }
 
-// Run every minute
-setInterval(() => {
+// Define a function to show the modal
+function showNotification(message) {
+    // Check if the Notification API is supported
+    if ('Notification' in window) {
+      // Request permission to show notifications
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          // Create a new notification
+          const notification = new Notification('Character Saved', {
+            body: message,
+            icon: 'path/to/notification-icon.png',
+          });
+  
+          // Hide the notification after a certain amount of time
+          setTimeout(() => {
+            notification.close();
+          }, 3000);
+        }
+      });
+    }
+  }
+  
+  // Call the writeCharacterStatsToDB() function at the specified interval
+  setInterval(() => {
     const characterId = JSON.parse(localStorage.getItem('activeCharacter')).id;
     writeCharacterStatsToDB(characterId);
-}, 60 * 1000); // 60 seconds * 1000 milliseconds
+  
+    // Show the modal with the "saved" message
+    showNotification('Your character has been saved to the cloud');
+  }, 60 * 1000); // 60 seconds * 1000 milliseconds
+  
