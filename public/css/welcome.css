@@ -6,6 +6,8 @@
   --color-bg-active-khaki: #f0e68c;
   --color-bg-active-dark-brown: #654321;
   --color-ui-blue-green: #172429;
+  --color-ui-blue-green-semi-transparents: #172429ce;
+  --color-ui-blue-green-transparent: #17242969;
   --color-ui-lighter: #293a4e;
   --color-ui-lighter-lighter: #3c4b62;
   --color-ui-lighter-lighter-lighter: #4f5a76;
@@ -17,7 +19,7 @@
 
 body {
   font-family: "Cinzel", serif;
-  color: var(--color-main-text);
+  color: var(--color-bg-active-sandstone);
   background-color: var(--color-ui-blue-green);
   background-image: url("/assets/images/backgrounds/welcome_background.png");
   background-repeat: no-repeat;
@@ -60,13 +62,14 @@ body {
   border-radius: 5px;
   font-size: 1.2rem;
   border: none;
-  background-color: var(--color-bg-active-dark-brown);
+  background-color: var(--color-ui-lighter);
   color: white;
   cursor: pointer;
+  width: 50%;
 }
 
 .auth-buttons button:hover {
-  background-color: var(--color-bg-active-khaki);
+  background-color: var(--color-bg-active-gold);
 }
 
 .auth-buttons button.active {
@@ -80,20 +83,20 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--color-ui-blue-green);
+  background-color: var(--color-ui-blue-green-semi-transparents);
+  border-radius: 10px;
 }
 
 .news {
   flex-basis: 40%;
-  padding-right: 20px;
-  margin-bottom: 20px;
+  padding: 0 20px 0 20px;
+  border-radius: 10px;
 }
 
 .news h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: var(--color-bg-active-gold);
-  text-shadow: 2px 2px 0 var(--color-bg-active-sandstone);
+  color: var(--color-bg-active-sandstone);
 }
 
 .news ul {
@@ -106,27 +109,25 @@ body {
   font-size: 1.2rem;
   margin-bottom: 10px;
   line-height: 1.5;
-  color: var(--color-ui-lighter-lighter-lighter);
 }
 
 .about {
   flex-basis: 60%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  padding: 0 20px 0 20px;
+  border-radius: 10px;
 }
 
 .about h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: var(--color-bg-active-gold);
-  text-shadow: 2px 2px 0 var(--color-bg-active-sandstone);
+  color: var(--color-bg-active-sandstone);
 }
 
 .about p {
   font-size: 1.2rem;
   line-height: 1.5;
-  color: var(--color-ui-lighter-lighter-lighter);
 }
 
 .auth-forms {
@@ -134,12 +135,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  border-radius: 10px;
+  margin: 0 1rem 0 1rem;
+  width: 40%;
 }
 
 .form {
-  background-color: var(--color-ui-lighter-lighter);
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   border-radius: 5px;
   width: 100%;
   max-width: 400px;
@@ -150,14 +152,13 @@ h2 {
   margin-bottom: 20px;
   text-align: center;
   color: var(--color-bg-active-gold);
-  text-shadow: 2px 2px 0 var(--color-bg-active-sandstone);
 }
 
 label {
   display: block;
   font-size: 1.2rem;
   margin-bottom: 5px;
-  color: var(--color-ui-lighter-lighter-lighter);
+  margin-top: 5px;
 }
 
 input[type="text"],
@@ -174,15 +175,16 @@ input[type="password"] {
 button[type="submit"] {
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: var(--color-bg-active-gold);
+  background-color: var(--color-ui-lighter);
   border: none;
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
+  width: 100%;
 }
 
 button[type="submit"]:hover {
-  background-color: var(--color-bg-hover-gold);
+  background-color: var(--color-bg-active-gold);
 }
 
 .hidden {
