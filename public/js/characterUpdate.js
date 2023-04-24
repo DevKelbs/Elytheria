@@ -48,7 +48,6 @@ async function writeCharacterStatsToDB() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log('Character stats written to DB:', data);
         })
         .catch((error) => {
             console.error('Error writing character stats to DB:', error);

@@ -46,7 +46,6 @@ export function updateUsernameDisplay() {
 export function updateDropdown() {
   const activeUsername = document.getElementById("activeUsername");
   const username = localStorage.getItem("username");
-  console.log(username)
 
   if (username) {
     activeUsername.textContent = username;
@@ -63,10 +62,8 @@ const navMainItems = document.querySelectorAll('.nav-main-item');
 navMainItems.forEach(navMainItem => {
   // Get the skill name from the nav-main-link-name element
   const skillName = navMainItem.querySelector('.nav-main-link-name').textContent.toLowerCase();
-  console.log(skillName);
   // Get the span element inside the small element
   const skillStatSpan = navMainItem.querySelector('.nav-main-link small span');
-  console.log(skillName, skillStatSpan.textContent);
 
   // Update the text content of the span element with the corresponding skill stat
   if (characterStats.skills.hasOwnProperty(skillName)) {
