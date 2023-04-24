@@ -56,7 +56,7 @@ async function displayAllCharacters() {
         <p>Race: ${character.race}</p>
         <p>Faction: ${character.faction}</p>
         <button id="selectButton_${index}">Select</button>
-        <button id="deleteButton_${index}">Delete</button>
+        <button id="deleteButton_${index}" data-name="${character.name}">Delete</button>
       `;
     
       const selectButton = characterElement.querySelector(`#selectButton_${index}`);
@@ -66,7 +66,10 @@ async function displayAllCharacters() {
     
       const deleteButton = characterElement.querySelector(`#deleteButton_${index}`);
       deleteButton.addEventListener("click", () => {
-        deleteCharacter(character, characterElement);
+        const characterName = deleteButton.getAttribute("data-name");
+        confirmDelete(characterName, () => {
+          deleteCharacter(character, characterElement);
+        });
       });
     
       characterDisplay.appendChild(characterElement);
@@ -118,6 +121,13 @@ async function displayAllCharacters() {
   } catch (error) {
     console.error("Error:", error);
     alert("Error fetching characters. Please try again later.");
+  }
+}
+
+function confirmDelete(characterName, onDelete) {
+  const confirmation = confirm(`Are you sure you want to delete ${characterName}?`);
+  if (confirmation) {
+    onDelete();
   }
 }
 
