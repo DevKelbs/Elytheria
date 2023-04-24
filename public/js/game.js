@@ -188,6 +188,11 @@ async function startGame() {
     }
 
     function drawWisp(wisp) {
+        if (!isFinite(wisp.size) || !isFinite(wisp.opacity)) {
+          console.error("Invalid wisp size:", wisp.size);
+          return;
+        }
+      
         ctx.beginPath();
         ctx.arc(wisp.x, wisp.y, wisp.size, 0, 2 * Math.PI);
         const gradient = ctx.createRadialGradient(wisp.x, wisp.y, 0, wisp.x, wisp.y, wisp.size);
@@ -196,7 +201,7 @@ async function startGame() {
         gradient.addColorStop(1, `rgba(255, 105, 180, ${wisp.opacity * 0.5})`); // Pink
         ctx.fillStyle = gradient;
         ctx.fill();
-    }
+      }      
 
     // Main game loop
     function gameLoop() {

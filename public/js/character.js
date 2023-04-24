@@ -4,11 +4,11 @@ export class Character {
         this.race = race;
         this.faction = faction;
         this.level = 1;
-        this.experience = 0;
+        this.totalxp = 0;
         this.skills = {
             attack: 1,
             strength: 1,
-            defense: 1,
+            defence: 1,
             hitpoints: 1,
             ranged: 1,
             magic: 1,
@@ -37,6 +37,39 @@ export class Character {
             agility: 1,
             hunter: 1,
             thieving: 1,
+        };
+        this.xp = {
+            attackxp: 0,
+            strengthxp: 0,
+            defencexp: 0,
+            hitpointsxp: 0,
+            rangedxp: 0,
+            magicxp: 0,
+            prayerxp: 0,
+            slayerxp: 0,
+            woodcuttingxp: 0,
+            fishingxp: 0,
+            miningxp: 0,
+            firemakingxp: 0,
+            explorationxp: 0,
+            elementalismxp: 0,
+            alchemyxp: 0,
+            tradingxp: 0,
+            tamingxp: 0,
+            artificeryxp: 0,
+            runesmithingxp: 0,
+            archaeologyxp: 0,
+            blacksmithingxp: 0,
+            tailoringxp: 0,
+            tinkeryxp: 0,
+            cookingxp: 0,
+            farmingxp: 0,
+            constructionxp: 0,
+            fletchingxp: 0,
+            craftingxp: 0,
+            agilityxp: 0,
+            hunterxp: 0,
+            thievingxp: 0,
         };
         this.equipment = {
             weapon: null,

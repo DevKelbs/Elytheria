@@ -54,22 +54,28 @@ export function updateDropdown() {
   }
 }
 
-// Retrieve the skill stats from local storage
-const characterStats = JSON.parse(localStorage.getItem('activeCharacter'));
+// Check if the activeCharacter exists in local storage
+if (localStorage.getItem('activeCharacter')) {
+  // Retrieve the skill stats from local storage
+  const characterStats = JSON.parse(localStorage.getItem('activeCharacter'));
 
-// Loop through each nav-main-item element
-const navMainItems = document.querySelectorAll('.nav-main-item');
-navMainItems.forEach(navMainItem => {
-  // Get the skill name from the nav-main-link-name element
-  const skillName = navMainItem.querySelector('.nav-main-link-name').textContent.toLowerCase();
-  // Get the span element inside the small element
-  const skillStatSpan = navMainItem.querySelector('.nav-main-link small span');
+  // Loop through each nav-main-item element
+  const navMainItems = document.querySelectorAll('.nav-main-item');
+  navMainItems.forEach(navMainItem => {
+    // Get the skill name from the nav-main-link-name element
+    const skillName = navMainItem.querySelector('.nav-main-link-name').textContent.toLowerCase();
+    // Get the span element inside the small element
+    const skillStatSpan = navMainItem.querySelector('.nav-main-link small span');
 
-  // Update the text content of the span element with the corresponding skill stat
-  if (characterStats.skills.hasOwnProperty(skillName)) {
-    skillStatSpan.textContent = `${characterStats.skills[skillName]}`;
-  }
-});
+    // Update the text content of the span element with the corresponding skill stat
+    if (characterStats.skills.hasOwnProperty(skillName)) {
+      skillStatSpan.textContent = `${characterStats.skills[skillName]}`;
+    }
+  });
+} else {
+  console.error("No active character found in local storage.");
+}
+
 
 //set character level dynamically
 // Check if the current page is index.html

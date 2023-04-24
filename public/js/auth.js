@@ -115,8 +115,8 @@ export async function authenticate(username, password, redirectTo = "/index.html
       localStorage.setItem("username", data.user.username);
       localStorage.setItem("userId", data.user.id);
       displaySuccessMessage("Login successful!");
-      //gets activeCharacter from localstorage to load on sign-in
-      const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+      //checks if activeCharacter is available in localstorage before parsing it
+      const activeCharacter = localStorage.getItem("activeCharacter") ? JSON.parse(localStorage.getItem("activeCharacter")) : null;
       console.log("Active character:", activeCharacter);
 
       setTimeout(() => {
@@ -130,6 +130,7 @@ export async function authenticate(username, password, redirectTo = "/index.html
     alert(error.message);
   }
 }
+
 
 export function logout() {
   localStorage.removeItem("token");
