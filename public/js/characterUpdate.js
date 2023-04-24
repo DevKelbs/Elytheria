@@ -85,7 +85,7 @@ async function writeCharacterStatsToDB() {
         });
 }
 
-function forceSave(message) {
+export function forceSave(message) {
   const popup = document.createElement('div');
   popup.classList.add('popup');
   popup.innerHTML = `<p>${message}</p>`;
@@ -105,9 +105,12 @@ setInterval(() => {
   writeCharacterStatsToDB(characterId);
 }, 10 * 60 * 1000); // 10 minutes * 60 seconds * 1000 milliseconds
   
-document.addEventListener('DOMContentLoaded', () => {
-  const forceSaveButton = document.getElementById('forceSaveButton');
-  forceSaveButton.addEventListener('click', () => {
-    forceSave('Your character has been saved to the cloud');
+if (window.location.pathname !== '/welcome.html') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const forceSaveButton = document.getElementById('forceSaveButton');
+    forceSaveButton.addEventListener('click', () => {
+      forceSave('Your character has been saved to the cloud');
+    });
   });
-});
+}
+

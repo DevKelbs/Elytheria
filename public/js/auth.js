@@ -1,4 +1,6 @@
 import { displayErrorMessage, displaySuccessMessage } from "./ui.js";
+import { forceSave } from "./characterUpdate.js";
+
 
 function isValidEmail(email) {
   const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
@@ -133,6 +135,7 @@ export async function authenticate(username, password, redirectTo = "/index.html
 
 
 export function logout() {
+  forceSave('Your character has been saved to the cloud')
   localStorage.removeItem("token");
   localStorage.removeItem("username");
   localStorage.removeItem("userId");

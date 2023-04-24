@@ -69,12 +69,20 @@ window.addEventListener("DOMContentLoaded", () => {
   // When the DOM is loaded, run the following code
 
   // Redirect to the login page if the user is not authenticated
+  
   if (!isAuthenticated()) {
     window.location.href = "/welcome.html"; // Redirect to the login page if the user is not authenticated
   } else {
     document.getElementById("mainGameContent").style.display = "block"; // Show the page content once the DOM is loaded and the user is authenticated (i.e. the page is ready to be displayed)
   }
 
+  // if (!localStorage.getItem('activeCharacter')){
+  //   document.getElementById("mainGameContent").style.display = "none";
+  //   document.getElementById("characterDisplay").style.display = "block"; 
+  // }else{
+  //   console.log('no character selected')
+  // }
+  
   checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
   document
