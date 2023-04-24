@@ -71,7 +71,7 @@ header {
   margin-top: 150px;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -82,7 +82,9 @@ header {
   display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+  background-color: #ddd;
+}
 
 .dropdownButton {
   background-color: lightgray;
@@ -94,7 +96,9 @@ header {
   background-color: darkgray;
 }
 
-.show {display: block;}
+.show {
+  display: block;
+}
 
 html {
   height: 100%;
@@ -206,6 +210,7 @@ button:hover {
   border: 2px solid var(--color-bg-active-dark-brown);
   border-radius: 10px;
   background-color: var(--color-bg-active-sandstone);
+  margin-bottom: 100px;
 }
 
 .btn-primary:hover {
@@ -338,38 +343,39 @@ nav ul li a:hover {
 
 .nav-main-item.combat {
   background-image: url(../assets/icons/ui-icons/2x/button\ 2_1@2x.png);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  width: 100%;
+  height: auto;
   border-radius: 5px;
   margin-bottom: 5px;
   box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .nav-main-item.combat:hover {
-  opacity: 0.75;
+  animation: pulse 1s infinite;
 }
 
 .nav-main-item.non-combat {
   background-image: url(../assets/icons/ui-icons/2x/button\ 2_1@2x.png);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  width: 100%;
+  height: auto;
   border-radius: 5px;
   margin-bottom: 5px;
   box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .nav-main-item.non-combat:hover {
-  opacity: 0.75;
+  animation: pulse 1s infinite;
 }
 
 .nav-img {
   margin-right: 0.5rem;
   background-image: url(../assets/icons/skill-icons/attack.png);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
   padding: 0 10px 20px 0;
 }
 
@@ -406,13 +412,6 @@ main {
   position: fixed;
   top: 50px;
   left: 250px;
-  border: var(--color-bg-radiant-gold);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-left: 2px solid var(--color-ui-blue-green);
-  border-right: 2px solid var(--color-ui-blue-green);
-  border-bottom: 2px solid var(--color-ui-blue-green);
-  box-shadow: 10px 2.5px 2.5px rgba(0, 0, 0, 0.5);
 }
 
 #coveMain {
@@ -532,17 +531,6 @@ main > * {
   border-radius: 10px;
   background-color: var(--color-bg-active-sandstone);
   width: 85%;
-}
-
-.skill-icon img {
-  width: 64px;
-  height: 64px;
-  transition: transform 0.3s ease;
-}
-
-.skill-icon:hover img {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px 5px rgba(255, 175, 100, 0.5);
 }
 
 .game-title {
@@ -812,6 +800,7 @@ input[type="password"] {
 input[type="submit"] {
   font-family: "Cinzel", serif;
   padding: 0 0 20px 0;
+  background-image: url(../assets/icons/ui-icons/2x/button\ 2_1@2x.png);
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
@@ -864,4 +853,53 @@ input[type="submit"] {
   100% {
     opacity: 0;
   }
+}
+
+/* Button Animation */
+@keyframes button-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes skill-icon-animation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  animation: slide-down 0.5s ease-out;
 }

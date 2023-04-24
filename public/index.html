@@ -54,7 +54,7 @@
         <nav>
           <ul>
             <img
-              src="./assets/icons/ui-icons/elytheria.logo3.png"
+              src="./assets/icons/ui-icons/2x/logo_2.png"
               alt="Elytheria Logo"
               id="game-logo"
             />
@@ -384,35 +384,54 @@
           </div>
           <button id="forceSaveButton" type="button">Force Save</button>
           <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn" id="activeUsername"></button>
+            <button
+              onclick="myFunction()"
+              class="dropbtn"
+              id="activeUsername"
+            ></button>
             <div id="myDropdown" class="dropdown-content">
               <a class="dropdownButton" href="#home">Home</a>
               <a class="dropdownButton" href="#about">About</a>
-              <button class="dropdownButton" id="createCharacterButton" type="button">Create Character</button>
-              <button class="dropdownButton" id="selectCharacterButton" type="button">Select Character</button>
-              <button class="dropdownButton" id="logoutButton" type="button">Logout</button>
+              <button
+                class="dropdownButton"
+                id="createCharacterButton"
+                type="button"
+              >
+                Create Character
+              </button>
+              <button
+                class="dropdownButton"
+                id="selectCharacterButton"
+                type="button"
+              >
+                Select Character
+              </button>
+              <button class="dropdownButton" id="logoutButton" type="button">
+                Logout
+              </button>
             </div>
           </div>
           <script>
-          /* When the user clicks on the button, 
+            /* When the user clicks on the button, 
           toggle between hiding and showing the dropdown content */
-          function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-          }
-          
-          // Close the dropdown if the user clicks outside of it
-          window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-              var dropdowns = document.getElementsByClassName("dropdown-content");
-              var i;
-              for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                  openDropdown.classList.remove('show');
+            function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+              if (!event.target.matches(".dropbtn")) {
+                var dropdowns =
+                  document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains("show")) {
+                    openDropdown.classList.remove("show");
+                  }
                 }
               }
-            }
-          }
+            };
           </script>
         </header>
         <section id="cove" class="tab-content" style="display: none">
