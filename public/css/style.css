@@ -22,11 +22,11 @@ body {
   margin: 0 0 0 250px;
   font-family: "Cinzel", serif;
   color: var(--color-main-text);
-  background-color: var(--color-bg-dark-hunter-green);
+  background-color: var(--color-ui-blue-green);
   background-image: linear-gradient(
     135deg,
-    var(--color-bg-dark-hunter-green) 0%,
-    var(--color-bg-dark-olive-green) 100%
+    var(--color-ui-blue-green) 0%,
+    var(--color-ui-lighter) 100%
   );
 }
 
@@ -117,6 +117,18 @@ html {
 .shown-div {
   opacity: 1;
   visibility: visible;
+}
+
+#openCharacterCreation,
+#showCharacters {
+  background-image: url(../assets/icons/ui-icons/2x/button@2x.png);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
 }
 
 button {
@@ -224,7 +236,7 @@ nav ul {
   display: flex;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin-bottom: 1rem;
 }
 
 nav ul li {
@@ -241,11 +253,11 @@ nav ul li a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--color-bg-dark-hunter-green);
+  background-color: var(--color-ui-blue-green);
   background-image: linear-gradient(
     135deg,
-    var(--color-bg-light-hunter-green) 0%,
-    var(--color-bg-dark-hunter-green) 100%
+    var(--color-ui-blue-green) 0%,
+    var(--color-ui-lighter) 100%
   );
   display: flex;
   justify-content: center;
@@ -261,8 +273,8 @@ nav ul li a {
 .spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #ffffff;
+  border: 5px solid var(--color-bg-active-gold);
+  border-top-color: var(--color-bg-active-khaki);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -287,10 +299,37 @@ nav ul li a:hover {
   color: var(--color-bg-active-gold);
 }
 
+.nav-main-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-bg-active-gold);
+  margin-top: 0.5rem;
+}
+
 .nav-main-link {
   display: flex;
   justify-content: space-between;
   padding: 0.7rem 1rem;
+}
+
+.nav-main-item.combat {
+  background-image: url(../assets/icons/ui-icons/2x/button\ 2_1@2x.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.nav-main-item.non-combat {
+  background-image: url(../assets/icons/ui-icons/2x/button\ 2_1@2x.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .nav-img {
@@ -335,6 +374,13 @@ main {
   position: fixed;
   top: 50px;
   left: 250px;
+  border: var(--color-bg-radiant-gold);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: 2px solid var(--color-ui-blue-green);
+  border-right: 2px solid var(--color-ui-blue-green);
+  border-bottom: 2px solid var(--color-ui-blue-green);
+  box-shadow: 10px 2.5px 2.5px rgba(0, 0, 0, 0.5);
 }
 
 #coveMain {
@@ -468,9 +514,11 @@ main > * {
 
 .game-title {
   font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-bg-radiant-gold);
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   /* align center of sidebar*/
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal {
@@ -590,22 +638,14 @@ main > * {
 }
 
 .sidebar {
-  background-color: var(--color-bg-dark-olive-green);
-  background-image: linear-gradient(
-    315deg,
-    var(--color-bg-dark-olive-green) 0%,
-    var(--color-bg-light-olive-green) 74%
-  );
+  background-color: transparent;
   width: 250px;
-  height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   overflow-y: auto;
   padding: 1rem;
-  border-right: 3px solid var(--color-bg-dark-olive-green);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   overflow-x: hidden;
 }
 
@@ -629,22 +669,8 @@ main > * {
   flex-direction: column;
 }
 
-.nav-main-item.combat {
-  background-image: url("/assets/icons/ui-icons/2x/button@2x.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 50px;
-}
-
-.nav-main-item.non-combat {
-  background-image: url("/assets/icons/ui-icons/2x/button@2x.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 50px;
-}
-
 .sidebar nav ul li {
-  margin-right: 0;
+  margin: 0.25rem 0 0.25rem 0;
   font-size: 15px;
   max-width: 100%;
   cursor: pointer;
