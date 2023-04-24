@@ -55,34 +55,29 @@ async function writeCharacterStatsToDB() {
         });
 }
 
-// Define a function to show the modal
-function showNotification(message) {
-    // Check if the Notification API is supported
-    if ('Notification' in window) {
-      // Request permission to show notifications
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          // Create a new notification
-          const notification = new Notification('Character Saved', {
-            body: message,
-            icon: 'path/to/notification-icon.png',
-          });
+function forceSave(message) {
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+  popup.innerHTML = `<p>${message}</p>`;
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 3000);
+
+  const characterId = JSON.parse(localStorage.getItem('activeCharacter')).id;
+  writeCharacterStatsToDB(characterId);
+}
+
+//updates character to DB every 10 minutes
+setInterval(() => {
+  const characterId = JSON.parse(localStorage.getItem('activeCharacter')).id;
+  writeCharacterStatsToDB(characterId);
+}, 10 * 60 * 1000); // 10 minutes * 60 seconds * 1000 milliseconds
   
-          // Hide the notification after a certain amount of time
-          setTimeout(() => {
-            notification.close();
-          }, 3000);
-        }
-      });
-    }
-  }
-  
-  // Call the writeCharacterStatsToDB() function at the specified interval
-  setInterval(() => {
-    const characterId = JSON.parse(localStorage.getItem('activeCharacter')).id;
-    writeCharacterStatsToDB(characterId);
-  
-    // Show the modal with the "saved" message
-    showNotification('Your character has been saved to the cloud');
-  }, 60 * 1000); // 60 seconds * 1000 milliseconds
-  
+document.addEventListener('DOMContentLoaded', () => {
+  const forceSaveButton = document.getElementById('forceSaveButton');
+  forceSaveButton.addEventListener('click', () => {
+    forceSave('Your character has been saved to the cloud');
+  });
+});
