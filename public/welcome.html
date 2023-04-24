@@ -9,13 +9,7 @@
   </head>
   <body class="welcome-page">
     <div class="welcome-container">
-      <div class="header">
-        <h1>Welcome to Elytheria</h1>
-        <div class="auth-buttons">
-          <button class="auth-btn active" id="authenticate-modal">Login</button>
-          <button class="auth-btn" id="registration-modal">Register</button>
-        </div>
-      </div>
+      <div class="header"></div>
       <div class="content">
         <div class="news">
           <h2>News and Updates</h2>
@@ -25,18 +19,14 @@
             <li>Increased gold rewards for defeating monsters</li>
           </ul>
         </div>
-        <div class="about">
-          <h2>About Elytheria</h2>
-          <p>
-            Elytheria is a medieval idle RPG game where you play as a knight on
-            a quest to save the kingdom from the evil dragon. You will face many
-            challenges and battles, earn gold and experience, and upgrade your
-            weapons and armor. Will you be able to defeat the dragon and restore
-            peace to the land?
-          </p>
-        </div>
         <div class="auth-forms">
           <form class="form login-form" id="authenticate-form">
+            <div class="auth-buttons">
+              <button class="auth-btn active" id="authenticate-modal">
+                Login
+              </button>
+              <button class="auth-btn" id="registration-modal">Register</button>
+            </div>
             <h2>Login</h2>
             <label for="authenticate-username">Username</label>
             <input type="text" id="authenticate-username" required />
@@ -62,6 +52,16 @@
             <button id="registration-button" type="submit">Register</button>
             <p id="error-message" style="display: none; color: red"></p>
           </form>
+        </div>
+        <div class="about">
+          <h2>About Elytheria</h2>
+          <p>
+            Elytheria is a medieval idle RPG game where you play as a knight on
+            a quest to save the kingdom from the evil dragon. You will face many
+            challenges and battles, earn gold and experience, and upgrade your
+            weapons and armor. Will you be able to defeat the dragon and restore
+            peace to the land?
+          </p>
         </div>
       </div>
       <div class="footer">
