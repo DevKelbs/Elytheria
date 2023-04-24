@@ -11,53 +11,36 @@
   --color-ui-lighter-lighter-lighter: #4f5a76;
 }
 
-/* Set default font and box sizing */
 * {
-  font-family: "Cinzel", serif;
   box-sizing: border-box;
 }
 
-/* Set background and text color */
 body {
   font-family: "Cinzel", serif;
   color: var(--color-main-text);
   background-color: var(--color-ui-blue-green);
-  background-image: linear-gradient(
-    135deg,
-    var(--color-ui-blue-green) 0%,
-    var(--color-ui-lighter-lighter) 100%
-  );
-}
-
-body.welcome-page {
   background-image: url("/assets/images/backgrounds/welcome_background.png");
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-attachment: fixed; /* Add this line to keep the background fixed during scrolling */
+  background-position: center center;
   background-size: cover;
-  height: 100%; /* Add this line to make the body take the full height of the viewport */
-  margin: 0; /* Add this line to remove default margin */
-  overflow: auto; /* Add this line to enable scrolling for content that overflows the viewport */
+  height: 100vh;
+  margin: 0;
 }
 
-/* Set container styles */
 .welcome-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  padding: 20px;
 }
 
-/* Set header styles */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  width: 100%;
 }
 
 .header h1 {
@@ -66,10 +49,10 @@ body.welcome-page {
   text-shadow: 2px 2px 0 var(--color-bg-active-gold);
 }
 
-/* Set authentication buttons styles */
 .auth-buttons {
   display: flex;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .auth-buttons button {
@@ -90,20 +73,27 @@ body.welcome-page {
   background-color: var(--color-bg-active-gold);
 }
 
-/* Set content styles */
 .content {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--color-ui-blue-green);
 }
 
-/* Set news section styles */
 .news {
   flex-basis: 40%;
   padding-right: 20px;
+  margin-bottom: 20px;
 }
 
 .news h2 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: var(--color-bg-active-gold);
+  text-shadow: 2px 2px 0 var(--color-bg-active-sandstone);
 }
 
 .news ul {
@@ -116,38 +106,35 @@ body.welcome-page {
   font-size: 1.2rem;
   margin-bottom: 10px;
   line-height: 1.5;
+  color: var(--color-ui-lighter-lighter-lighter);
 }
 
-.news,
-.about {
-  flex: 1;
-}
-
-/* Set about section styles */
 .about {
   flex-basis: 60%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .about h2 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: var(--color-bg-active-gold);
+  text-shadow: 2px 2px 0 var(--color-bg-active-sandstone);
 }
 
 .about p {
   font-size: 1.2rem;
   line-height: 1.5;
+  color: var(--color-ui-lighter-lighter-lighter);
 }
 
-/* Set authentication form styles */
 .auth-forms {
-  flex: 1;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .form {
@@ -162,12 +149,15 @@ h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   text-align: center;
+  color: var(--color-bg-active-gold);
+  text-shadow: 2px 2px 0 var(--color-bg-active-sandstone);
 }
 
 label {
   display: block;
   font-size: 1.2rem;
   margin-bottom: 5px;
+  color: var(--color-ui-lighter-lighter-lighter);
 }
 
 input[type="text"],
@@ -203,16 +193,16 @@ button[type="submit"]:hover {
   margin-top: 10px;
   font-size: 1rem;
   text-align: center;
+  color: red;
 }
 
-/* Set footer styles */
 .footer {
   margin-top: 30px;
   text-align: center;
+  color: var(--color-ui-lighter-lighter-lighter);
 }
 
 .footer p {
   font-size: 1.2rem;
-  color: var(--color-ui-lighter-lighter-lighter);
   margin-bottom: 10px;
 }
