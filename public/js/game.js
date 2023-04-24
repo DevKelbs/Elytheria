@@ -21,7 +21,7 @@ async function startGame() {
     const coveMain = document.getElementById('coveMain');
 
     // Load images
-    const backgroundImage = await loadImage('assets/images/backgrounds/gamebackground.png');
+    const backgroundImage = await loadImage('assets/images/backgrounds/2x/Asset1.png');
     const leafImages = await loadImages([
         'assets/images/objects/leaf1.png',
         'assets/images/objects/leaf2.png',
