@@ -357,9 +357,6 @@
             <li>
               <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
             </li>
-            <li id="logout-link">
-              <a href="#" id="logout"><i class="fas fa-sign-out"></i> Logout</a>
-            </li>
             <li id="create-character-link">
               <button id="openCharacterCreation">Create Character</button>
               <button id="showCharacters">Show All Characters</button>
@@ -387,36 +384,34 @@
           </div>
           <button id="forceSaveButton" type="button">Force Save</button>
           <div class="dropdown">
-            <button
-              class="dropdown-toggle"
-              type="button"
-              id="accountDropdown"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span id="activeUsername"></span>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="accountDropdown">
-              <div role="separator" class="dropdown-divider"></div>
-              <button
-                class="dropdown-item"
-                type="button"
-                data-toggle="modal"
-                data-target="#changePasswordModal"
-              >
-                Change Password
-              </button>
-              <button
-                class="dropdown-item"
-                type="button"
-                id="logoutButton"
-                onclick="logout()"
-              >
-                Logout
-              </button>
+            <button onclick="myFunction()" class="dropbtn" id="activeUsername"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <a class="dropdownButton" href="#home">Home</a>
+              <a class="dropdownButton" href="#about">About</a>
+              <button class="dropdownButton" id="logoutButton" type="button">Logout</button>
             </div>
           </div>
+          <script>
+          /* When the user clicks on the button, 
+          toggle between hiding and showing the dropdown content */
+          function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+          }
+          
+          // Close the dropdown if the user clicks outside of it
+          window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+              var dropdowns = document.getElementsByClassName("dropdown-content");
+              var i;
+              for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                  openDropdown.classList.remove('show');
+                }
+              }
+            }
+          }
+          </script>
         </header>
         <section id="cove" class="tab-content" style="display: none">
           <div id="coveContainer">

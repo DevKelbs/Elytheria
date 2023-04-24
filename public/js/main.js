@@ -82,8 +82,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
-    document
-        .getElementById("logout") // Get the logout button element from the DOM
+        document
+        .getElementById("logoutButton") // Get the logout button element from the DOM
         .addEventListener("click", () => { // Add a click event listener to the logout button
             logout(); // Log the user out
             displaySuccessMessage("Logout successful!"); // Display a success message
