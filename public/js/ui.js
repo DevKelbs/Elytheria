@@ -75,11 +75,18 @@ navMainItems.forEach(navMainItem => {
 });
 
 //set character level dynamically
-const activeCharacter = JSON.parse(localStorage.getItem('activeCharacter'));
-const characterLevel = document.querySelector('.character-level');
-if (activeCharacter) {
-  characterLevel.textContent = `Level:${activeCharacter.level}`;
+// Check if the current page is index.html
+if (window.location.pathname === '/index.html') {
+  // Get the active character from local storage
+  const activeCharacter = JSON.parse(localStorage.getItem('activeCharacter'));
+  
+  // Update the character level element with the active character's level
+  const characterLevel = document.querySelector('.character-level');
+  if (activeCharacter) {
+    characterLevel.textContent = `Level:${activeCharacter.level}`;
+  }
 }
+
 
 
 
