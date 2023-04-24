@@ -208,3 +208,16 @@ button[type="submit"]:hover {
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: var(--color-main-text);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+

@@ -665,7 +665,7 @@ main > * {
 
 .success-message {
   position: fixed;
-  top: 20px;
+  top: 50px;
   right: 20px;
   background-color: #4caf50;
   color: var(--color-main-text);
