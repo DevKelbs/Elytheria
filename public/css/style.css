@@ -61,6 +61,25 @@ header {
 .dropdown {
   position: relative;
   display: inline-block;
+  background-color: transparent;
+}
+
+.dropbtn {
+  background-image: url(../assets/icons/ui-icons/2x/button@2x.png);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 150px;
+  padding: 2rem;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: small;
+}
+
+.dropbtn:hover {
+  background-color: transparent;
+  opacity: 75%;
 }
 
 .dropdown-content {
@@ -164,12 +183,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-#forceSaveButton {
-  width: 150px;
-  margin-left: auto;
-  border-radius: 5px;
 }
 
 button:hover {
@@ -411,7 +424,8 @@ main {
 #gameCanvas {
   position: fixed;
   top: 50px;
-  left: 250px;
+  left: 280px;
+  max-width: 85%;
 }
 
 #coveMain {
