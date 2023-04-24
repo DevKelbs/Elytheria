@@ -46,7 +46,6 @@ export function updateUsernameDisplay() {
 export function updateDropdown() {
   const activeUsername = document.getElementById("activeUsername");
   const username = localStorage.getItem("username");
-  console.log(username)
 
   if (username) {
     activeUsername.textContent = username;

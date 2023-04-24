@@ -25,19 +25,6 @@ const displayErrorMessage = (message) => {
   }, 3000);
 };
 
-// form.addEventListener('submit', (event) => {
-//   event.preventDefault();
-
-//   const name = form.elements.name.value;
-//   const race = form.elements.race.value;
-//   const faction = form.elements.faction.value;
-
-//   const character = new Character(name, race, faction);
-//   addCharacterToStorage(character);
-
-//   displayCharacter(character);
-// });
-
 async function displayAllCharacters() {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
@@ -94,20 +81,12 @@ async function displayAllCharacters() {
     function setActiveCharacter(character) {
       localStorage.setItem("activeCharacter", JSON.stringify(character));
       console.log("Selected character:", character);
-    }    
+    }
   } catch (error) {
     console.error("Error:", error);
     alert("Error fetching characters. Please try again later.");
   }
 }
-
-// function addCharacterToStorage(character) {
-//   let characters = JSON.parse(localStorage.getItem('characters')) || [];
-
-// if (characters.length >= maxCharactersAllowed) {
-//   alert('You have reached the maximum number of characters allowed.');
-//   return;
-// }
 
 // Function to open the character creation content
 function openCharacterCreationContent() {
@@ -192,13 +171,6 @@ const createCharacter = async () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const openCharacterCreationButton = document.getElementById('open-character-creation');
-  // if (openCharacterCreationButton) {
-  //   openCharacterCreationButton.addEventListener('click', () => {
-  //     document.getElementById("characterCreationContent").style.display = "block";
-  //   });
-  // }
-
   const openCharacterCreationButton = document.getElementById(
     "createCharacterButton"
   );
@@ -209,17 +181,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // const closeCharacterCreationButton = document.getElementById(
-  //   "closeCharacterCreation"
-  // );
-  // if (closeCharacterCreationButton) {
-  //   closeCharacterCreationButton.addEventListener(
-  //     "click",
-  //     closeCharacterCreationContent
-  //   );
-  // }
-
-  const openCharacterDisplayButton = document.getElementById("selectCharacterButton");
+  const openCharacterDisplayButton = document.getElementById(
+    "selectCharacterButton"
+  );
   if (openCharacterDisplayButton) {
     openCharacterDisplayButton.addEventListener("click", openCharacterDisplay);
   }
