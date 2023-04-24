@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // }
 
   const openCharacterCreationButton = document.getElementById(
-    "openCharacterCreation"
+    "createCharacterButton"
   );
   if (openCharacterCreationButton) {
     openCharacterCreationButton.addEventListener(
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //   );
   // }
 
-  const openCharacterDisplayButton = document.getElementById("showCharacters");
+  const openCharacterDisplayButton = document.getElementById("selectCharacterButton");
   if (openCharacterDisplayButton) {
     openCharacterDisplayButton.addEventListener("click", openCharacterDisplay);
   }
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const showCharactersButton = document.getElementById("showCharacters");
+  const showCharactersButton = document.getElementById("selectCharacterButton");
   if (showCharactersButton) {
     showCharactersButton.addEventListener("click", displayAllCharacters);
     displayAllCharacters();
