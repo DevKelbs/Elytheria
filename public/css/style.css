@@ -68,15 +68,15 @@ header {
 .dropbtn {
   background-image: url(../assets/icons/ui-icons/2x/button@2x.png);
   background-color: transparent;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
   align-items: end;
-  max-width: 150px;
-  padding: 2rem;
+  max-width: 120px;
+  padding: 10px 15px 25px 15px;
   margin-left: 5px;
   margin-right: 5px;
   font-size: small;
+  max-height: 5px;
 }
 
 .dropbtn:hover {
