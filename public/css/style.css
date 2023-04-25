@@ -67,6 +67,11 @@ header {
   background-color: transparent;
 }
 
+.header-content {
+  position: absolute;
+  left: 65%;
+}
+
 .dropbtn {
   background-image: url(../assets/icons/ui-icons/2x/button@2x.png);
   background-color: transparent;
@@ -75,7 +80,6 @@ header {
   align-items: end;
   max-width: 120px;
   padding: 10px 15px 25px 15px;
-  margin-left: 5px;
   margin-right: 5px;
   font-size: small;
   max-height: 5px;
@@ -91,8 +95,8 @@ header {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   position: relative;
-  margin-top: 150px;
-  background-color: #f1f1f1;
+  margin-top: 290px;
+  color: var(--color-bg-active-dark-brown);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -110,13 +114,13 @@ header {
 }
 
 .dropdownButton {
-  background-color: lightgray;
+  background-color: var(--color-bg-active-sandstone);
   border-radius: 0;
   text-align: left;
 }
 
 .dropdownButton:hover {
-  background-color: darkgray;
+  background-color: var(--color-ui-lighter);
 }
 
 .show {
@@ -442,6 +446,7 @@ main {
 
 main > * {
   margin-bottom: 1rem;
+  padding-left: 75%;
 }
 
 #game-logo {
@@ -545,9 +550,9 @@ main > * {
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--color-bg-active-sandstone);
-  border: 2px solid var(--color-ui-lighter);
   border-radius: 10px;
-  background-color: var(--color-ui-blue-green-semi-transparents);
+  background-color: var(--color-ui-blue-green);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.35);
   width: 30%;
   z-index: 99;
 }
