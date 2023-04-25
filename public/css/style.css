@@ -68,8 +68,7 @@ header {
 }
 
 .header-content {
-  position: absolute;
-  left: 65%;
+  position: relative;
 }
 
 .dropbtn {
@@ -83,6 +82,7 @@ header {
   margin-right: 5px;
   font-size: small;
   max-height: 5px;
+  position: relative;
 }
 
 .dropbtn:hover {
@@ -252,13 +252,9 @@ button:hover {
   color: #ffffff;
 }
 
-.character-info {
-  align-items: center;
-}
-
 .character-info-col1,
 .character-info-col2 {
-  display: inline-block;
+  display: contents;
   font-size: small;
   font-weight: bold;
 }
@@ -752,6 +748,12 @@ main > * {
   font-size: 15px;
   max-width: 100%;
   cursor: pointer;
+}
+
+#page-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 #page-content {
