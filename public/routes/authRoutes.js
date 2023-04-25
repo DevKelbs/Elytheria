@@ -90,7 +90,7 @@ router.get('/verify/:verificationtoken', async (req, res) => {
     
       await pool.query('UPDATE "Users" SET isverified = true, verificationtoken = NULL WHERE id = $1', [user.id]);
     
-      return res.status(200).json({ msg: 'User successfully verified.' });
+      res.redirect('/welcome.html');
     } catch (error) {
       console.error(error);
       return res.status(500).json({ msg: 'Internal Server Error.' });
