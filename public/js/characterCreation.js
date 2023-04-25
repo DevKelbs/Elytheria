@@ -51,19 +51,19 @@ async function displayAllCharacters() {
       const characterElement = document.createElement("div");
       characterElement.classList.add("character");
       characterElement.innerHTML = `
-        <h3>Name: ${character.name}</h3>
+        <h3 class="character-name">Name: ${character.name}</h3>
         <p>Level: ${character.level}</p>
         <p>Race: ${character.race}</p>
         <p>Faction: ${character.faction}</p>
-        <button id="selectButton_${index}">Select</button>
-        <button id="deleteButton_${index}" data-name="${character.name}">Delete</button>
+        <button id="selectButton_${index}" class="characterSelectButtons">Select</button>
+        <button id="deleteButton_${index}" class="characterSelectButtons" data-name="${character.name}">Delete</button>
       `;
-    
+
       const selectButton = characterElement.querySelector(`#selectButton_${index}`);
       selectButton.addEventListener("click", () => {
         selectCharacter(character, characterElement);
       });
-    
+
       const deleteButton = characterElement.querySelector(`#deleteButton_${index}`);
       deleteButton.addEventListener("click", () => {
         const characterName = deleteButton.getAttribute("data-name");
@@ -71,10 +71,10 @@ async function displayAllCharacters() {
           deleteCharacter(character, characterElement);
         });
       });
-    
+
       characterDisplay.appendChild(characterElement);
     });
-    
+
 
     function selectCharacter(character, characterElement) {
       // Get the data for the selected character from the database
@@ -102,13 +102,13 @@ async function displayAllCharacters() {
     async function getCharacterData(characterId) {
       console.log('getting char data...')
       const token = localStorage.getItem("token");
-        
+
       const response = await fetch(`/api/characters/${characterId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-        
+
       const data = await response.json();
       console.log(data); // Log the data to the console
       const activeCharacter = data.characters.find(character => character.id === characterId);
@@ -117,7 +117,7 @@ async function displayAllCharacters() {
       window.location.replace(indexUrl); // Redirect to index page
       return activeCharacter;
     }
-    
+
   } catch (error) {
     console.error("Error:", error);
     alert("Error fetching characters. Please try again later.");
@@ -183,9 +183,6 @@ function closeCharacterCreationContent() {
 function openCharacterDisplay() {
   // Save the last element's ID
   lastElementID = document.activeElement.id;
-
-  // Hide the main game content
-  mainGameContent.style.display = "none";
 
   // Show the character creation content
   characterDisplay.style.display = "block";
