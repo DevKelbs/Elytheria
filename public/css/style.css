@@ -13,6 +13,8 @@
   --color-bg-active-pale-gold: #eee8aa;
   --color-bg-active-dark-brown: #654321;
   --color-ui-blue-green: #172429;
+  --color-ui-blue-green-semi-transparents: #172429ce;
+  --color-ui-blue-green-transparent: #17242969;
   --color-ui-lighter: #293a4e;
   --color-ui-lighter-lighter: #3c4b62;
   --color-ui-lighter-lighter-lighter: #4f5a76;
@@ -178,7 +180,7 @@ button {
   display: inline-block;
   width: 100%;
   padding: 10px;
-  background-color: var(--color-bg-light-hunter-green);
+  background-color: var(--color-bg-hover-gold);
   color: white;
   font-weight: bold;
   border: none;
@@ -542,11 +544,24 @@ main > * {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--color-bg-active-dark-brown);
-  border: 2px solid var(--color-bg-active-dark-brown);
+  color: var(--color-bg-active-sandstone);
+  border: 2px solid var(--color-ui-lighter);
   border-radius: 10px;
-  background-color: var(--color-bg-active-sandstone);
-  width: 85%;
+  background-color: var(--color-ui-blue-green-semi-transparents);
+  width: 30%;
+  z-index: 99;
+}
+
+.characterSelectButtons {
+  background-color: var(--color-ui-lighter);
+  font-family: "Cinzel", serif;
+  margin-bottom: 10px;
+}
+
+.characterSelectButtons:hover {
+  background-color: var(--color-bg-active-gold);
+  font-family: "Cinzel", serif;
+  margin-bottom: 10px;
 }
 
 .game-title {
@@ -589,6 +604,14 @@ main > * {
   background-color: #333;
   border: 1px solid #555;
   color: #eee;
+}
+
+#selectButton0,
+#deleteButton0 {
+  background-color: #444;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 2.5px;
 }
 
 .modal input:focus,
