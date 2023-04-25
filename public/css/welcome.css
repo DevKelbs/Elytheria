@@ -81,7 +81,8 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
   text-shadow: black 0.1em 0.1em 0.2em;
   background-color: var(--color-ui-blue-green-semi-transparents);
   border-radius: 10px;

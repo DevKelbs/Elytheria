@@ -158,12 +158,6 @@ html {
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-/* CSS for the shown div */
-.shown-div {
-  opacity: 1;
-  visibility: visible;
-}
-
 #openCharacterCreation,
 #showCharacters {
   background-image: url(../assets/icons/ui-icons/2x/button@2x.png);

@@ -13,13 +13,13 @@ import {
 
 const socket = io();
 
-function show(elementId) {
-  document.getElementById("mainGameContent").style.display = "block";
-}
+// function show(elementId) {
+//   document.getElementById("mainGameContent").style.display = "block";
+// }
 
-function hide(elementId) {
-  document.getElementById("mainGameContent").style.display = "none";
-}
+// function hide(elementId) {
+//   document.getElementById("mainGameContent").style.display = "none";
+// }
 
 // Check if the user is logged in and update the UI accordingly
 // function checkLoginStatus() {
@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // When the DOM is loaded, run the following code
 
   // Redirect to the login page if the user is not authenticated
-  
+
   if (!isAuthenticated()) {
     window.location.href = "/welcome.html"; // Redirect to the login page if the user is not authenticated
   } else {
@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // }else{
   //   console.log('no character selected')
   // }
-  
+
   // checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
   document
