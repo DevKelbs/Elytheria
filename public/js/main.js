@@ -22,11 +22,11 @@ function hide(elementId) {
 }
 
 // Check if the user is logged in and update the UI accordingly
-function checkLoginStatus() {
-  const isLoggedIn = isAuthenticated();
-  updateAuthButtons(isLoggedIn);
-  return isLoggedIn;
-}
+// function checkLoginStatus() {
+//   const isLoggedIn = isAuthenticated();
+//   updateAuthButtons(isLoggedIn);
+//   return isLoggedIn;
+// }
 
 // When the socket connects to the server (i.e. when the page loads) run the following code
 socket.on("connect", async () => {
@@ -83,7 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //   console.log('no character selected')
   // }
   
-  checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
+  // checkLoginStatus(); // Check if the user is logged in and update the UI accordingly
 
   document
     .getElementById("logoutButton") // Get the logout button element from the DOM
