@@ -54,8 +54,19 @@ router.post('/send-verification-email', async (req, res) => {
     from: 'kcorrwc@gmail.com',
     to: email,
     subject: 'Verify your account',
-    html: `<p>Please click on the following link to verify your account:</p><br/><a href="http://localhost:3000/api/auth/verify/${verificationtoken}">http://localhost:3000/api/auth/verify/${verificationtoken}</a>`,
+    html: `
+      <p>Please click on the following button to verify your account:</p>
+      <a href="http://localhost:3000/api/auth/verify/${verificationtoken}">
+        <button style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Verify Account</button>
+      </a>
+      <br/>
+      <p>Thanks for signing up! We're excited to have you as a user.</p>
+      <br/>
+      <p>Sincerely,<br>
+      Elytheria Team</p>
+    `,
   };
+  
 
   const result = await transporter.sendMail(mailOptions);
   console.log(`Verification email sent to ${email}: ${result.messageId}`);
