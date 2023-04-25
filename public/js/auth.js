@@ -50,6 +50,7 @@ export async function register(username, email, password, passwordConfirm) {
         username,
         email,
         password,
+        verificationtoken,
       }),
     });
 
@@ -57,12 +58,12 @@ export async function register(username, email, password, passwordConfirm) {
 
     if (response.ok) {
       if (data.success) {
-        displaySuccessMessage("Registration successful!");
+        displaySuccessMessage("Please validate your email address!");
         // Log the user in after successful registration
-        await authenticate(username, password);
-        setTimeout(() => {
-          window.location.href = '/index.html';
-        }, 1000);
+        await sendVerificationEmail(email, verificationtoken);
+        // setTimeout(() => {
+        //   window.location.href = '/index.html';
+        // }, 1000);
       } else {
         alert(`Error: ${data.msg}`);
       }

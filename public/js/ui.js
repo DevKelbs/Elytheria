@@ -20,7 +20,7 @@ export function displaySuccessMessage(message) {
 
   setTimeout(() => {
     successMessage.remove();
-  }, 3000);
+  }, 5000);
 }
 
 export function updateAuthButtons(isAuthenticated) {
