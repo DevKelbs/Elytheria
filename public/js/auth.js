@@ -30,7 +30,7 @@ function validateUserInput(username, email, password, passwordConfirm) {
 }
 
 export async function register(username, email, password, passwordConfirm) {
-  console.log("Authenticating user...");
+  console.log("Registering user...");
   const errors = validateUserInput(username, email, password, passwordConfirm);
 
   if (errors.length > 0) {
@@ -39,6 +39,8 @@ export async function register(username, email, password, passwordConfirm) {
   }
 
   try {
+    const verificationtoken = generateVerificationToken();
+    console.log(verificationtoken);
     const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: {
@@ -82,6 +84,34 @@ export async function register(username, email, password, passwordConfirm) {
   }
 }
 
+//send verification email
+async function sendVerificationEmail(email, verificationtoken) {
+  const url = '/api/auth/send-verification-email';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, verificationtoken }),
+  };
+  const response = await fetch(url, options);
+  const message = await response.text();
+  console.log(message);
+}
+
+
+//Generates verification token to the user
+function generateVerificationToken() {
+  const tokenLength = 32;
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let verificationtoken = '';
+
+  for (let i = 0; i < tokenLength; i++) {
+    verificationtoken += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return verificationtoken;
+}
+
 export async function authenticate(username, password, redirectTo = "/index.html") {
   console.log("Authenticating user...");
   if (!username || username.trim().length === 0) {
@@ -119,7 +149,7 @@ export async function authenticate(username, password, redirectTo = "/index.html
       displaySuccessMessage("Login successful!");
       //checks if activeCharacter is available in localstorage before parsing it
       const activeCharacter = localStorage.getItem("activeCharacter") ? JSON.parse(localStorage.getItem("activeCharacter")) : null;
-      console.log("Active character:", activeCharacter);
+      //console.log("Active character:", activeCharacter);
 
       setTimeout(() => {
         window.location.href = redirectTo;
