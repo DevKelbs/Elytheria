@@ -30,7 +30,7 @@ function validateUserInput(username, email, password, passwordConfirm) {
 }
 
 export async function register(username, email, password, passwordConfirm) {
-  console.log("Registering user...");
+  //console.log("Registering user...");
   const errors = validateUserInput(username, email, password, passwordConfirm);
 
   if (errors.length > 0) {
@@ -40,7 +40,6 @@ export async function register(username, email, password, passwordConfirm) {
 
   try {
     const verificationtoken = generateVerificationToken();
-    console.log(verificationtoken);
     const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: {
@@ -96,7 +95,7 @@ async function sendVerificationEmail(email, verificationtoken) {
   };
   const response = await fetch(url, options);
   const message = await response.text();
-  console.log(message);
+  //console.log(message);
 }
 
 
@@ -149,7 +148,7 @@ export async function authenticate(username, password, redirectTo = "/index.html
       displaySuccessMessage("Login successful!");
       //checks if activeCharacter is available in localstorage before parsing it
       const activeCharacter = localStorage.getItem("activeCharacter") ? JSON.parse(localStorage.getItem("activeCharacter")) : null;
-      console.log("Active character:", activeCharacter);
+      //console.log("Active character:", activeCharacter);
 
       setTimeout(() => {
         window.location.href = redirectTo;
