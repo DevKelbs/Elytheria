@@ -112,6 +112,7 @@ body {
   font-size: 2rem;
   margin-bottom: 2rem;
   margin-left: 1rem;
+  margin-top: 0;
   color: var(--color-bg-active-sandstone);
   width: max-content;
 }
@@ -140,6 +141,7 @@ body {
 .about h2 {
   font-size: 2rem;
   margin-bottom: 20px;
+  margin-top: 0;
   color: var(--color-bg-active-sandstone);
 }
 
