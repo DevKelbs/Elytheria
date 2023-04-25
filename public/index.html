@@ -458,10 +458,63 @@
             </ul>
           </div>
         </section>
-        <section id="Woodcutting" class="tab-content" style="display: none">
+        <section id="woodcutting" class="tab-content" style="display: none">
           <div id="woodcuttingContainer">
             <ul>
-              <button id="woodcuttingButton">Start Woodcutting</button>
+              <div onclick="startWoodcutting('Normal Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Normal Tree</div>
+                  <progress id="cutTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Oak Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Oak Tree</div>
+                  <progress id="cutOakTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Willow Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Willow Tree</div>
+                  <progress id="cutWillowTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Teak Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Teak Tree</div>
+                  <progress id="cutTeakTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Maple Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Maple Tree</div>
+                  <progress id="cutMapleTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Mahogany Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Mahogany Tree</div>
+                  <progress id="cutMahoganyTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Yew Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Yew Tree</div>
+                  <progress id="cutYewTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Magic Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Magic Tree</div>
+                  <progress id="cutMagicTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
+              <div onclick="startWoodcutting('Redwood Tree')">
+                <li>
+                  <div class="woodcuttingContainer__label">Cut Redwood Tree</div>
+                  <progress id="cutRedwoodTreeProgress" value="0" max="100"></progress>
+                </li>
+              </div>
             </ul>
           </div>
         </section>
@@ -642,6 +695,7 @@
     <script src="/js/character.js" type="module"></script>
     <script src="/js/characterCreation.js" type="module"></script>
     <script src="/js/characterUpdate.js" type="module"></script>
+    <script src="/js/skilling.js"></script>
     <script src="/js/utils.js" type="module"></script>
     <script src="/js/ui.js" type="module"></script>
     <script src="/js/game.js" type="module"></script>

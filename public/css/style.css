@@ -474,11 +474,14 @@ main > * {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .tab-content ul li {
-  width: calc(33% - 1rem);
+  position: relative;
+  top: 4rem;
+  /* width: calc(33% - 1rem); */
+  height: 200px;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -499,6 +502,10 @@ main > * {
   margin-top: 0.5rem;
   color: var(--color-bg-active-gold);
   text-shadow: 0 0 10px rgba(255, 175, 100, 0.5);
+}
+
+#woodcuttingContainer ul div {
+  cursor: pointer;
 }
 
 .tab-buttons {
