@@ -11,6 +11,8 @@
   --color-ui-lighter: #293a4e;
   --color-ui-lighter-lighter: #3c4b62;
   --color-ui-lighter-lighter-lighter: #4f5a76;
+  --color-gradient-light: rgba(255, 255, 255, 0.1);
+  --color-gradient-dark: rgba(0, 0, 0, 0.4);
   --font-size-small: 1rem;
   --font-size-medium: 1.2rem;
   --font-size-large: 1.5rem;
@@ -29,7 +31,13 @@ body {
   font-size: var(--font-size-small);
   color: var(--color-bg-active-sandstone);
   background-color: var(--color-ui-blue-green);
-  background-image: url("/assets/images/backgrounds/welcome_background.png");
+  background-image: linear-gradient(
+      135deg,
+      var(--color-gradient-light) 0%,
+      transparent 50%,
+      var(--color-gradient-dark) 100%
+    ),
+    url("/assets/images/backgrounds/welcome_background.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -56,7 +64,8 @@ body {
 .header h1 {
   font-size: 3rem;
   color: var(--color-bg-radiant-gold);
-  text-shadow: 2px 2px 0 var(--color-bg-active-gold);
+  text-shadow: 0 0 5px var(--color-bg-active-gold),
+    2px 2px 0 var(--color-bg-active-gold);
 }
 
 .auth-buttons {
@@ -101,11 +110,11 @@ button {
   color: white;
   cursor: pointer;
   width: 50%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
+  box-shadow: rgba(0, 0, 0, 0.4) 0.1em 0.1em 0.2em;
 }
 
 .auth-buttons button:hover {
-  background-color: var(--color-ui-lighter-lighter-lighter);
+  box-shadow: rgba(0, 0, 0, 0.6) 0.2em 0.2em 0.3em;
 }
 
 .auth-buttons button.active {
@@ -122,6 +131,7 @@ button {
   padding-bottom: 2rem;
   text-shadow: black 0.1em 0.1em 0.2em;
   background-color: var(--color-ui-blue-green-semi-transparents);
+  background-blend-mode: multiply;
   border-radius: 10px;
   text-align: center;
   animation: fadeIn 1s ease;
@@ -177,8 +187,9 @@ input[type="password"]:hover {
 
 .news li:hover {
   color: lightgreen;
+  text-shadow: 0 0 5px lightgreen;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .about {
@@ -256,11 +267,11 @@ button[type="submit"] {
   font-size: 1.2rem;
   cursor: pointer;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
+  box-shadow: rgba(0, 0, 0, 0.4) 0.1em 0.1em 0.2em;
 }
 
 button[type="submit"]:hover {
-  background-color: var(--color-bg-active-gold);
+  box-shadow: rgba(0, 0, 0, 0.6) 0.2em 0.2em 0.3em;
 }
 
 .hidden {
