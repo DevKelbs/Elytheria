@@ -19,39 +19,45 @@
             <li>Increased gold rewards for defeating monsters</li>
           </ul>
         </div>
-        <div class="auth-forms">
-          <form class="form login-form" id="authenticate-form">
-            <div class="auth-buttons">
-              <button class="auth-btn active" id="authenticate-modal">
-                Login
-              </button>
-              <button class="auth-btn" id="registration-modal">Register</button>
-            </div>
-            <label for="authenticate-username">Username</label>
-            <input type="text" id="authenticate-username" required />
-            <label for="authenticate-password">Password</label>
-            <input type="password" id="authenticate-password" required />
-            <button id="authenticate-button" type="submit">Login</button>
-            <p id="error-message" style="display: none; color: red"></p>
-          </form>
-          <form class="form register-form hidden" id="registration-form">
-            <h2>Register</h2>
-            <label for="registration-username">Username</label>
-            <input type="text" id="registration-username" required />
-            <label for="registration-email">Email</label>
-            <input type="email" id="registration-email" required />
-            <label for="registration-password">Password</label>
-            <input type="password" id="registration-password" required />
-            <label for="registration-password-confirm">Confirm Password</label>
-            <input
-              type="password"
-              id="registration-password-confirm"
-              required
-            />
-            <button id="registration-button" type="submit">Register</button>
-            <p id="error-message" style="display: none; color: red"></p>
-          </form>
+        <div class="vertical-divider"></div>
+        <div class="auth-container">
+          <div class="auth-buttons">
+            <button class="auth-btn active" id="authenticate-modal">
+              Login
+            </button>
+            <button class="auth-btn" id="registration-modal">Register</button>
+          </div>
+          <div class="auth-forms">
+            <form class="form login-form" id="authenticate-form">
+              <label for="authenticate-username">Username</label>
+              <input type="text" id="authenticate-username" required />
+              <label for="authenticate-password">Password</label>
+              <input type="password" id="authenticate-password" required />
+              <button id="authenticate-button" type="submit">Login</button>
+              <p id="error-message" style="display: none; color: red"></p>
+            </form>
+            <form class="form register-form hidden" id="registration-form">
+              <h2>Register</h2>
+              <label for="registration-username">Username</label>
+              <input type="text" id="registration-username" required />
+              <label for="registration-email">Email</label>
+              <input type="email" id="registration-email" required />
+              <label for="registration-password">Password</label>
+              <input type="password" id="registration-password" required />
+              <label for="registration-password-confirm"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                id="registration-password-confirm"
+                required
+              />
+              <button id="registration-button" type="submit">Register</button>
+              <p id="error-message" style="display: none; color: red"></p>
+            </form>
+          </div>
         </div>
+        <div class="vertical-divider"></div>
         <div class="about">
           <h2>About Elytheria</h2>
           <p>

@@ -54,7 +54,6 @@ body {
 .auth-buttons {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
 }
 
 .auth-buttons button {
@@ -62,7 +61,7 @@ body {
   border-radius: 5px;
   font-size: 1.2rem;
   border: none;
-  background-color: var(--color-ui-lighter-lighter);
+  background-color: var(--color-ui-lighter);
   color: white;
   cursor: pointer;
   width: 50%;
@@ -82,9 +81,24 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding-top: 40px;
+  text-shadow: black 0.1em 0.1em 0.2em;
   background-color: var(--color-ui-blue-green-semi-transparents);
   border-radius: 10px;
+  text-align: center;
+}
+
+.vertical-divider {
+  border-left: none;
+  height: 90%;
+  margin: 0 20px;
+  width: 4px;
+  border-radius: 50px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-active-gold),
+    transparent
+  );
 }
 
 .news {
@@ -97,6 +111,7 @@ body {
   font-size: 2rem;
   margin-bottom: 20px;
   color: var(--color-bg-active-sandstone);
+  width: max-content;
 }
 
 .news ul {
@@ -133,11 +148,9 @@ body {
 .auth-forms {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   border-radius: 10px;
-  margin: 0 1rem 0 1rem;
-  width: 40%;
+  margin: 1rem 1rem 0 1rem;
 }
 
 .form {
@@ -220,4 +233,3 @@ button[type="submit"]:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
-

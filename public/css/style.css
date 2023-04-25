@@ -22,6 +22,7 @@
 
 body {
   margin: 0 0 0 250px;
+  height: 100%;
   font-family: "Cinzel", serif;
   color: var(--color-main-text);
   background-color: var(--color-ui-blue-green);
@@ -339,10 +340,30 @@ nav ul li a,
   transition: all 0.3s ease;
 }
 
+.block-content {
+  margin-top: 2rem;
+}
+
 nav ul li a.active,
 nav ul li a:hover {
   text-decoration: none;
   color: var(--color-bg-active-gold);
+}
+
+#settings {
+  display: grid;
+  height: 100%;
+}
+
+#settingsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* You can adjust this value depending on the parent container's height */
+}
+
+.row-deck {
+  width: 100%; /* To make sure the row takes the full available width */
 }
 
 .nav-main-heading {
