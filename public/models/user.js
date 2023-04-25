@@ -20,10 +20,6 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  verificationToken: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
   // Add other fields as needed
   // ...
 });
