@@ -517,7 +517,7 @@ main > * {
   height: 100%;
 }
 
-#progressBarFill {
+[id*="ProgressBarFill"] {
   height: 100%;
   background-color: green;
   width: 0%;

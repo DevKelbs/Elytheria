@@ -157,7 +157,7 @@ function startFiremaking(logType) {
   function runTask(resolve, reject) {
     console.log(`Starting to burn ${logType}...`);
 
-    let progressBar = document.getElementById("progressBarFill");
+    let progressBar = document.getElementById("firemakingProgressBarFill");
     progressBar.style.width = "0%";
 
     let timeoutId = setTimeout(() => {

@@ -123,7 +123,7 @@ function canCutTree(treeType) {
     function runTask(resolve, reject) {
       console.log(`Starting to cut ${treeType}...`);
   
-      let progressBar = document.getElementById("progressBarFill");
+      let progressBar = document.getElementById("woodcuttingProgressBarFill");
       progressBar.style.width = "0%";
   
       let timeoutId = setTimeout(() => {
@@ -140,7 +140,6 @@ function canCutTree(treeType) {
         checkLevelUp("woodcutting");
         updateTreeVisibility();
         updateInventoryDisplay();
-        updateLogsDropdown();
         resolve();
       }, timeInSeconds * 1000);
   
