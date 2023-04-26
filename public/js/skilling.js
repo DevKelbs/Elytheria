@@ -1,3 +1,5 @@
+import { updateSkillStats } from "./ui.js";
+
 const Levels = [
   { level: 1, xp: 0 },
   { level: 2, xp: 83 },
@@ -114,11 +116,10 @@ function checkLevelUp(skill) {
   }
   if (currentLevel > activeCharacter[`${skill}`]) {
     activeCharacter[`${skill}`] = currentLevel;
-    console.log(
-      `Congratulations! You have leveled up to ${currentLevel} ${skill}.`
-    );
+    console.log(`Congratulations! You have leveled up to ${currentLevel} ${skill}.`);
   }
   localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+  updateSkillStats();
 }
 
 function getCurrentSkillLevel(skill) {
@@ -337,5 +338,18 @@ document.addEventListener("DOMContentLoaded", () => {
   woodcuttingLink.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent default link behavior
     updateTreeVisibility(activeCharacter);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const treesContainer = document.getElementById('woodcuttingContainer'); // Replace with the actual ID or selector for the parent element
+
+  treesContainer.addEventListener('click', (event) => {
+    const treeElement = event.target.closest('.tree');
+
+    if (treeElement) {
+      const treeType = treeElement.dataset.treeType;
+      startWoodcutting(treeType);
+    }
   });
 });

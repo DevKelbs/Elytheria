@@ -9,6 +9,7 @@ import {
   updateUsernameDisplay,
   displaySuccessMessage,
   updateDropdown,
+  updateSkillStats,
 } from "./ui.js";
 
 const socket = io();
@@ -34,6 +35,7 @@ socket.on("connect", async () => {
 
   updateUsernameDisplay();
   updateDropdown();
+  updateSkillStats();
 
   try {
     const userId = localStorage.getItem("userId");
