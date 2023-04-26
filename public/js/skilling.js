@@ -162,6 +162,31 @@ function canCutTree(treeType) {
   }
 }
 
+function updateTreeVisibility() {
+  const level = getCurrentSkillLevel("woodcutting");
+
+  const trees = [
+    { id: 'normalTree', requiredLevel: 1 },
+    { id: 'oakTree', requiredLevel: 15 },
+    { id: 'willowTree', requiredLevel: 30 },
+    { id: 'teakTree', requiredLevel: 35 },
+    { id: 'mapleTree', requiredLevel: 45 },
+    { id: 'mahoganyTree', requiredLevel: 50 },
+    { id: 'yewTree', requiredLevel: 60 },
+    { id: 'magicTree', requiredLevel: 75 },
+    { id: 'redwoodTree', requiredLevel: 90 },
+    // Add other trees with their required levels
+  ];
+
+  trees.forEach(tree => {
+    const element = document.getElementById(tree.id);
+    if (level >= tree.requiredLevel) {
+      element.style.display = 'inline';
+    } else {
+      element.style.display = 'none';
+    }
+  });
+}
 
 //Woodcutting skill
 let currentTask = null;
@@ -245,6 +270,7 @@ function startWoodcutting(treeType) {
         `You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`
       );
       checkLevelUp("woodcutting");
+      updateTreeVisibility();
       resolve();
     }, timeInSeconds * 1000);
 
@@ -303,3 +329,13 @@ function startWoodcutting(treeType) {
       });
   })();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const woodcuttingLink = document.getElementById("woodcuttingContent");
+  const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
+
+  woodcuttingLink.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default link behavior
+    updateTreeVisibility(activeCharacter);
+  });
+});
