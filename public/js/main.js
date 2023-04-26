@@ -11,6 +11,7 @@ import {
   updateDropdown,
   updateSkillStats,
 } from "./ui.js";
+import { updateInventoryDisplay } from "./inventory.js";
 
 const socket = io();
 
@@ -36,6 +37,7 @@ socket.on("connect", async () => {
   updateUsernameDisplay();
   updateDropdown();
   updateSkillStats();
+  updateInventoryDisplay();
 
   try {
     const userId = localStorage.getItem("userId");
