@@ -479,6 +479,13 @@ main > * {
     margin: 0;
   }
 
+.inventory-item-image {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+
 .inventory-item {
     border: 1px solid #ccc;
     border-radius: 4px;
