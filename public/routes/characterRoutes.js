@@ -57,9 +57,9 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
 router.put('/update/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
         const id = req.params.id;
-        const { level, totalxp, attack, attackxp, strength, strengthxp, defence, defencexp, hitpoints, hitpointsxp, ranged, rangedxp, magic, magicxp, prayer, prayerxp, slayer, slayerxp, woodcutting, woodcuttingxp, fishing, fishingxp, mining, miningxp, firemaking, firemakingxp, exploration, explorationxp, elementalism, elementalismxp, alchemy, alchemyxp, trading, tradingxp, taming, tamingxp, artificery, artificeryxp, runesmithing, runesmithingxp, archaeology, archaeologyxp, blacksmithing, blacksmithingxp, tailoring, tailoringxp, tinkery, tinkeryxp, cooking, cookingxp, farming, farmingxp, construction, constructionxp, fletching, fletchingxp, crafting, craftingxp, agility, agilityxp, hunter, hunterxp, thieving, thievingxp } = req.body;
+        const { level, totalxp, attack, attackxp, strength, strengthxp, defence, defencexp, hitpoints, hitpointsxp, ranged, rangedxp, magic, magicxp, prayer, prayerxp, slayer, slayerxp, woodcutting, woodcuttingxp, fishing, fishingxp, mining, miningxp, firemaking, firemakingxp, exploration, explorationxp, elementalism, elementalismxp, alchemy, alchemyxp, trading, tradingxp, taming, tamingxp, artificery, artificeryxp, runesmithing, runesmithingxp, archaeology, archaeologyxp, blacksmithing, blacksmithingxp, tailoring, tailoringxp, tinkery, tinkeryxp, cooking, cookingxp, farming, farmingxp, construction, constructionxp, fletching, fletchingxp, crafting, craftingxp, agility, agilityxp, hunter, hunterxp, thieving, thievingxp, inventory } = req.body;
 
-        console.log('Updating character stats in DB:', level, totalxp, attack, attackxp, strength, strengthxp, defence, defencexp, hitpoints, hitpointsxp, ranged, rangedxp, magic, magicxp, prayer, prayerxp, slayer, slayerxp, woodcutting, woodcuttingxp, fishing, fishingxp, mining, miningxp, firemaking, firemakingxp, exploration, explorationxp, elementalism, elementalismxp, alchemy, alchemyxp, trading, tradingxp, taming, tamingxp, artificery, artificeryxp, runesmithing, runesmithingxp, archaeology, archaeologyxp, blacksmithing, blacksmithingxp, tailoring, tailoringxp, tinkery, tinkeryxp, cooking, cookingxp, farming, farmingxp, construction, constructionxp, fletching, fletchingxp, crafting, craftingxp, agility, agilityxp, hunter, hunterxp, thieving, thievingxp);
+        console.log('Updating character stats in DB:', level, totalxp, attack, attackxp, strength, strengthxp, defence, defencexp, hitpoints, hitpointsxp, ranged, rangedxp, magic, magicxp, prayer, prayerxp, slayer, slayerxp, woodcutting, woodcuttingxp, fishing, fishingxp, mining, miningxp, firemaking, firemakingxp, exploration, explorationxp, elementalism, elementalismxp, alchemy, alchemyxp, trading, tradingxp, taming, tamingxp, artificery, artificeryxp, runesmithing, runesmithingxp, archaeology, archaeologyxp, blacksmithing, blacksmithingxp, tailoring, tailoringxp, tinkery, tinkeryxp, cooking, cookingxp, farming, farmingxp, construction, constructionxp, fletching, fletchingxp, crafting, craftingxp, agility, agilityxp, hunter, hunterxp, thieving, thievingxp, inventory);
         const updatedCharacter = await Character.update({
             level,
             totalxp,
@@ -124,7 +124,8 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), asyn
             hunter,
             hunterxp,
             thieving,
-            thievingxp
+            thievingxp,
+            inventory
         }, {
             where: {
                 id

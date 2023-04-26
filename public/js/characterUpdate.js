@@ -68,6 +68,7 @@ async function writeCharacterStatsToDB() {
         hunterxp: character.hunterxp,
         thieving: character.thieving,
         thievingxp: character.thievingxp,
+        inventory: character.inventory,
     };    
     fetch(url, {
         method: 'PUT',

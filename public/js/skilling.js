@@ -262,14 +262,16 @@ function startWoodcutting(treeType) {
     progressBar.style.width = "0%";
 
     let timeoutId = setTimeout(() => {
-      let activeCharacter =
-        JSON.parse(localStorage.getItem("activeCharacter")) || {};
-      activeCharacter.woodcuttingxp =
-        (activeCharacter.woodcuttingxp || 0) + xpToAdd;
+      let activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
+      activeCharacter.woodcuttingxp = (activeCharacter.woodcuttingxp || 0) + xpToAdd;
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
-      console.log(
-        `You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`
-      );
+
+      // Add logs to the inventory
+      const logType = (treeType + " Log").replace(/\s+/g, '');
+      activeCharacter.inventory[logType] = (activeCharacter.inventory[logType] || 0) + 1;
+      localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+
+      console.log(`You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`);
       checkLevelUp("woodcutting");
       updateTreeVisibility();
       resolve();
