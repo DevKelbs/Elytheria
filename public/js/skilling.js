@@ -101,7 +101,7 @@ const Levels = [
 ];
 
 function checkLevelUp(skill) {
-  console.log('checking for level up...')
+  console.log("checking for level up...");
   const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
   const currentXP = activeCharacter[`${skill}xp`] || 0;
   let currentLevel = 1;
@@ -114,7 +114,9 @@ function checkLevelUp(skill) {
   }
   if (currentLevel > activeCharacter[`${skill}`]) {
     activeCharacter[`${skill}`] = currentLevel;
-    console.log(`Congratulations! You have leveled up to ${currentLevel} ${skill}.`);
+    console.log(
+      `Congratulations! You have leveled up to ${currentLevel} ${skill}.`
+    );
   }
   localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 }
@@ -140,39 +142,39 @@ function startWoodcutting(treeType) {
   switch (treeType) {
     case "Normal Tree":
       xpToAdd = 10;
-      timeInSeconds = 2;
+      timeInSeconds = 1.5;
       break;
     case "Oak Tree":
-      xpToAdd = 20;
-      timeInSeconds = 4;
+      xpToAdd = 15;
+      timeInSeconds = 2;
       break;
     case "Willow Tree":
-      xpToAdd = 30;
-      timeInSeconds = 6;
+      xpToAdd = 22;
+      timeInSeconds = 2.5;
       break;
     case "Teak Tree":
-      xpToAdd = 40;
-      timeInSeconds = 8;
+      xpToAdd = 30;
+      timeInSeconds = 3;
       break;
     case "Maple Tree":
-      xpToAdd = 50;
-      timeInSeconds = 10;
+      xpToAdd = 40;
+      timeInSeconds = 4;
       break;
     case "Mahogany Tree":
       xpToAdd = 60;
-      timeInSeconds = 12;
+      timeInSeconds = 5;
       break;
     case "Yew Tree":
-      xpToAdd = 70;
-      timeInSeconds = 14;
+      xpToAdd = 80;
+      timeInSeconds = 6;
       break;
     case "Magic Tree":
-      xpToAdd = 80;
-      timeInSeconds = 16;
+      xpToAdd = 100;
+      timeInSeconds = 9.8;
       break;
     case "Redwood Tree":
-      xpToAdd = 90;
-      timeInSeconds = 18;
+      xpToAdd = 180;
+      timeInSeconds = 7.5;
       break;
     default:
       xpToAdd = 0;
@@ -182,22 +184,45 @@ function startWoodcutting(treeType) {
   function runTask(resolve, reject) {
     console.log(`Starting to cut ${treeType}...`);
 
+    let progressBar = document.getElementById("progressBarFill");
+    progressBar.style.width = "0%";
+
     let timeoutId = setTimeout(() => {
-      let activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
-      activeCharacter.woodcuttingxp = (activeCharacter.woodcuttingxp || 0) + xpToAdd;
+      let activeCharacter =
+        JSON.parse(localStorage.getItem("activeCharacter")) || {};
+      activeCharacter.woodcuttingxp =
+        (activeCharacter.woodcuttingxp || 0) + xpToAdd;
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
-      console.log(`You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`);
+      console.log(
+        `You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`
+      );
       checkLevelUp("woodcutting");
       resolve();
     }, timeInSeconds * 1000);
+
+    // Update progress bar
+    let progressInterval = setInterval(() => {
+      let currentWidth = parseFloat(progressBar.style.width);
+      let increment = 100 / (timeInSeconds * 20); // 20 updates per second
+      let newWidth = currentWidth + increment;
+    
+      if (newWidth >= 100) {
+        clearInterval(progressInterval);
+        progressBar.style.width = "100%";
+      } else {
+        progressBar.style.width = newWidth + "%";
+      }
+    }, 50); // Update every 50ms    
 
     currentTask = {
       treeType: treeType,
       running: true,
       cancel: function () {
         clearTimeout(timeoutId);
+        clearInterval(progressInterval); // Clear progress interval when canceling
+        progressBar.style.width = "0%"; // Reset progress bar width
         reject(new Error("Task canceled"));
-      }
+      },
     };
   }
 
@@ -211,10 +236,14 @@ function startWoodcutting(treeType) {
     if (currentTask && !currentTask.running) {
       return;
     }
-  
+
     createTaskPromise()
       .then(() => {
-        if (currentTask !== null && currentTask.treeType === treeType && currentTask.running) {
+        if (
+          currentTask !== null &&
+          currentTask.treeType === treeType &&
+          currentTask.running
+        ) {
           // If the current task is still the same and running, continue looping.
           loop();
         }
@@ -225,4 +254,4 @@ function startWoodcutting(treeType) {
         }
       });
   })();
-}  
+}
