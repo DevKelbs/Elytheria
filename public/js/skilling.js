@@ -1,5 +1,5 @@
 import { updateSkillStats } from "./ui.js";
-import { updateInventoryDisplay } from "./inventory.jsssssss";
+import { updateInventoryDisplay } from "./inventory.js";
 
 const Levels = [
   { level: 1, xp: 0 },
