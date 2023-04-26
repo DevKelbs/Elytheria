@@ -121,10 +121,58 @@ function checkLevelUp(skill) {
   localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 }
 
+function getCurrentSkillLevel(skill) {
+  const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+  const currentXP = activeCharacter[`${skill}xp`] || 0;
+  let currentLevel = 1;
+  for (let i = 0; i < Levels.length; i++) {
+    if (currentXP >= Levels[i].xp) {
+      currentLevel = Levels[i].level;
+    } else {
+      break;
+    }
+  }
+  return currentLevel;
+}
+
+function canCutTree(treeType) {
+  const level = getCurrentSkillLevel("woodcutting");
+
+  switch (treeType) {
+    case "Normal Tree":
+      return level >= 1;
+    case "Oak Tree":
+      return level >= 15;
+    case "Willow Tree":
+      return level >= 30;
+    case "Teak Tree":
+      return level >= 35;
+    case "Maple Tree":
+      return level >= 45;
+    case "Mahogany Tree":
+      return level >= 50;
+    case "Yew Tree":
+      return level >= 60;
+    case "Magic Tree":
+      return level >= 75;
+    case "Redwood Tree":
+      return level >= 90;
+    default:
+      return false;
+  }
+}
+
+
 //Woodcutting skill
 let currentTask = null;
 
 function startWoodcutting(treeType) {
+
+  if (!canCutTree(treeType)) {
+    console.log(`Your level is not high enough to cut ${treeType}.`);
+    return;
+  }
+
   if (currentTask !== null && currentTask.treeType === treeType) {
     // A task for the same tree is already running; stop it.
     currentTask.running = false;
