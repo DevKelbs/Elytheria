@@ -1,4 +1,5 @@
 import { updateSkillStats } from "./ui.js";
+import { updateInventoryDisplay } from "./inventory.jsssssss";
 
 const Levels = [
   { level: 1, xp: 0 },
@@ -274,6 +275,7 @@ function startWoodcutting(treeType) {
       console.log(`You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`);
       checkLevelUp("woodcutting");
       updateTreeVisibility();
+      updateInventoryDisplay();
       resolve();
     }, timeInSeconds * 1000);
 
