@@ -334,15 +334,13 @@ function startWoodcutting(treeType) {
 document.addEventListener("DOMContentLoaded", () => {
   const woodcuttingLink = document.getElementById("woodcuttingContent");
   const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
+  const treesContainer = document.getElementById('woodcuttingContainer'); // Replace with the actual ID or selector for the parent element
+
 
   woodcuttingLink.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent default link behavior
     updateTreeVisibility(activeCharacter);
   });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const treesContainer = document.getElementById('woodcuttingContainer'); // Replace with the actual ID or selector for the parent element
 
   treesContainer.addEventListener('click', (event) => {
     const treeElement = event.target.closest('.tree');
