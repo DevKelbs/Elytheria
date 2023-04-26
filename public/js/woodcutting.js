@@ -140,6 +140,7 @@ function canCutTree(treeType) {
         checkLevelUp("woodcutting");
         updateTreeVisibility();
         updateInventoryDisplay();
+        updateLogsDropdown();
         resolve();
       }, timeInSeconds * 1000);
   

@@ -12,6 +12,7 @@ import {
   updateSkillStats,
 } from "./ui.js";
 import { updateInventoryDisplay } from "./inventory.js";
+import { updateLogsDropdown } from "./firemaking.js"
 
 const socket = io();
 
@@ -38,6 +39,7 @@ socket.on("connect", async () => {
   updateDropdown();
   updateSkillStats();
   updateInventoryDisplay();
+  updateLogsDropdown();
 
   try {
     const userId = localStorage.getItem("userId");

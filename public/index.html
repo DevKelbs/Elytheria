@@ -467,10 +467,17 @@
       <section id="firemaking" class="tab-content" style="display: none">
         <div id="firemakingContainer">
           <ul>
-            <!-- Add your quests content here -->
+            <li>
+              <label for="logsDropdown">Select a log to burn:</label>
+              <select id="logsDropdown">
+                <!-- Log options will be populated from the inventory -->
+              </select>
+              <p id="selectedLogQuantity"></p>
+              <button id="burnLogButton" disabled>Burn Log</button>
+            </li>
           </ul>
         </div>
-      </section>
+      </section>      
       <section id="cooking" class="tab-content" style="display: none">
         <div id="cookingContainer">
           <ul>
@@ -618,6 +625,7 @@
   <script src="/js/inventory.js" type="module"></script>
   <script src="/js/skilling.js" type="module"></script>
   <script src="/js/woodcutting.js" type="module"></script>
+  <script src="/js/firemaking.js" type="module"></script>
   <script src="/js/utils.js" type="module"></script>
   <script src="/js/ui.js" type="module"></script>
   <script src="/js/game.js" type="module"></script>
