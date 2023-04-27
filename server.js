@@ -60,7 +60,7 @@ app.use(cors());
 app.use(express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
 app.use(express.static('routes'));
-app.use(express.static('routes'));
+app.use(express.static('models'));
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
