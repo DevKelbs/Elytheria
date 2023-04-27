@@ -10,7 +10,7 @@ const path = require('path');
 const http = require('http');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const sequelize = require('./public/database.js'); // Path to your database.js file
+const sequelize = require('./database.js'); // Path to your database.js file
 const jwt = require('jsonwebtoken');
 
 // Initialize express app
@@ -59,6 +59,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'));
 app.use('/node_modules', express.static('node_modules'));
+app.use(express.static('routes'));
+app.use(express.static('routes'));
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -81,8 +83,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const authRoutes = require('./public/routes/authRoutes');
-const characterRoutes = require('./public/routes/characterRoutes');
+const authRoutes = require('./routes/authRoutes.js');
+const characterRoutes = require('./routes/characterRoutes.js');
 app.use('/api/auth', authRoutes);
 app.use('/api/characters', authenticateToken, characterRoutes);
 app.use('/api/update', authenticateToken, characterRoutes);
@@ -121,8 +123,8 @@ io.use((socket, next) => {
   })(socket.request, {}, next);
 });
 
-const Character = require('./public/models/characters');
-const User = require('./public/models/user');
+const Character = require('./models/characters.js');
+const User = require('./models/user.js');
 
 io.on('connection', (socket) => {
 
