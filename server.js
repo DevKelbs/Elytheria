@@ -77,7 +77,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.use(contentSecurityPolicy);
 
-require('./public/config/passport')(passport);
+require('./config/passport.js')(passport);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
