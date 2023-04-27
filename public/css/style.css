@@ -1,9 +1,5 @@
 :root {
   --color-main-text: #ebe6dc;
-  --color-bg-dark-hunter-green: #0d2615; /* Darker hunter green */
-  --color-bg-dark-olive-green: #1c2f18; /* Darker olive green */
-  --color-bg-light-hunter-green: #3a6345; /* Lighter hunter green */
-  --color-bg-light-olive-green: #4c6b46; /* Lighter olive green */
   --color-bg-radiant-gold: #ffc300;
   --color-bg-hover-gold: #eec903;
   --color-bg-active-gold: #d1a408;
@@ -93,26 +89,15 @@ header {
 
 .dropdown-content {
   display: none;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  position: relative;
-  margin-top: 15rem;
+  position: absolute;
   color: var(--color-bg-active-dark-brown);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
   z-index: 1;
-}
-
-.dropdown-content a {
-  padding: 12px 16px;
-  display: block;
-  background-color: var(--color-bg-active-sandstone);
-  color: var(--color-bg-active-dark-brown);
-  border-radius: 0;
-  text-align: left;
-}
-
-.dropdown a:hover {
-  background-color: #ddd;
+  width: 200px;
+  align-content: initial;
+  align-items: self-end;
+  left: -65px;
+  top: 45px;
 }
 
 .dropdownButton {
@@ -469,47 +454,46 @@ main > * {
 }
 
 #inventoryView {
-    display: flex;
-    flex-wrap: wrap;
-    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 20px;
     grid-auto-flow: row;
     list-style: none; */
-    padding: 0;
-    margin: 0;
-  }
+  padding: 0;
+  margin: 0;
+}
 
 .inventory-item-image {
-    width: 80px;
-    height: auto;
-    margin-bottom: 10px;
-  }
-  
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
 
 .inventory-item {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-  }
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
 
 .inventory-item-name {
-    font-size: 1.1em;
-    margin-bottom: 5px;
+  font-size: 1.1em;
+  margin-bottom: 5px;
 }
-  
+
 .inventory-item-quantity {
-    font-size: 0.9em;
-  }
+  font-size: 0.9em;
+}
 
 #progressBarPane {
-  position: absolute;
   width: 100%;
-  height: 20px;
   background-color: #f3f3f3;
   border-radius: 4px;
-  overflow: hidden;
-  top: 4rem;
+  top: 50px;
+  position: relative;
+  height: 20px;
+  z-index: -1;
 }
 
 #progressBar {
@@ -524,10 +508,12 @@ main > * {
   transition: width 50ms linear;
 }
 
+.tab-content {
+  padding: 5rem 5rem 1rem 1rem;
+}
+
 .tab-content ul {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -535,17 +521,13 @@ main > * {
 
 .tab-content ul li {
   position: relative;
-  top: 6rem;
-  /* width: calc(33% - 1rem); */
-  /* height: 200px; */
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: var(--color-bg-dark-olive-green);
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center center;
+  background-color: var(--color-ui-blue-green);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  border-top: var(--color-bg-active-gold) 4px solid;
 }
 
 .tab-content ul li:hover {
@@ -558,10 +540,6 @@ main > * {
   margin-top: 0.5rem;
   color: var(--color-bg-active-gold);
   text-shadow: 0 0 10px rgba(255, 175, 100, 0.5);
-}
-
-#woodcuttingContainer ul div {
-  cursor: pointer;
 }
 
 .tab-buttons {
@@ -836,6 +814,7 @@ main > * {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-right: 1rem;
 }
 
 #page-content {
@@ -936,6 +915,126 @@ input[type="submit"] {
   width: 100%;
 }
 
+/* Woodcutting styles */
+.progress {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  height: 5px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background-color: #4caf50;
+  border-radius: 4px;
+  height: 100%;
+  width: 0%;
+  transition: width ease-out;
+}
+
+.tree-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.tree {
+  background-color: var(--color-ui-lighter);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline;
+}
+
+.tree-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  min-height: 150px;
+  max-height: 300px;
+  background-color: var(--color-ui-lighter) !important;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tree:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 50%,
+    transparent 100%
+  );
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.tree:hover {
+  background-color: var(--color-bg-active-gold);
+  transform: scale(1.05);
+}
+
+.tree:hover:before {
+  transform: translateY(0);
+}
+
+.woodcuttingContainer__label {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.cutTreeProgress {
+  display: block;
+  width: 100%;
+  height: 0.8rem;
+  border-radius: 1rem;
+  appearance: none;
+  background-color: var(--color-bg-active-gold);
+}
+
+.cutTreeProgress::-webkit-progress-bar {
+  background-color: var(--color-ui-blue-green-transparent);
+  border-radius: 1rem;
+}
+
+.cutTreeProgress::-webkit-progress-value {
+  background-color: var(--color-bg-radiant-gold);
+  border-radius: 1rem;
+  transition: width 0.3s ease;
+}
+
+.cutTreeProgress::-moz-progress-bar {
+  background-color: var(--color-bg-radiant-gold);
+  border-radius: 1rem;
+  transition: width 0.3s ease;
+}
+
+.tree:hover .cutTreeProgress::-webkit-progress-value {
+  animation: sparkle 1s infinite;
+}
+
+.tree:hover .cutTreeProgress::-moz-progress-bar {
+  animation: sparkle 1s infinite;
+}
+
 /* Appearance Options */
 .appearance-options {
   display: flex;
@@ -1029,6 +1128,38 @@ input[type="submit"] {
   }
 }
 
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.2);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(1);
+  }
+}
+
 .slide-down {
   animation: slide-down 0.5s ease-out;
+}
+
+@media (min-width: 768px) {
+  .tree-item {
+    width: 48%; /* Adjusts the width to 48% on screens wider than 768px */
+  }
+}
+
+@media (min-width: 992px) {
+  .tree-item {
+    width: 30%; /* Adjusts the width to 30% on screens wider than 992px */
+  }
+}
+
+@media (min-width: 1200px) {
+  .tree-item {
+    width: 22%; /* Adjusts the width to 22% on screens wider than 1200px */
+  }
 }

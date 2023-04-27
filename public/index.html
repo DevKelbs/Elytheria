@@ -1,641 +1,729 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elytheria</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elytheria</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-</head>
+  <body>
+    <div id="characterCreationContentv2" style="display: none">
+      <form id="createCharacterForm">
+        <button id="closeCharacterCreation">Close Form</button>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
 
-<body>
-  <div id="characterCreationContentv2" style="display: none">
-    <form id="createCharacterForm">
-      <button id="closeCharacterCreation">Close Form</button>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
+        <label for="race">Race:</label>
+        <select id="race" name="race" required>
+          <option value="Solarian Knights">Solarian Knights</option>
+          <option value="Feyborn">Feyborn</option>
+          <option value="Earthforged">Earthforged</option>
+          <option value="Shadowdancers">Shadowdancers</option>
+          <option value="Gnomes">Gnomes</option>
+          <option value="Dragonborn">Dragonborn</option>
+          <option value="Merfolk">Merfolk</option>
+          <!-- Add other races -->
+        </select>
 
-      <label for="race">Race:</label>
-      <select id="race" name="race" required>
-        <option value="Solarian Knights">Solarian Knights</option>
-        <option value="Feyborn">Feyborn</option>
-        <option value="Earthforged">Earthforged</option>
-        <option value="Shadowdancers">Shadowdancers</option>
-        <option value="Gnomes">Gnomes</option>
-        <option value="Dragonborn">Dragonborn</option>
-        <option value="Merfolk">Merfolk</option>
-        <!-- Add other races -->
-      </select>
+        <label for="faction">Faction:</label>
+        <select id="faction" name="faction" required>
+          <option value="Order of the Sun">Order of the Sun</option>
+          <option value="Nature's Guardians">Nature's Guardians</option>
+          <!-- Add other factions -->
+        </select>
+        <button id="create-character-button" type="submit">
+          Create Character
+        </button>
+      </form>
+    </div>
+    <div id="characterDisplay" style="display: none"></div>
+    <div id="mainGameContent" style="display: none">
+      <aside class="sidebar">
+        <nav>
+          <ul>
+            <img
+              src="./assets/icons/ui-icons/2x/logo_2.png"
+              alt="Elytheria Logo"
+              id="game-logo"
+            />
+            <span class="game-title">Elytheria</span>
+            <li>
+              <a href="#cove" class="nav-cove active"
+                ><i class="fas fa-house"></i> The Cove</a
+              >
+            </li>
+            <li>
+              <a href="#inventory" class="nav-inventory"
+                ><i class="fas fa-box-archive"></i> Inventory</a
+              >
+            </li>
+            <li>
+              <a href="#quests" class="nav-quests"
+                ><i class="fas fa-scroll"></i> Quests</a
+              >
+            </li>
+            <li>
+              <div class="nav-main-heading">
+                <span>Combat</span>
+                <i class="far ml-2 fa-eye text-muted eye1"> </i>
+              </div>
+            </li>
 
-      <label for="faction">Faction:</label>
-      <select id="faction" name="faction" required>
-        <option value="Order of the Sun">Order of the Sun</option>
-        <option value="Nature's Guardians">Nature's Guardians</option>
-        <!-- Add other factions -->
-      </select>
-      <button id="create-character-button" type="submit">
-        Create Character
-      </button>
-    </form>
-  </div>
-  <div id="characterDisplay" style="display: none"></div>
-  <div id="mainGameContent" style="display: none">
-    <aside class="sidebar">
-      <nav>
-        <ul>
-          <img src="./assets/icons/ui-icons/2x/logo_2.png" alt="Elytheria Logo" id="game-logo" />
-          <span class="game-title">Elytheria</span>
-          <li>
-            <a href="#cove" class="nav-cove active"><i class="fas fa-house"></i> The Cove</a>
-          </li>
-          <li>
-            <a href="#inventory" class="nav-inventory"><i class="fas fa-box-archive"></i> Inventory</a>
-          </li>
-          <li>
-            <a href="#quests" class="nav-quests"><i class="fas fa-scroll"></i> Quests</a>
-          </li>
-          <li>
-            <div class="nav-main-heading">
-              <span>Combat</span>
-              <i class="far ml-2 fa-eye text-muted eye1"> </i>
-            </div>
-          </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img attack-icon"></span>
+                <span class="nav-main-link-name">Attack</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Strength</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Defence</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Hitpoints</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Ranged</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Magic</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Prayer</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item combat">
+              <a class="nav-main-link nav-compact pointer-enabled">
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Slayer</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li>
+              <div class="nav-main-heading">
+                <span>Non-Combat</span>
+                <i class="far ml-2 fa-eye text-muted eye2"> </i>
+              </div>
+            </li>
 
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img attack-icon"></span>
-              <span class="nav-main-link-name">Attack</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Strength</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Defence</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Hitpoints</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Ranged</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Magic</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Prayer</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Slayer</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li>
-            <div class="nav-main-heading">
-              <span>Non-Combat</span>
-              <i class="far ml-2 fa-eye text-muted eye2"> </i>
-            </div>
-          </li>
-
-          <li class="nav-main-item non-combat">
-            <a href="#woodcutting" id="woodcuttingContent" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Woodcutting</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#fishing" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Fishing</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#firemaking" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Firemaking</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#cooking" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Cooking</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#mining" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Mining</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#smithing" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Smithing</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#thieving" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Thieving</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#fletching" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Fletching</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#crafting" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Crafting</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#runecrafting" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Runecrafting</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#herblore" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Herblore</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a href="#agility" class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Agility</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li>
-            <a href="#activities" class="nav-activities"><i class="fas fa-chart-bar"></i> Activities</a>
-          </li>
-          <li>
-            <a href="#settings" class="nav-settings"><i class="fas fa-cog"></i> Settings</a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
-          </li>
-          <!-- <li id="create-character-link">
+            <li class="nav-main-item non-combat">
+              <a
+                href="#woodcutting"
+                id="woodcuttingContent"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Woodcutting</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#fishing"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Fishing</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#firemaking"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Firemaking</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#cooking"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Cooking</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#mining"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Mining</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#smithing"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Smithing</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#thieving"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Thieving</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#fletching"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Fletching</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#crafting"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Crafting</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#runecrafting"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Runecrafting</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#herblore"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Herblore</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li class="nav-main-item non-combat">
+              <a
+                href="#agility"
+                class="nav-main-link nav-compact pointer-enabled"
+              >
+                <span class="nav-img"></span>
+                <span class="nav-main-link-name">Agility</span>
+                <small>
+                  (
+                  <span>1</span>
+                  / 99)
+                </small>
+              </a>
+            </li>
+            <li>
+              <a href="#activities" class="nav-activities"
+                ><i class="fas fa-chart-bar"></i> Activities</a
+              >
+            </li>
+            <li>
+              <a href="#settings" class="nav-settings"
+                ><i class="fas fa-cog"></i> Settings</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
+            </li>
+            <!-- <li id="create-character-link">
               <button id="openCharacterCreation">Create Character</button>
               <button id="showCharacters">Show All Characters</button>
             </li> -->
-        </ul>
-      </nav>
-    </aside>
-    <main id="coveMain">
-      <header id="page-header">
-        <div class="header-content">
-          <div class="character-info-container">
-            <div class="character-info">
-              <div class="character-info-col1">
-                <span id="username-display" class="character-name"></span>
-                <span class="character-health">HP: 100 / 100</span>
-                <span class="character-mana">MP: 100 / 100</span>
-              </div>
-              <div class="character-info-col2">
-                <span class="character-level">level 1</span>
-                <span class="character-exp">XP: 0 / 100</span>
-                <span class="character-currency">Gold: 0</span>
+          </ul>
+        </nav>
+      </aside>
+      <main id="coveMain">
+        <header id="page-header">
+          <div class="header-content">
+            <div class="character-info-container">
+              <div class="character-info">
+                <div class="character-info-col1">
+                  <span id="username-display" class="character-name"></span>
+                  <span class="character-health">HP: 100 / 100</span>
+                  <span class="character-mana">MP: 100 / 100</span>
+                </div>
+                <div class="character-info-col2">
+                  <span class="character-level">level 1</span>
+                  <span class="character-exp">XP: 0 / 100</span>
+                  <span class="character-currency">Gold: 0</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <button id="forceSaveButton" class="dropbtn" type="button">
-          Force Save
-        </button>
-        <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn" id="activeUsername"></button>
-          <div id="myDropdown" class="dropdown-content">
-            <a class="dropdownButton" href="#home">Home</a>
-            <a class="dropdownButton" href="#about">About</a>
-            <button class="dropdownButton" id="createCharacterButton" type="button">
-              Create Character
-            </button>
-            <button class="dropdownButton" id="selectCharacterButton" type="button">
-              Select Character
-            </button>
-            <button class="dropdownButton" id="logoutButton" type="button">
-              Logout
-            </button>
+          <button id="forceSaveButton" class="dropbtn" type="button">
+            Force Save
+          </button>
+          <div class="dropdown">
+            <button class="dropbtn" id="activeUsername"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <button
+                class="dropdownButton"
+                id="createCharacterButton"
+                type="button"
+              >
+                Create Character
+              </button>
+              <button
+                class="dropdownButton"
+                id="selectCharacterButton"
+                type="button"
+              >
+                Select Character
+              </button>
+              <button class="dropdownButton" id="logoutButton" type="button">
+                Logout
+              </button>
+            </div>
           </div>
-        </div>
-        <script>
-          /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-          function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-          }
-
-          // Close the dropdown if the user clicks outside of it
-          window.onclick = function (event) {
-            if (!event.target.matches(".dropbtn")) {
-              var dropdowns =
-                document.getElementsByClassName("dropdown-content");
-              var i;
-              for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains("show")) {
-                  openDropdown.classList.remove("show");
-                }
-              }
-            }
-          };
-        </script>
-      </header>
-      <section id="cove" class="tab-content" style="display: none">
-        <div id="coveContainer">
-          <ul>
-            <div id="cove">
-              <canvas id="gameCanvas" width="800" height="600"></canvas>
-            </div>
-          </ul>
-        </div>
-      </section>
-      <section id="inventory" class="tab-content" style="display: none">
-        <div id="inventoryContainer">
-          <ul>
-            <div id="inventoryView"></div>
-            <!-- Add your inventory content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="quests" class="tab-content" style="display: none">
-        <div id="questsContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="woodcutting" class="tab-content" style="display: none">
-        <div id="woodcuttingContainer">
-          <ul>
-            <div id="progressBarPane">
-              <div id="progressBar" class="progress">
-                <div id="woodcuttingProgressBarFill" class="progress-fill"></div>
+        </header>
+        <section id="cove" class="tab-content" style="display: none">
+          <div id="coveContainer">
+            <ul>
+              <div id="cove">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
               </div>
-            </div>
-            <div id="normalTree" class="tree" data-tree-type="Normal Tree">
-              <li>
+            </ul>
+          </div>
+        </section>
+        <section id="inventory" class="tab-content" style="display: none">
+          <div id="inventoryContainer">
+            <ul>
+              <div id="inventoryView"></div>
+              <!-- Add your inventory content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="quests" class="tab-content" style="display: none">
+          <div id="questsContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="woodcutting" class="tab-content" style="display: none">
+          <div id="woodcuttingContainer">
+            <ul class="tree-list">
+              <li
+                id="normalTree"
+                class="tree tree-item"
+                data-tree-type="Normal Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Normal Tree</div>
-                <progress id="cutTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="NormalTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="oakTree" class="tree" data-tree-type="Oak Tree">
-              <li>
+              <li id="oakTree" class="tree tree-item" data-tree-type="Oak Tree">
                 <div class="woodcuttingContainer__label">Cut Oak Tree</div>
-                <progress id="cutOakTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="OakTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="willowTree" class="tree" data-tree-type="Willow Tree">
-              <li>
+              <li
+                id="willowTree"
+                class="tree tree-item"
+                data-tree-type="Willow Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Willow Tree</div>
-                <progress id="cutWillowTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="WillowTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="teakTree" class="tree" data-tree-type="Teak Tree">
-              <li>
+              <li
+                id="teakTree"
+                class="tree tree-item"
+                data-tree-type="Teak Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Teak Tree</div>
-                <progress id="cutTeakTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="TeakTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="mapleTree" class="tree" data-tree-type="Maple Tree">
-              <li>
+              <li
+                id="mapleTree"
+                class="tree tree-item"
+                data-tree-type="Maple Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Maple Tree</div>
-                <progress id="cutMapleTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="MapleTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="mahoganyTree" class="tree" data-tree-type="Mahogany Tree">
-              <li>
+              <li
+                id="mahoganyTree"
+                class="tree tree-item"
+                data-tree-type="Mahogany Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Mahogany Tree</div>
-                <progress id="cutMahoganyTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="MahoganyTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="yewTree" class="tree" data-tree-type="Yew Tree">
-              <li>
+              <li id="yewTree" class="tree tree-item" data-tree-type="Yew Tree">
                 <div class="woodcuttingContainer__label">Cut Yew Tree</div>
-                <progress id="cutYewTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="YewTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="magicTree" class="tree" data-tree-type="Magic Tree">
-              <li>
+              <li
+                id="magicTree"
+                class="tree tree-item"
+                data-tree-type="Magic Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Magic Tree</div>
-                <progress id="cutMagicTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="MagicTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-            <div id="redwoodTree" class="tree" data-tree-type="Redwood Tree">
-              <li>
+              <li
+                id="redwoodTree"
+                class="tree tree-item"
+                data-tree-type="Redwood Tree"
+              >
                 <div class="woodcuttingContainer__label">Cut Redwood Tree</div>
-                <progress id="cutRedwoodTreeProgress" value="0" max="100"></progress>
+                <div class="progress" id="RedwoodTreeProgress">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
               </li>
-            </div>
-          </ul>
-        </div>
-      </section>
-      <section id="fishing" class="tab-content" style="display: none">
-        <div id="fishingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="firemaking" class="tab-content" style="display: none">
-        <div id="firemakingContainer">
-          <ul>
-            <div id="progressBarPane">
-              <div id="progressBar" class="progress">
-                <div id="firemakingProgressBarFill" class="progress-fill"></div>
+            </ul>
+          </div>
+        </section>
+
+        <section id="fishing" class="tab-content" style="display: none">
+          <div id="fishingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="firemaking" class="tab-content" style="display: none">
+          <div id="firemakingContainer">
+            <ul>
+              <div id="progressBarPane">
+                <div id="progressBar" class="progress">
+                  <div
+                    id="firemakingProgressBarFill"
+                    class="progress-fill"
+                  ></div>
+                </div>
               </div>
-            </div>
-            <li>
-              <label for="logsDropdown">Select a log to burn:</label>
-              <select id="logsDropdown">
-                <!-- Log options will be populated from the inventory -->
-              </select>
-              <p id="selectedLogQuantity"></p>
-              <button id="burnLogButton" disabled>Burn Log</button>
-            </li>
-          </ul>
-        </div>
-      </section>      
-      <section id="cooking" class="tab-content" style="display: none">
-        <div id="cookingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="mining" class="tab-content" style="display: none">
-        <div id="miningContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="smithing" class="tab-content" style="display: none">
-        <div id="smithingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="thieving" class="tab-content" style="display: none">
-        <div id="thievingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="fletching" class="tab-content" style="display: none">
-        <div id="fletchingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="crafting" class="tab-content" style="display: none">
-        <div id="craftingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="runecrafting" class="tab-content" style="display: none">
-        <div id="runecraftingContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="herblore" class="tab-content" style="display: none">
-        <div id="herbloreContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="agility" class="tab-content" style="display: none">
-        <div id="agilityContainer">
-          <ul>
-            <!-- Add your quests content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="activities" class="tab-content" style="display: none">
-        <div id="activitiesContainer">
-          <ul>
-            <!-- Add your activities content here -->
-          </ul>
-        </div>
-      </section>
-      <section id="settings" class="tab-content" style="display: none">
-        <div id="settingsContainer">
-          <div class="row row-deck">
-            <div class="col-md-12">
-              <div class="block block-rounded block-link-pop border-top border-settings border-4x">
-                <div class="block-content">
-                  <h2 class="content-heading border-bottom mb-4 pb-2">
-                    <lang-string lang-id="SETTINGS_CATEGORY_0">Combat Settings</lang-string>
-                  </h2>
-                  <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                      <settings-switch class="mb-4 d-block" data-setting-id="enableOfflineCombat" data-size="large"
-                        data-init="true">
-                        <div class="custom-control custom-switch custom-control-lg">
-                          <input type="checkbox" class="custom-control-input" id="settings-switch-3" />
-                          <label class="custom-control-label font-size-sm text-muted" for="settings-switch-3">
-                            "Toggle Offline Combat"
-                            <br />
-                            <small>
-                              Toggles the Offline Combat Capability.
-                            </small>
-                          </label>
-                        </div>
-                      </settings-switch>
-                      <settings-dropdown> </settings-dropdown>
+              <li>
+                <label for="logsDropdown">Select a log to burn:</label>
+                <select id="logsDropdown">
+                  <!-- Log options will be populated from the inventory -->
+                </select>
+                <p id="selectedLogQuantity"></p>
+                <button id="burnLogButton" disabled>Burn Log</button>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="cooking" class="tab-content" style="display: none">
+          <div id="cookingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="mining" class="tab-content" style="display: none">
+          <div id="miningContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="smithing" class="tab-content" style="display: none">
+          <div id="smithingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="thieving" class="tab-content" style="display: none">
+          <div id="thievingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="fletching" class="tab-content" style="display: none">
+          <div id="fletchingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="crafting" class="tab-content" style="display: none">
+          <div id="craftingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="runecrafting" class="tab-content" style="display: none">
+          <div id="runecraftingContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="herblore" class="tab-content" style="display: none">
+          <div id="herbloreContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="agility" class="tab-content" style="display: none">
+          <div id="agilityContainer">
+            <ul>
+              <!-- Add your quests content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="activities" class="tab-content" style="display: none">
+          <div id="activitiesContainer">
+            <ul>
+              <!-- Add your activities content here -->
+            </ul>
+          </div>
+        </section>
+        <section id="settings" class="tab-content" style="display: none">
+          <div id="settingsContainer">
+            <div class="row row-deck">
+              <div class="col-md-12">
+                <div
+                  class="block block-rounded block-link-pop border-top border-settings border-4x"
+                >
+                  <div class="block-content">
+                    <h2 class="content-heading border-bottom mb-4 pb-2">
+                      <lang-string lang-id="SETTINGS_CATEGORY_0"
+                        >Combat Settings</lang-string
+                      >
+                    </h2>
+                    <div class="row">
+                      <div class="col-md-6 offset-md-3">
+                        <settings-switch
+                          class="mb-4 d-block"
+                          data-setting-id="enableOfflineCombat"
+                          data-size="large"
+                          data-init="true"
+                        >
+                          <div
+                            class="custom-control custom-switch custom-control-lg"
+                          >
+                            <input
+                              type="checkbox"
+                              class="custom-control-input"
+                              id="settings-switch-3"
+                            />
+                            <label
+                              class="custom-control-label font-size-sm text-muted"
+                              for="settings-switch-3"
+                            >
+                              "Toggle Offline Combat"
+                              <br />
+                              <small>
+                                Toggles the Offline Combat Capability.
+                              </small>
+                            </label>
+                          </div>
+                        </settings-switch>
+                        <settings-dropdown> </settings-dropdown>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-    <script>
-      // New script to handle navigation
-      const navItems = document.querySelectorAll("nav ul li a");
-      const tabContents = document.querySelectorAll(".tab-content");
+        </section>
+      </main>
+      <script>
+        // New script to handle navigation
+        const navItems = document.querySelectorAll("nav ul li a");
+        const tabContents = document.querySelectorAll(".tab-content");
 
-      navItems.forEach((navItem) => {
-        navItem.addEventListener("click", (event) => {
-          event.preventDefault();
+        navItems.forEach((navItem) => {
+          navItem.addEventListener("click", (event) => {
+            event.preventDefault();
 
-          navItems.forEach((item) => item.classList.remove("active"));
-          navItem.classList.add("active");
+            navItems.forEach((item) => item.classList.remove("active"));
+            navItem.classList.add("active");
 
-          const target = navItem.getAttribute("href");
-          tabContents.forEach((content) => {
-            if (content.id === target.substr(1)) {
-              content.style.display = "block";
-            } else {
-              content.style.display = "none";
-            }
+            const target = navItem.getAttribute("href");
+            tabContents.forEach((content) => {
+              if (content.id === target.substr(1)) {
+                content.style.display = "block";
+              } else {
+                content.style.display = "none";
+              }
+            });
           });
         });
-      });
 
-      // Set the first navigation item as active and its content visible
-      navItems[0].classList.add("active");
-      tabContents[0].style.display = "block";
-    </script>
-  </div>
-  <div class="loading-screen">
-    <div class="spinner"></div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
-    integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
-    crossorigin="anonymous"></script>
-  <script src="/js/character.js" type="module"></script>
-  <script src="/js/characterCreation.js" type="module"></script>
-  <script src="/js/characterUpdate.js" type="module"></script>
-  <script src="/js/inventory.js" type="module"></script>
-  <script src="/js/skilling.js" type="module"></script>
-  <script src="/js/woodcutting.js" type="module"></script>
-  <script src="/js/firemaking.js" type="module"></script>
-  <script src="/js/utils.js" type="module"></script>
-  <script src="/js/ui.js" type="module"></script>
-  <script src="/js/game.js" type="module"></script>
-  <script src="/js/main.js" type="module"></script>
-  <script src="https://kit.fontawesome.com/c5d770fabf.js" crossorigin="anonymous"></script>
-</body>
-
+        // Set the first navigation item as active and its content visible
+        navItems[0].classList.add("active");
+        tabContents[0].style.display = "block";
+      </script>
+    </div>
+    <div class="loading-screen">
+      <div class="spinner"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+      integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/character.js" type="module"></script>
+    <script src="/js/characterCreation.js" type="module"></script>
+    <script src="/js/characterUpdate.js" type="module"></script>
+    <script src="/js/inventory.js" type="module"></script>
+    <script src="/js/skilling.js" type="module"></script>
+    <script src="/js/woodcutting.js" type="module"></script>
+    <script src="/js/firemaking.js" type="module"></script>
+    <script src="/js/utils.js" type="module"></script>
+    <script src="/js/ui.js" type="module"></script>
+    <script src="/js/game.js" type="module"></script>
+    <script src="/js/main.js" type="module"></script>
+    <script
+      src="https://kit.fontawesome.com/c5d770fabf.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

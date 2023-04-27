@@ -77,7 +77,7 @@ export function updateSkillStats() {
 if (window.location.pathname === '/index.html') {
   // Get the active character from local storage
   const activeCharacter = JSON.parse(localStorage.getItem('activeCharacter'));
-  
+
   // Update the character level element with the active character's level
   const characterLevel = document.querySelector('.character-level');
   if (activeCharacter) {
@@ -85,7 +85,13 @@ if (window.location.pathname === '/index.html') {
   }
 }
 
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function showHeaderDropDown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -93,6 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMainItemsCombat = document.querySelectorAll(".combat");
   const toggleEye2 = document.querySelector(".far.fa-eye.text-muted.ml-2.eye2");
   const navMainItemsNonCombat = document.querySelectorAll(".non-combat");
+  const headerDropDown = document.getElementById("myDropdown");
+  const headerDropDownButton = document.getElementById("activeUsername");
+
+  if (headerDropDownButton) {
+    headerDropDownButton.addEventListener("click", () => {
+      headerDropDown.classList.toggle("show");
+    });
+  }
 
   if (toggleEye) {
     toggleEye.addEventListener("click", () => {
