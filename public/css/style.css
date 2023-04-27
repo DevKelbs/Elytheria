@@ -300,24 +300,6 @@ nav ul li a {
   font-size: 2rem;
 }
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid var(--color-bg-active-gold);
-  border-top-color: var(--color-bg-active-khaki);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 nav ul li a,
 .tab-content ul li {
   transition: all 0.3s ease;
@@ -373,10 +355,6 @@ nav ul li a:hover {
   box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
 }
 
-.nav-main-item.combat:hover {
-  animation: pulse 1s infinite;
-}
-
 .nav-main-item.non-combat {
   background-image: url(../assets/icons/ui-icons/2x/button\ 2_1@2x.png);
   background-size: cover;
@@ -386,10 +364,6 @@ nav ul li a:hover {
   border-radius: 5px;
   margin-bottom: 5px;
   box-shadow: 5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.5);
-}
-
-.nav-main-item.non-combat:hover {
-  animation: pulse 1s infinite;
 }
 
 .nav-img {
@@ -1027,14 +1001,6 @@ input[type="submit"] {
   transition: width 0.3s ease;
 }
 
-.tree:hover .cutTreeProgress::-webkit-progress-value {
-  animation: sparkle 1s infinite;
-}
-
-.tree:hover .cutTreeProgress::-moz-progress-bar {
-  animation: sparkle 1s infinite;
-}
-
 /* Appearance Options */
 .appearance-options {
   display: flex;
@@ -1055,111 +1021,4 @@ input[type="submit"] {
 
 #create-character-button:hover {
   background-color: #45a049;
-}
-
-.fade-in {
-  animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.fade-out {
-  animation: fadeOut 1s ease-out;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Button Animation */
-@keyframes button-animation {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes skill-icon-animation {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes slide-down {
-  0% {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes sparkle {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0.2);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-20px) scale(1);
-  }
-}
-
-.slide-down {
-  animation: slide-down 0.5s ease-out;
-}
-
-@media (min-width: 768px) {
-  .tree-item {
-    width: 48%; /* Adjusts the width to 48% on screens wider than 768px */
-  }
-}
-
-@media (min-width: 992px) {
-  .tree-item {
-    width: 30%; /* Adjusts the width to 30% on screens wider than 992px */
-  }
-}
-
-@media (min-width: 1200px) {
-  .tree-item {
-    width: 22%; /* Adjusts the width to 22% on screens wider than 1200px */
-  }
 }
