@@ -86,12 +86,12 @@ function startMining(oreType) {
 
   if (currentTask !== null && currentTask.oreType === oreType) {
     // A task for the same tree is already running; stop it.
-    currentTask.running = false;
+    currentTask.cancel();
     currentTask = null;
     return;
   } else if (currentTask !== null) {
     // A task for a different tree is already running; stop it.
-    currentTask.running = false;
+    currentTask.cancel();
     currentTask = null;
   }
 
@@ -183,9 +183,10 @@ function startMining(oreType) {
         oreType: oreType,
       running: true,
       cancel: function () {
+        console.log('Task cancelled...')
+        progressBar.style.width = '0%'; // Reset progress bar value
         clearTimeout(timeoutId);
-        // clearInterval(progressInterval); // Clear progress interval when canceling
-        // progressBar.value = 0; // Reset progress bar value
+        clearInterval(progressInterval); // Clear progress interval when canceling
         reject(new Error("Task canceled"));
       },
     };

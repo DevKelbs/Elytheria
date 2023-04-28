@@ -100,12 +100,12 @@ function startFiremaking(logType) {
 
   if (currentTask !== null && currentTask.logType === logType) {
     // A task for the same tree is already running; stop it.
-    currentTask.running = false;
+    currentTask.cancel();
     currentTask = null;
     return;
   } else if (currentTask !== null) {
     // A task for a different tree is already running; stop it.
-    currentTask.running = false;
+    currentTask.cancel();
     currentTask = null;
   }
 
@@ -212,6 +212,7 @@ function startFiremaking(logType) {
       logType: logType,
       running: true,
       cancel: function () {
+        progressBar.style.width = '0%'; // Reset progress bar value
         clearTimeout(timeoutId);
         clearInterval(progressInterval); // Clear progress interval when canceling
         progressBar.style.width = "0%"; // Reset progress bar width
