@@ -91,6 +91,7 @@ function canBurnLog(logType) {
 
 // Firemaking skill
 let currentTask = null;
+const toast = document.querySelector('.toast');
 
 function startFiremaking(logType) {
   if (!canBurnLog(logType)) {
@@ -171,6 +172,10 @@ function startFiremaking(logType) {
           "activeCharacter",
           JSON.stringify(activeCharacter)
         );
+              // Display toast notification
+      toast.textContent = `-1 ${logType}!`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1000); // Hide toast after 3 seconds
       } else {
         console.log(`You don't have any ${logType} in your inventory.`);
         return;

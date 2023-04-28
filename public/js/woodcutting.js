@@ -56,6 +56,7 @@ function updateTreeVisibility() {
 
 //Woodcutting skill
 let currentTask = null;
+const toast = document.querySelector('.toast');
 
 function startWoodcutting(treeType) {
 
@@ -134,6 +135,11 @@ function startWoodcutting(treeType) {
 
       // Add logs to the inventory
       const logType = (treeType + " Log").replace(/\s+/g, '');
+      // Display toast notification
+      toast.textContent = `+1 ${logType}!`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1000); // Hide toast after 3 seconds
+
       activeCharacter.inventory[logType] = (activeCharacter.inventory[logType] || 0) + 1;
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 
