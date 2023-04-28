@@ -206,7 +206,7 @@
             </a>
           </li>
           <li class="nav-main-item non-combat">
-            <a href="#mining" class="nav-main-link nav-compact pointer-enabled">
+            <a href="#mining" id="miningContent" class="nav-main-link nav-compact pointer-enabled">
               <span class="nav-img"></span>
               <span class="nav-main-link-name">Mining</span>
               <small>
@@ -593,8 +593,209 @@
       </section>
       <section id="mining" class="tab-content" style="display: none">
         <div id="miningContainer">
-          <ul>
-            <!-- Add your quests content here -->
+          <div class="skill-info">
+          </div>
+          <ul class="ore-list">
+            <li id="clayOre" class="ore tree-item" data-ore-type="Clay Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Clay</span>
+                <br>
+                <small>Level 1</small>
+                <br>
+                <small>
+                  <span>10 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>1.5 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="ClayOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="copperOre" class="ore tree-item" data-ore-type="Copper Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Copper Ore</span>
+                <br>
+                <small>Level 1</small>
+                <br>
+                <small>
+                  <span>15 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>2 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="CopperOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="tinOre" class="ore tree-item" data-ore-type="Tin Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Tin Ore</span>
+                <br>
+                <small>Level 15</small>
+                <br>
+                <small>
+                  <span>22 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>2.5 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="TinOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="ironOre" class="ore tree-item" data-ore-type="Iron Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Iron Ore</span>
+                <br>
+                <small>Level 15</small>
+                <br>
+                <small>
+                  <span>30 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>3 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="IronOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="silverOre" class="ore tree-item" data-ore-type="Silver Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Silver Ore</span>
+                <br>
+                <small>Level 20</small>
+                <br>
+                <small>
+                  <span>40 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>4 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="SilverOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="coalOre" class="ore tree-item" data-ore-type="Coal Ore">
+              <div class="miningContainer__label">
+                <small>Cut</small>
+                <br>
+                <span>Mahogany Tree</span>
+                <br>
+                <small>Level 50</small>
+                <br>
+                <small>
+                  <span>60 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>5 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="CoalOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="goldOre" class="ore tree-item" data-ore-type="Gold Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Gold</span>
+                <br>
+                <small>Level 40</small>
+                <br>
+                <small>
+                  <span>80 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>6 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="GoldOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="mithrilOre" class="ore tree-item" data-ore-type="Mithril Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Mithril Ore</span>
+                <br>
+                <small>Level 55</small>
+                <br>
+                <small>
+                  <span>100 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>9.8 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="MithrilOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="adamantiteOre" class="ore tree-item" data-ore-type="Adamantite Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Adamantite Ore</span>
+                <br>
+                <small>Level 70</small>
+                <br>
+                <small>
+                  <span>180 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>7.5 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="AdamantiteOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
+            <li id="runiteOre" class="ore tree-item" data-ore-type="Runite Ore">
+              <div class="miningContainer__label">
+                <small>Mine</small>
+                <br>
+                <span>Runite Ore</span>
+                <br>
+                <small>Level 85</small>
+                <br>
+                <small>
+                  <span>180 xp</span>
+                  /
+                  <i class="far fa-clock">
+                  </i>
+                  <span>7.5 seconds</span>
+                </small>
+              </div>
+              <div class="progress" id="RuniteOreProgress">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </li>
           </ul>
         </div>
       </section>
@@ -733,6 +934,7 @@
   <script src="/js/skilling.js" type="module"></script>
   <script src="/js/woodcutting.js" type="module"></script>
   <script src="/js/firemaking.js" type="module"></script>
+  <script src="/js/mining.js" type="module"></script>
   <script src="/js/utils.js" type="module"></script>
   <script src="/js/ui.js" type="module"></script>
   <script src="/js/game.js" type="module"></script>
