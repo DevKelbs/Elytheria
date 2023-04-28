@@ -116,8 +116,22 @@ export function checkLevelUp(skill) {
   }
   if (currentLevel > activeCharacter[`${skill}`]) {
     activeCharacter[`${skill}`] = currentLevel;
-    console.log(`Congratulations! You have leveled up to ${currentLevel} ${skill}.`);
+    console.log(
+      `Congratulations! You have leveled up to ${currentLevel} ${skill}.`
+    );
+
+    // Show the level up modal
+    const levelUpModal = document.getElementById("levelUpModal");
+    const levelUpMessage = document.getElementById("levelUpMessage");
+    levelUpMessage.textContent = `Congrats! You have leveled up to ${currentLevel} ${skill}.`;
+    levelUpModal.style.display = "block";
+
+    // Add click event to close button
+    document.getElementById("closeModal").onclick = function () {
+      levelUpModal.style.display = "none";
+    };
   }
+
   localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
   updateSkillStats();
 }
