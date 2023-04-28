@@ -1,5 +1,5 @@
 import { updateInventoryDisplay } from "./inventory.js";
-import { checkLevelUp, getCurrentSkillLevel } from "./skilling.js";
+import { checkLevelUp, getCurrentSkillLevel, updateSkillInfo } from "./skilling.js";
 
 // Function to check if the player can burn a specific log
 function canMine(oreType) {
@@ -168,6 +168,7 @@ function startMining(oreType) {
 
       console.log(`You gained ${xpToAdd} Mining XP from mining the ${ore}.`);
       checkLevelUp("mining");
+      updateSkillInfo("mining");
       updateOreVisibility();
       updateInventoryDisplay();
       resolve();

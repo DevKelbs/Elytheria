@@ -1,5 +1,5 @@
 import { updateInventoryDisplay } from "./inventory.js";
-import { checkLevelUp, getCurrentSkillLevel } from "./skilling.js";
+import { checkLevelUp, getCurrentSkillLevel, updateSkillInfo } from "./skilling.js";
 
 export function updateLogsDropdown() {
     const activeCharacter =
@@ -189,6 +189,7 @@ function startFiremaking(logType) {
         `You gained ${xpToAdd} Firemaking XP from burning the ${logType}.`
       );
       checkLevelUp("firemaking");
+      updateSkillInfo("firemaking");
       updateInventoryDisplay();
       updateSelectedLogQuantity(logType);
       resolve();

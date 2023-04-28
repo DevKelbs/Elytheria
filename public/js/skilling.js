@@ -149,3 +149,35 @@ export function getCurrentSkillLevel(skill) {
   }
   return currentLevel;
 }
+
+export function updateSkillInfo(skill) {
+  const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
+  const skillXP = activeCharacter[`${skill}xp`] || 0;
+  
+  let currentLevel = 1;
+  let xpForNextLevel = 0;
+  
+  for (let i = 0; i < Levels.length; i++) {
+    if (skillXP >= Levels[i].xp) {
+      currentLevel = Levels[i].level;
+      xpForNextLevel = Levels[i+1] ? Levels[i+1].xp : Levels[i].xp;
+    } else {
+      break;
+    }
+  }
+
+  // Update level display
+  const skillLevelElement = document.getElementById(`${skill}-level`);
+  skillLevelElement.textContent = `${capitalizeFirstLetter(skill)} Level: ${currentLevel}`;
+
+  // Update progress bar
+  const skillProgressBar = document.getElementById(`${skill}-progress`);
+  
+  const progressTowardsNextLevel = (skillXP - Levels[currentLevel - 1].xp) / (xpForNextLevel - Levels[currentLevel - 1].xp);
+
+  skillProgressBar.value = progressTowardsNextLevel * 100; // Convert to percentage
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

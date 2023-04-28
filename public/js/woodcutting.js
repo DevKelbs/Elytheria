@@ -1,5 +1,5 @@
 import { updateInventoryDisplay } from "./inventory.js";
-import { checkLevelUp, getCurrentSkillLevel } from "./skilling.js";
+import { checkLevelUp, getCurrentSkillLevel, updateSkillInfo } from "./skilling.js";
 
 function canCutTree(treeType) {
   const level = getCurrentSkillLevel("woodcutting");
@@ -145,6 +145,7 @@ function startWoodcutting(treeType) {
 
       console.log(`You gained ${xpToAdd} Woodcutting XP from cutting the ${treeType}.`);
       checkLevelUp("woodcutting");
+      updateSkillInfo("woodcutting");
       updateTreeVisibility();
       updateInventoryDisplay();
       resolve();
