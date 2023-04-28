@@ -87,7 +87,6 @@ function canBurnLog(logType) {
   
     return firemakingLevel >= requiredLevel;
   }
-  
 
 // Firemaking skill
 let currentTask = null;
@@ -257,8 +256,6 @@ document.getElementById("logsDropdown").addEventListener("change", (event) => {
   
     updateSelectedLogQuantity(event.target.value);
   });
-  
-  
   
   document.getElementById("burnLogButton").addEventListener("click", () => {
     const logsDropdown = document.getElementById("logsDropdown");
