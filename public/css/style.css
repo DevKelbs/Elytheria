@@ -451,36 +451,83 @@ main > * {
 }
 
 #inventoryView {
-  display: flex;
-  flex-wrap: wrap;
-  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 20px;
-    grid-auto-flow: row;
-    list-style: none; */
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
 }
 
 .inventory-item-image {
-  width: 80px;
+  display: flex;
+  width: 40px;
   height: auto;
   margin-bottom: 10px;
 }
 
 .inventory-item {
   border: 1px solid #ccc;
+  width: 75px;
+  height: 75px;
   border-radius: 4px;
   padding: 10px;
   text-align: center;
 }
 
 .inventory-item-name {
-  font-size: 1.1em;
+  font-size: 0.5em;
   margin-bottom: 5px;
 }
 
 .inventory-item-quantity {
-  font-size: 0.9em;
+  font-size: 0.7em;
+}
+
+/* Tooltip container */
+.item-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.item-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Tooltip image */
+.tooltip-image {
+  width: 40px;
+  height: 40px;
+}
+
+/* Tooltip text */
+.tooltip-text {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+/* Show tooltip on hover */
+.inventory-item:hover .item-tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 #progressBarPane {
@@ -513,7 +560,7 @@ main > * {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .tab-content ul li {
