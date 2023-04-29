@@ -17,9 +17,29 @@
     <link rel="stylesheet" href="/css/animations.css" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
-
   <body>
     <header id="page-header">
+      <img
+        src="./assets/icons/ui-icons/2x/logo_2.png"
+        alt="Elytheria Logo"
+        id="game-logo"
+      />
+      <span class="game-title">Elytheria</span>
+      <li>
+        <a href="#cove" class="nav-cove active"
+          ><i class="fas fa-house"></i> The Cove</a
+        >
+      </li>
+      <li>
+        <a href="#inventory" class="nav-inventory"
+          ><i class="fas fa-box-archive"></i> Inventory</a
+        >
+      </li>
+      <li>
+        <a href="#quests" class="nav-quests"
+          ><i class="fas fa-scroll"></i> Quests</a
+        >
+      </li>
       <div class="header-content">
         <div class="character-info-container">
           <div class="character-info">
@@ -62,322 +82,6 @@
         </div>
       </div>
     </header>
-    <aside class="sidebar">
-      <nav>
-        <ul>
-          <img
-            src="./assets/icons/ui-icons/2x/logo_2.png"
-            alt="Elytheria Logo"
-            id="game-logo"
-          />
-          <span class="game-title">Elytheria</span>
-          <li>
-            <a href="#cove" class="nav-cove active"
-              ><i class="fas fa-house"></i> The Cove</a
-            >
-          </li>
-          <li>
-            <a href="#inventory" class="nav-inventory"
-              ><i class="fas fa-box-archive"></i> Inventory</a
-            >
-          </li>
-          <li>
-            <a href="#quests" class="nav-quests"
-              ><i class="fas fa-scroll"></i> Quests</a
-            >
-          </li>
-          <li>
-            <div class="nav-main-heading">
-              <span>Combat</span>
-              <i class="far ml-2 fa-eye text-muted eye1"> </i>
-            </div>
-          </li>
-
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img attack-icon"></span>
-              <span class="nav-main-link-name">Attack</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Strength</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Defence</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Hitpoints</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Ranged</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Magic</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Prayer</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item combat">
-            <a class="nav-main-link nav-compact pointer-enabled">
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Slayer</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li>
-            <div class="nav-main-heading">
-              <span>Non-Combat</span>
-              <i class="far ml-2 fa-eye text-muted eye2"> </i>
-            </div>
-          </li>
-
-          <li class="nav-main-item non-combat">
-            <a
-              href="#woodcutting"
-              id="woodcuttingContent"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Woodcutting</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#fishing"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Fishing</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#firemaking"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Firemaking</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#cooking"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Cooking</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#mining"
-              id="miningContent"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Mining</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#smithing"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Smithing</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#thieving"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Thieving</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#fletching"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Fletching</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#crafting"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Crafting</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#runecrafting"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Runecrafting</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#herblore"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Herblore</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li class="nav-main-item non-combat">
-            <a
-              href="#agility"
-              class="nav-main-link nav-compact pointer-enabled"
-            >
-              <span class="nav-img"></span>
-              <span class="nav-main-link-name">Agility</span>
-              <small>
-                (
-                <span>1</span>
-                / 99)
-              </small>
-            </a>
-          </li>
-          <li>
-            <a href="#activities" class="nav-activities"
-              ><i class="fas fa-chart-bar"></i> Activities</a
-            >
-          </li>
-          <li>
-            <a href="#settings" class="nav-settings"
-              ><i class="fas fa-cog"></i> Settings</a
-            >
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-shopping-cart"></i> Shop</a>
-          </li>
-          <!-- <li id="create-character-link">
-            <button id="openCharacterCreation">Create Character</button>
-            <button id="showCharacters">Show All Characters</button>
-          </li> -->
-        </ul>
-      </nav>
-    </aside>
     <main id="coveMain">
       <section id="cove" class="tab-content" style="display: none">
         <div id="coveContainer">
@@ -903,13 +607,6 @@
           </ul>
         </div>
       </section>
-      <section id="activities" class="tab-content" style="display: none">
-        <div id="activitiesContainer">
-          <ul>
-            <!-- Add your activities content here -->
-          </ul>
-        </div>
-      </section>
       <section id="settings" class="tab-content" style="display: none">
         <div id="settingsContainer">
           <div class="row row-deck">
@@ -961,6 +658,292 @@
         </div>
       </section>
     </main>
+    <aside class="gameNav">
+      <nav>
+        <ul>
+          <li>
+            <div class="nav-main-heading">
+              <span>Combat</span>
+              <i class="far ml-2 fa-eye text-muted eye1"> </i>
+            </div>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img attack-icon"></span>
+              <span class="nav-main-link-name">Attack</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Strength</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Defence</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Hitpoints</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Ranged</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Magic</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Prayer</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item combat">
+            <a class="nav-main-link nav-compact pointer-enabled">
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Slayer</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li>
+            <div class="nav-main-heading">
+              <span>Non-Combat</span>
+              <i class="far ml-2 fa-eye text-muted eye2"> </i>
+            </div>
+          </li>
+
+          <li class="nav-main-item non-combat">
+            <a
+              href="#woodcutting"
+              id="woodcuttingContent"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Woodcutting</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#fishing"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Fishing</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#firemaking"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Firemaking</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#cooking"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Cooking</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#mining"
+              id="miningContent"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Mining</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#smithing"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Smithing</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#thieving"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Thieving</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#fletching"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Fletching</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#crafting"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Crafting</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#runecrafting"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Runecrafting</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#herblore"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Herblore</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li class="nav-main-item non-combat">
+            <a
+              href="#agility"
+              class="nav-main-link nav-compact pointer-enabled"
+            >
+              <span class="nav-img"></span>
+              <span class="nav-main-link-name">Agility</span>
+              <small>
+                (
+                <span>1</span>
+                / 99)
+              </small>
+            </a>
+          </li>
+          <li>
+            <a href="#settings" class="nav-settings"
+              ><i class="fas fa-cog"></i> Settings</a
+            >
+          </li>
+          <!-- <li id="create-character-link">
+            <button id="openCharacterCreation">Create Character</button>
+            <button id="showCharacters">Show All Characters</button>
+          </li> -->
+        </ul>
+      </nav>
+    </aside>
     <div id="mainGameContent" style="display: none">
       <div class="toast"></div>
       <div id="levelUpModal" class="modal">
@@ -1011,33 +994,6 @@
       integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
       crossorigin="anonymous"
     ></script>
-    <script>
-      // New script to handle navigation
-      const navItems = document.querySelectorAll("nav ul li a");
-      const tabContents = document.querySelectorAll(".tab-content");
-
-      navItems.forEach((navItem) => {
-        navItem.addEventListener("click", (event) => {
-          event.preventDefault();
-
-          navItems.forEach((item) => item.classList.remove("active"));
-          navItem.classList.add("active");
-
-          const target = navItem.getAttribute("href");
-          tabContents.forEach((content) => {
-            if (content.id === target.substr(1)) {
-              content.style.display = "block";
-            } else {
-              content.style.display = "none";
-            }
-          });
-        });
-      });
-
-      // Set the first navigation item as active and its content visible
-      navItems[0].classList.add("active");
-      tabContents[0].style.display = "block";
-    </script>
     <script src="/js/character.js" type="module"></script>
     <script src="/js/characterCreation.js" type="module"></script>
     <script src="/js/characterUpdate.js" type="module"></script>

@@ -139,3 +139,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// New script to handle navigation
+const navItems = document.querySelectorAll("li a");
+const tabContents = document.querySelectorAll(".tab-content");
+
+navItems.forEach((navItem) => {
+  navItem.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    navItems.forEach((item) => item.classList.remove("active"));
+    navItem.classList.add("active");
+
+    const target = navItem.getAttribute("href");
+    tabContents.forEach((content) => {
+      if (content.id === target.substr(1)) {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    });
+  });
+});
+
+// Set the first navigation item as active and its content visible
+navItems[0].classList.add("active");
+tabContents[0].style.display = "block";

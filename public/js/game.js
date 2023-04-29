@@ -13,7 +13,6 @@ function loadImages(sources) {
     return Promise.all(promises);
 }
 
-
 async function startGame() {
     // Get a reference to the canvas element and its context
     const canvas = document.getElementById('gameCanvas');
@@ -51,9 +50,9 @@ async function startGame() {
         const oldWidth = canvas.width;
         const oldHeight = canvas.height;
 
-        // Calculate the new canvas width and height based on the coveMain element dimensions
-        const newWidth = coveMain.clientWidth;
-        const newHeight = (coveMain.clientWidth * aspectRatio.height) / aspectRatio.width;
+        // Calculate the new canvas width and height based on the window dimensions
+        const newWidth = window.innerWidth;
+        const newHeight = (window.innerWidth * aspectRatio.height) / aspectRatio.width;
 
         // Set the new canvas dimensions while maintaining the aspect ratio
         canvas.width = newWidth;
@@ -62,7 +61,6 @@ async function startGame() {
         // Update the wisp positions based on the new canvas size
         const scaleX = newWidth / oldWidth;
         const scaleY = newHeight / oldHeight;
-
 
         wisps.forEach((wisp) => {
             wisp.x *= scaleX;
@@ -125,7 +123,6 @@ async function startGame() {
                 rotation: Math.random() * 360, // Random initial rotation
                 rotationSpeed: Math.random() * 0.5 - 0.25, // Random rotation speed between -0.25 and 0.25
             };
-
             leaves.push(leaf);
         }
 
@@ -190,7 +187,7 @@ async function startGame() {
     function drawWisp(wisp) {
         if (!isFinite(wisp.size) || !isFinite(wisp.opacity)) {
             console.error("Invalid wisp size:", wisp.size);
-            return;
+            return
         }
 
         ctx.beginPath();
@@ -233,6 +230,7 @@ async function startGame() {
 
     // Start the game loop
     gameLoop();
+
 }
 
 async function hideLoadingScreen() {
