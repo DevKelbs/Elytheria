@@ -19,6 +19,49 @@
   </head>
 
   <body>
+    <header id="page-header">
+      <div class="header-content">
+        <div class="character-info-container">
+          <div class="character-info">
+            <div class="character-info-col1">
+              <span id="username-display" class="character-name"></span>
+              <span class="character-health">HP: 100 / 100</span>
+              <span class="character-mana">MP: 100 / 100</span>
+            </div>
+            <div class="character-info-col2">
+              <span class="character-level">level 1</span>
+              <span class="character-exp">XP: 0 / 100</span>
+              <span class="character-currency">Gold: 0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="forceSaveButton" class="dropbtn" type="button">
+        Force Save
+      </button>
+      <div class="dropdown">
+        <button class="dropbtn" id="activeUsername"></button>
+        <div id="myDropdown" class="dropdown-content">
+          <button
+            class="dropdownButton"
+            id="createCharacterButton"
+            type="button"
+          >
+            Create Character
+          </button>
+          <button
+            class="dropdownButton"
+            id="selectCharacterButton"
+            type="button"
+          >
+            Select Character
+          </button>
+          <button class="dropdownButton" id="logoutButton" type="button">
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
     <aside class="sidebar">
       <nav>
         <ul>
@@ -367,49 +410,6 @@
     <div id="characterDisplay" style="display: none"></div>
     <div id="mainGameContent" style="display: none">
       <main id="coveMain">
-        <header id="page-header">
-          <div class="header-content">
-            <div class="character-info-container">
-              <div class="character-info">
-                <div class="character-info-col1">
-                  <span id="username-display" class="character-name"></span>
-                  <span class="character-health">HP: 100 / 100</span>
-                  <span class="character-mana">MP: 100 / 100</span>
-                </div>
-                <div class="character-info-col2">
-                  <span class="character-level">level 1</span>
-                  <span class="character-exp">XP: 0 / 100</span>
-                  <span class="character-currency">Gold: 0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button id="forceSaveButton" class="dropbtn" type="button">
-            Force Save
-          </button>
-          <div class="dropdown">
-            <button class="dropbtn" id="activeUsername"></button>
-            <div id="myDropdown" class="dropdown-content">
-              <button
-                class="dropdownButton"
-                id="createCharacterButton"
-                type="button"
-              >
-                Create Character
-              </button>
-              <button
-                class="dropdownButton"
-                id="selectCharacterButton"
-                type="button"
-              >
-                Select Character
-              </button>
-              <button class="dropdownButton" id="logoutButton" type="button">
-                Logout
-              </button>
-            </div>
-          </div>
-        </header>
         <section id="cove" class="tab-content" style="display: none">
           <div id="coveContainer">
             <ul>
