@@ -678,7 +678,7 @@ main {
   font-size: 2.5rem;
   font-weight: bold;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  /* align center of gameNav*/
+  /* align center of skillsNav*/
   margin-right: 20px;
 }
 
@@ -820,39 +820,54 @@ main {
   overflow: hidden;
 }
 
-.gameNav {
+.skillsNav {
   background-color: var(--color-ui-blue-green-semi-transparents);
-  width: 100%;
-  position: fixed;
-  height: 10%;
-  bottom: 0;
+  width: 20%;
+  position: absolute;
+  height: 40%;
+  bottom: 5%;
+  left: 5%;
+  overflow: auto;
+  border-radius: 10px;
+  max-width: max-content;
+  padding: 10px 10px 0 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.gameNav::-webkit-scrollbar {
+.skillsNav nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.skillsNav nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skillsNav nav ul li {
+  display: flex;
+}
+
+.skillsNav::-webkit-scrollbar {
   background-color: transparent;
   width: 4px;
 }
 
-.gameNav::-webkit-scrollbar-thumb {
+.skillsNav::-webkit-scrollbar-thumb {
   background-color: var(--color-bg-active-gold);
   width: 4px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
 
-.gameNav::-webkit-scrollbar-track {
+.skillsNav::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-/* .gameNav nav ul {
-  flex-direction: column;
-} */
-
-.gameNav nav ul li {
-  margin: 0.25rem 0 0.25rem 0;
-  font-size: 15px;
-  max-width: 100%;
-  cursor: pointer;
 }
 
 #page-content {

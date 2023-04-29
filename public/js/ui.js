@@ -157,6 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
           content.style.display = "none";
         }
       });
+
+      const targetElement = document.querySelector(target);
+      targetElement.scrollIntoView({ behavior: "smooth" });
     });
   });
 
