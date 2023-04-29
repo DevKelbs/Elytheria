@@ -345,7 +345,7 @@ const Character = sequelize.define('Character', {
     inventory: {
         type: DataTypes.JSONB,
         allowNull: false,
-        defaultValue: '{}',
+        defaultValue: {},
     },
     // Add other fields as needed
     // ...
