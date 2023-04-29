@@ -29,6 +29,11 @@ const User = sequelize.define('User', {
     allowNull: true,
     defaultValue: false,
   },
+  element_positions: {
+    type: DataTypes.JSONB,
+    allowNull: true,
+    defaultValue: {},
+  },
   // Add other fields as needed
   // ...
 });

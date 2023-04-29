@@ -824,7 +824,8 @@ main {
   background-color: var(--color-ui-blue-green-semi-transparents);
   width: 20%;
   position: absolute;
-  height: 40%;
+  height: auto;
+  max-height: 40%;
   bottom: 5%;
   left: 5%;
   overflow: auto;

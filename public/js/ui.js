@@ -91,8 +91,35 @@ function showHeaderDropDown() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
+function makeElementMoveable(element) {
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  element.onmousedown = dragMouseDown;
 
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    element.style.top = (element.offsetTop - pos2) + "px";
+    element.style.left = (element.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleEye = document.querySelector(".far.fa-eye.text-muted.ml-2.eye1");
@@ -101,6 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMainItemsNonCombat = document.querySelectorAll(".non-combat");
   const headerDropDown = document.getElementById("myDropdown");
   const headerDropDownButton = document.getElementById("activeUsername");
+
+  const skillsNavElement = document.querySelector(".skillsNav");
+  makeElementMoveable(skillsNavElement);
 
   if (headerDropDownButton) {
     headerDropDownButton.addEventListener("click", () => {
