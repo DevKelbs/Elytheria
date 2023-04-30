@@ -75,12 +75,21 @@
     </section>
     <section id="combat" class="tab-content" style="display: none">
       <div id="combatContainer">
-        <ul>
-          <div id="combatView"></div>
-          <!-- add content -->
-        </ul>
+        <div id="combatView">
+          <h2>Select your fighting style:</h2>
+          <select id="fightStyle">
+            <option value="aggressive">Aggressive</option>
+            <option value="defensive">Defensive</option>
+            <option value="balanced">Balanced</option>
+          </select>
+          <button id="fightButton" disabled>Fight!</button>
+          <ul id="monsterList">
+            <!-- Monsters will be generated dynamically -->
+          </ul>
+          <!-- More combat view content -->
+        </div>
       </div>
-    </section>
+    </section>    
     <section id="inventory" class="tab-content" style="display: none">
       <div id="inventoryContainer">
         <ul>
@@ -701,7 +710,6 @@
             <i class="far ml-2 fa-eye text-muted eye2"> </i>
           </div>
         </li>
-
         <li class="nav-main-item non-combat">
           <a href="#woodcutting" id="woodcuttingContent" class="nav-main-link nav-compact pointer-enabled">
             <span class="nav-img"></span>
@@ -893,6 +901,7 @@
   <script src="/js/characterCreation.js" type="module"></script>
   <script src="/js/characterUpdate.js" type="module"></script>
   <script src="/js/inventory.js" type="module"></script>
+  <script src="/js/combat.js" type="module"></script>
   <script src="/js/skilling.js" type="module"></script>
   <script src="/js/woodcutting.js" type="module"></script>
   <script src="/js/firemaking.js" type="module"></script>
