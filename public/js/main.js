@@ -10,6 +10,7 @@ import {
   displaySuccessMessage,
   updateDropdown,
   updateSkillStats,
+  loadUIPositions,
 } from "./ui.js";
 import { updateInventoryDisplay } from "./inventory.js";
 import { updateLogsDropdown } from "./firemaking.js"
@@ -40,6 +41,7 @@ socket.on("connect", async () => {
   updateSkillStats();
   updateInventoryDisplay();
   updateLogsDropdown();
+  loadUIPositions();
 
   try {
     const userId = localStorage.getItem("userId");

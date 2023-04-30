@@ -113,12 +113,76 @@ function makeElementMoveable(element) {
     pos4 = e.clientY;
     element.style.top = (element.offsetTop - pos2) + "px";
     element.style.left = (element.offsetLeft - pos1) + "px";
+    console.log(element.style.top, element.style.left)
   }
 
   function closeDragElement() {
     document.onmouseup = null;
     document.onmousemove = null;
-  }
+    let elementId = element.getAttribute("data-element-id");
+    let userId = localStorage.getItem("userId"); // Retrieve current user's ID from local storage or your authentication system
+    savePositionToDatabase(elementId, userId, element.offsetLeft, element.offsetTop);
+  }  
+}
+
+//Save UI Positions
+
+function savePositionToDatabase(elementId, userId, x, y) {
+  const token = localStorage.getItem("token");
+  fetch('/api/user/save_ui', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({elementId: elementId, position: {x: x, y: y}}),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      console.log('Position saved');
+    } else {
+      console.error('Error saving position:', data.error);
+    }
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+//load UI Positions
+export function loadUIPositions() {
+  console.log('Placing UI...')
+  const token = localStorage.getItem("token");
+  fetch('/api/user/ui_positions', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      const positions = data.element_positions;
+
+      // Loop through the positions object and set the position for each element
+      for (const elementId in positions) {
+        const element = document.querySelector(`[data-element-id="${elementId}"]`);
+         console.log(element);
+
+        if (element) {
+          const position = positions[elementId];
+          element.style.top = position.y + "px";
+          element.style.left = position.x + "px";
+        }
+      }
+    } else {
+      console.error('Error getting positions:', data.error);
+    }
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

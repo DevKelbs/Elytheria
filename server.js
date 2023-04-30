@@ -86,9 +86,11 @@ app.get('/', (req, res) => {
 
 const authRoutes = require('./routes/authRoutes.js');
 const characterRoutes = require('./routes/characterRoutes.js');
+const userRoutes = require('./routes/userRoutes.js')
 app.use('/api/auth', authRoutes);
 app.use('/api/characters', authenticateToken, characterRoutes);
 app.use('/api/update', authenticateToken, characterRoutes);
+app.use('/api/user', authenticateToken, userRoutes);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
