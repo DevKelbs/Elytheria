@@ -822,7 +822,6 @@ main {
 
 .skillsNav {
   background-color: var(--color-ui-blue-green-semi-transparents);
-  width: 20%;
   position: absolute;
   height: auto;
   max-height: 40%;
