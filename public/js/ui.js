@@ -113,7 +113,6 @@ function makeElementMoveable(element) {
     pos4 = e.clientY;
     element.style.top = (element.offsetTop - pos2) + "px";
     element.style.left = (element.offsetLeft - pos1) + "px";
-    console.log(element.style.top, element.style.left)
   }
 
   function closeDragElement() {
@@ -168,7 +167,6 @@ export function loadUIPositions() {
       // Loop through the positions object and set the position for each element
       for (const elementId in positions) {
         const element = document.querySelector(`[data-element-id="${elementId}"]`);
-         console.log(element);
 
         if (element) {
           const position = positions[elementId];
