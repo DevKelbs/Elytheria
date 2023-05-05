@@ -27,16 +27,6 @@ async function startGame() {
         'assets/images/objects/leaf3.png',
     ]);
 
-    // Define a sample sprite
-    const sprite = {
-        x: 50,
-        y: 50,
-        width: 50,
-        height: 50,
-        dx: 2,
-        dy: 2,
-    };
-
     // Specify the desired aspect ratio
     const aspectRatio = {
         width: 16,
@@ -83,29 +73,6 @@ async function startGame() {
     // Draw the background
     function drawBackground() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-    }
-
-    // Draw the sprite
-    function drawSprite() {
-        ctx.beginPath();
-        ctx.rect(sprite.x, sprite.y, sprite.width, sprite.height);
-        ctx.fillStyle = 'blue';
-        ctx.fill();
-        ctx.closePath();
-    }
-
-    // Update the sprite's position
-    function updateSprite() {
-        sprite.x += sprite.dx;
-        sprite.y += sprite.dy;
-
-        // Check for collisions with the canvas boundaries
-        if (sprite.x + sprite.width > canvas.width || sprite.x < 0) {
-            sprite.dx = -sprite.dx;
-        }
-        if (sprite.y + sprite.height > canvas.height || sprite.y < 0) {
-            sprite.dy = -sprite.dy;
-        }
     }
 
     function createLeaves(count) {
@@ -222,10 +189,6 @@ async function startGame() {
             updateLeaf(leaf);
             drawLeaf(leaf);
         });
-
-        // Update the sprite and draw it
-        // updateSprite();
-        // drawSprite();
     }
 
     // Start the game loop
