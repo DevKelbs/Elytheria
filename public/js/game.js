@@ -20,12 +20,43 @@ async function startGame() {
     const coveMain = document.getElementById('coveMain');
 
     // Load images
+    // Load character sprite and tile images
+    const characterSprite = await loadImage("assets/images/characters/character.png");
+    const mapTilesImage = await loadImage("assets/images/tiles/Overworld.png");
     const backgroundImage = await loadImage('assets/images/backgrounds/2x/Asset1.png');
     const leafImages = await loadImages([
         'assets/images/objects/leaf1.png',
         'assets/images/objects/leaf2.png',
         'assets/images/objects/leaf3.png',
     ]);
+
+    const mapTileset = {
+        image: mapTilesImage,
+        columns: 40, // Number of columns in the tileset
+        rows: 35, // Number of rows in the tileset
+        tileSize: 16, // Size of each tile in pixels
+    };
+
+    // Initialize the character object and map array
+    const character = {
+        x: 100,
+        y: 100,
+        width: 16,
+        height: 16,
+    };
+
+    const tileSize = 16; // Define the size of each tile
+
+    const map = [
+        [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+        [5, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 5],
+        [5, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 5],
+        [5, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 5],
+        [5, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 5],
+        [5, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 5],
+        [5, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 405, 5],
+        [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+    ];
 
     // Specify the desired aspect ratio
     const aspectRatio = {
@@ -167,6 +198,37 @@ async function startGame() {
         ctx.fill();
     }
 
+    // Add the new functions for drawing the map and character
+    function drawMap() {
+        for (let y = 0; y < map.length; y++) {
+            for (let x = 0; x < map[y].length; x++) {
+                // Get the tile index from the map data
+                const tileIndex = map[y][x];
+
+                // Calculate the tile's position in the mapTileset image
+                const mapTilesetX = (tileIndex % mapTileset.columns) * mapTileset.tileSize;
+                const mapTilesetY = Math.floor(tileIndex / mapTileset.columns) * mapTileset.tileSize;
+
+                // Draw the tile on the canvas
+                ctx.drawImage(
+                    mapTileset.image,
+                    mapTilesetX,
+                    mapTilesetY,
+                    mapTileset.tileSize,
+                    mapTileset.tileSize,
+                    x * tileSize,
+                    y * tileSize,
+                    tileSize,
+                    tileSize
+                );
+            }
+        }
+    }
+
+    function drawCharacter() {
+        ctx.drawImage(characterSprite, character.x, character.y, character.width, character.height);
+    }
+
     // Main game loop
     function gameLoop() {
         // Request the next animation frame
@@ -175,8 +237,10 @@ async function startGame() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the background
-        drawBackground();
+        // Draw the background, map, and character
+        // drawBackground();
+        drawMap();
+        drawCharacter();
 
         // Update and draw the wisps
         wisps.forEach((wisp, index) => {
@@ -190,6 +254,14 @@ async function startGame() {
             drawLeaf(leaf);
         });
     }
+
+    // Add the event listener for point-and-click character movement
+    canvas.addEventListener("click", (event) => {
+        const mouseX = event.clientX - canvas.offsetLeft;
+        const mouseY = event.clientY - canvas.offsetTop;
+        character.x = mouseX - (character.width / 2);
+        character.y = mouseY - (character.height / 2);
+    });
 
     // Start the game loop
     gameLoop();
