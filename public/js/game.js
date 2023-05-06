@@ -30,7 +30,7 @@ async function startGame() {
         'assets/images/objects/leaf3.png',
     ]);
 
-    const mapTileset = {
+    const mainMap = {
         image: mapTilesImage,
         columns: 40, // Number of columns in the tileset
         rows: 35, // Number of rows in the tileset
@@ -205,17 +205,17 @@ async function startGame() {
                 // Get the tile index from the map data
                 const tileIndex = map[y][x];
 
-                // Calculate the tile's position in the mapTileset image
-                const mapTilesetX = (tileIndex % mapTileset.columns) * mapTileset.tileSize;
-                const mapTilesetY = Math.floor(tileIndex / mapTileset.columns) * mapTileset.tileSize;
+                // Calculate the tile's position in the mainMap image
+                const mainMapX = (tileIndex % mainMap.columns) * mainMap.tileSize;
+                const mainMapY = Math.floor(tileIndex / mainMap.columns) * mainMap.tileSize;
 
                 // Draw the tile on the canvas
                 ctx.drawImage(
-                    mapTileset.image,
-                    mapTilesetX,
-                    mapTilesetY,
-                    mapTileset.tileSize,
-                    mapTileset.tileSize,
+                    mainMap.image,
+                    mainMapX,
+                    mainMapY,
+                    mainMap.tileSize,
+                    mainMap.tileSize,
                     x * tileSize,
                     y * tileSize,
                     tileSize,
