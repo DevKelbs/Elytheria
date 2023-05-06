@@ -20,29 +20,29 @@ function canFightMonster(monsterType) {
     }
   }
 
-// function updateMonsterVisibility() {
-//     const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
-//     const level = activeCharacter[`level`];
-//     console.log(level);
+function updateMonsterVisibility() {
+    const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+    const level = activeCharacter[`level`];
+    console.log(level);
   
-//     const monsters = [
-//       { id: 'Goblin', requiredLevel: 1 },
-//       { id: 'Orc', requiredLevel: 15 },
-//       { id: 'Troll', requiredLevel: 30 },
-//       // Add other trees with their required levels
-//     ];
+    const monsters = [
+      { id: 'Goblin', requiredLevel: 1 },
+      { id: 'Orc', requiredLevel: 15 },
+      { id: 'Troll', requiredLevel: 30 },
+      // Add other trees with their required levels
+    ];
   
-//     monsters.forEach(monster => {
-//         const elements = document.querySelectorAll(`[data-monster-type="${monster.id}"]`);
-//         elements.forEach(element => {
-//           if (level >= monster.requiredLevel) {
-//             element.style.display = 'flex';
-//           } else {
-//             element.style.display = 'none';
-//           }
-//         });
-//       });
-//     }
+    monsters.forEach(monster => {
+        const elements = document.querySelectorAll(`[data-monster-type="${monster.id}"]`);
+        elements.forEach(element => {
+          if (level >= monster.requiredLevel) {
+            element.style.display = 'flex';
+          } else {
+            element.style.display = 'none';
+          }
+        });
+      });
+    }
 
 
 // Combat skill

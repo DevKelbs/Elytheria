@@ -18,9 +18,18 @@ export function updateInventoryDisplay() {
 
   // Clear the inventory container
   inventoryContainer.innerHTML = "";
+  
+  // Filter out items with a quantity of 0
+  const filteredInventory = Object.fromEntries(
+    Object.entries(inventory).filter(([_, quantity]) => quantity > 0)
+  );
 
-  // Iterate through the inventory items
-  for (const [item, quantity] of Object.entries(inventory)) {
+  // Save the filtered inventory back to the active character
+  activeCharacter.inventory = filteredInventory;
+  localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+
+  // Iterate through the filtered inventory items
+  for (const [item, quantity] of Object.entries(filteredInventory)) {
     // Create an inventory item element
     const inventoryItem = document.createElement("li");
     inventoryItem.classList.add("inventory-item");
