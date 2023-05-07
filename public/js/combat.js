@@ -4,53 +4,68 @@ import {
   updateSkillInfo,
 } from "./skilling.js";
 
+import { updateInventoryDisplay } from "./inventory.js";
+
 function canFightMonster(monsterType) {
-    const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
-    const level = activeCharacter[`level`];
-  
-    switch (monsterType) {
-      case "Goblin":
-        return level >= 1;
-      case "Orc":
-        return level >= 15;
-      case "Troll":
-        return level >= 30;
-      default:
-        return false;
-    }
+  const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+  const level = activeCharacter[`level`];
+
+  switch (monsterType) {
+    case "Goblin":
+      return level >= 1;
+    case "Orc":
+      return level >= 15;
+    case "Troll":
+      return level >= 30;
+    default:
+      return false;
   }
+}
 
 function updateMonsterVisibility() {
-    const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
-    const level = activeCharacter[`level`];
-    console.log(level);
-  
-    const monsters = [
-      { id: 'Goblin', requiredLevel: 1 },
-      { id: 'Orc', requiredLevel: 15 },
-      { id: 'Troll', requiredLevel: 30 },
-      // Add other trees with their required levels
-    ];
-  
-    monsters.forEach(monster => {
-        const elements = document.querySelectorAll(`[data-monster-type="${monster.id}"]`);
-        elements.forEach(element => {
-          if (level >= monster.requiredLevel) {
-            element.style.display = 'flex';
-          } else {
-            element.style.display = 'none';
-          }
-        });
-      });
-    }
+  const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
+  const level = activeCharacter[`level`];
+  console.log(level);
 
+  const monsters = [
+    { id: "Goblin", requiredLevel: 1 },
+    { id: "Orc", requiredLevel: 15 },
+    { id: "Troll", requiredLevel: 30 },
+    // Add other trees with their required levels
+  ];
+
+  monsters.forEach((monster) => {
+    const elements = document.querySelectorAll(
+      `[data-monster-type="${monster.id}"]`
+    );
+    elements.forEach((element) => {
+      if (level >= monster.requiredLevel) {
+        element.style.display = "flex";
+      } else {
+        element.style.display = "none";
+      }
+    });
+  });
+}
+
+function getSkillFromFightStyle(fightStyle) {
+  const skillMap = {
+    power: "strength",
+    offensive: "attack",
+    defensive: "defence",
+    magic: "magic",
+    ranged: "ranged",
+  };
+
+  return skillMap[fightStyle];
+}
 
 // Combat skill
 
 let currentTask = null;
 const toast = document.querySelector(".toast");
 
-function startCombat(monsterType) {
+function startCombat(monsterType, fightStyle) {
   if (!canFightMonster(monsterType)) {
     console.log(`Your level is not high enough to fight ${monsterType}.`);
     return;
@@ -91,18 +106,16 @@ function startCombat(monsterType) {
   }
 
   function runTask(resolve, reject) {
-    let progressBarId = monsterType.replace(/\s+/g, "") + "Progress";
-    let progressBar = document
-      .getElementById(progressBarId)
-      .querySelector(".progress-fill");
-    progressBar.style.width = "0%";
 
     console.log(`Starting to fight ${monsterType}...`);
 
     let timeoutId = setTimeout(() => {
       let activeCharacter =
         JSON.parse(localStorage.getItem("activeCharacter")) || {};
-      activeCharacter.combatxp = (activeCharacter.combatxp || 0) + xpToAdd;
+      const skill = getSkillFromFightStyle(fightStyle);
+      console.log(skill);
+      const skillXPKey = skill + 'xp';
+      activeCharacter[skillXPKey] = (activeCharacter[skillXPKey] || 0) + xpToAdd;      
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 
       // Add loot to the inventory
@@ -117,30 +130,20 @@ function startCombat(monsterType) {
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 
       console.log(
-        `You gained ${xpToAdd} Combat XP from fighting the ${monsterType}.`
+        `You gained ${xpToAdd} ${skill} XP from fighting the ${monsterType}.`
       );
-      checkLevelUp("combat");
-      updateSkillInfo("combat");
-    //   updateMonsterVisibility();
+      checkLevelUp(skill);
+      console.log(`Updating ${skill} info...`)
+      updateMonsterVisibility();
       updateInventoryDisplay();
       resolve();
     }, timeInSeconds * 1000);
-
-    // Update progress bar
-    let progressInterval = setInterval(() => {
-      let increment = 100 / (timeInSeconds * 20); // 20 updates per second
-      progressBar.style.width =
-        Math.min(parseFloat(progressBar.style.width) + increment, 100) + "%";
-    }, 50); // Update every 50ms
 
     currentTask = {
       monsterType: monsterType,
       running: true,
       cancel: function () {
-        progressBar.style.width = "0%"; // Reset progress bar value
         clearTimeout(timeoutId);
-        clearInterval(progressInterval); // Clear progress interval when canceling
-        progressBar.value = 0; // Reset progress bar value
         reject(new Error("Task canceled"));
       },
     };
@@ -177,59 +180,61 @@ function startCombat(monsterType) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const combatLink = document.getElementById("combatContent");
-    const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
-    const monstersContainer = document.getElementById("combatContainer");
-    const fightStyleSelect = document.getElementById('fightStyle');
-    const fightButton = document.getElementById('fightButton');
-    let selectedMonster = null;
-    let fightStyle = null;
-    
-    // Assuming you have a monsters array somewhere
-    const monsters = ["Goblin", "Orc", "Troll"];
-    const monsterList = document.getElementById('monsterList');
-      
-    // Generate the monster list
-    monsters.forEach(monster => {
-      const li = document.createElement('li');
-      li.textContent = monster;
-      li.classList.add('monster');
-      li.dataset.monsterType = monster;
-      monsterList.appendChild(li);
-    });
-  
-    // combatLink.addEventListener("click", (event) => {
-    //   event.preventDefault(); // Prevent default link behavior
-    //   updateMonsterVisibility(activeCharacter);
-    // });
-  
-    monstersContainer.addEventListener("click", (event) => {
-      const monsterElement = event.target.closest(".monster");
-  
-      if (monsterElement) {
-        selectedMonster = monsterElement.dataset.monsterType;
-  
-        // Highlight selected monster
-        document.querySelectorAll('.monster').forEach(el => el.classList.remove('selected'));
-        monsterElement.classList.add('selected');
-    
-        // Enable fight button only when both monster and style are selected
-        fightButton.disabled = !selectedMonster || !fightStyle;
-      }
-    });
-  
-    fightStyleSelect.addEventListener('change', (event) => {
-      fightStyle = event.target.value;
-    
+  const combatLink = document.getElementById("combatContent");
+  const activeCharacter =
+    JSON.parse(localStorage.getItem("activeCharacter")) || {};
+  const monstersContainer = document.getElementById("combatContainer");
+  const fightStyleSelect = document.getElementById("fightStyle");
+  const fightButton = document.getElementById("fightButton");
+  let selectedMonster = null;
+  let fightStyle = null;
+
+  // Assuming you have a monsters array somewhere
+  const monsters = ["Goblin", "Orc", "Troll"];
+  const monsterList = document.getElementById("monsterList");
+
+  // Generate the monster list
+  monsters.forEach((monster) => {
+    const li = document.createElement("li");
+    li.textContent = monster;
+    li.classList.add("monster");
+    li.dataset.monsterType = monster;
+    monsterList.appendChild(li);
+  });
+
+  // combatLink.addEventListener("click", (event) => {
+  //   event.preventDefault(); // Prevent default link behavior
+  //   updateMonsterVisibility(activeCharacter);
+  // });
+
+  monstersContainer.addEventListener("click", (event) => {
+    const monsterElement = event.target.closest(".monster");
+
+    if (monsterElement) {
+      selectedMonster = monsterElement.dataset.monsterType;
+
+      // Highlight selected monster
+      document
+        .querySelectorAll(".monster")
+        .forEach((el) => el.classList.remove("selected"));
+      monsterElement.classList.add("selected");
+
       // Enable fight button only when both monster and style are selected
       fightButton.disabled = !selectedMonster || !fightStyle;
-    });
-  
-    fightButton.addEventListener('click', () => {
-      if (selectedMonster && fightStyle) {
-        console.log(`Fighting ${selectedMonster} with ${fightStyle} style...`);
-        startCombat(selectedMonster, fightStyle);
-      }
-    });
+    }
   });
-  
+
+  fightStyleSelect.addEventListener("change", (event) => {
+    fightStyle = event.target.value;
+
+    // Enable fight button only when both monster and style are selected
+    fightButton.disabled = !selectedMonster || !fightStyle;
+  });
+
+  fightButton.addEventListener("click", () => {
+    if (selectedMonster && fightStyle) {
+      console.log(`Fighting ${selectedMonster} with ${fightStyle} style...`);
+      startCombat(selectedMonster, fightStyle);
+    }
+  });
+});

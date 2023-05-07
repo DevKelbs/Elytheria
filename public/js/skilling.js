@@ -151,6 +151,7 @@ export function getCurrentSkillLevel(skill) {
 }
 
 export function updateSkillInfo(skill) {
+  console.log(`Updating ${skill}`)
   const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
   const skillXP = activeCharacter[`${skill}xp`] || 0;
   
