@@ -1,9 +1,10 @@
 import {
   checkLevelUp,
+  calculateCombatLevel,
   getCurrentSkillLevel,
   updateSkillInfo,
 } from "./skilling.js";
-import { monsters } from "./monsters.js";
+import { monsters } from "./data/monsters.js";
 import { updateInventoryDisplay } from "./inventory.js";
 
 function canFightMonster(monsterType) {
@@ -24,16 +25,9 @@ function canFightMonster(monsterType) {
 
 function updateMonsterVisibility() {
   const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
-  const level = activeCharacter[`level`];
-  console.log(level);
+  const level = activeCharacter["level"];
 
-  const monsters = [
-    { id: "Goblin", requiredLevel: 1 },
-    { id: "Orc", requiredLevel: 15 },
-    { id: "Troll", requiredLevel: 30 },
-    // Add other trees with their required levels
-  ];
-
+  // Use monsterTypes instead of the hardcoded monsters array
   monsters.forEach((monster) => {
     const elements = document.querySelectorAll(
       `[data-monster-type="${monster.id}"]`
@@ -47,6 +41,7 @@ function updateMonsterVisibility() {
     });
   });
 }
+
 
 function getSkillFromFightStyle(fightStyle) {
   const skillMap = {
@@ -126,6 +121,7 @@ function startCombat(monsterType, fightStyle) {
       );
       checkLevelUp(skill);
       console.log(`Updating ${skill} info...`)
+      calculateCombatLevel();
       updateMonsterVisibility();
       updateInventoryDisplay();
       resolve();
@@ -181,18 +177,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedMonster = null;
   let fightStyle = null;
 
-  // Assuming you have a monsters array somewhere
-  const monsters = ["Goblin", "Orc", "Troll"];
-  const monsterList = document.getElementById("monsterList");
+// Use the imported monsterTypes instead of the hardcoded monsters array
+const monsterList = document.getElementById("monsterList");
 
-  // Generate the monster list
+// Generate the monster list
   monsters.forEach((monster) => {
-    const li = document.createElement("li");
-    li.textContent = monster;
-    li.classList.add("monster");
-    li.dataset.monsterType = monster;
-    monsterList.appendChild(li);
-  });
+  const li = document.createElement("li");
+  li.textContent = monster.name;
+  li.classList.add("monster");
+  li.dataset.monsterType = monster.name;
+  monsterList.appendChild(li);
+});
+
 
   // combatLink.addEventListener("click", (event) => {
   //   event.preventDefault(); // Prevent default link behavior

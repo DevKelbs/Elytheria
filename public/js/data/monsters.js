@@ -1,10 +1,34 @@
-const monsters = [
+export const monsters = [
     {
-        id: 1,
-        name: 'Goblin',
-        level: 3,
-        hp: 30,
-        xpReward: 25,
+      name: "Goblin",
+      xpToAdd: 10,
+      timeInSeconds: 1.5,
+      drops: [
+        { item: "BronzeSword", chance: 10 },
+        { item: "Bones", chance: 100 },
+      ],
+      weaknesses: ["Power", "Magic"]
     },
-    // ... more monsters
-];
+    {
+      name: "Orc",
+      xpToAdd: 15,
+      timeInSeconds: 2,
+      drops: [
+        { item: "BronzeSword", chance: 5 },
+        { item: "Bones", chance: 100 },
+      ],
+      weaknesses: ["Ranged"]
+    },
+    {
+      name: "Troll",
+      xpToAdd: 22,
+      timeInSeconds: 2.5,
+      drops: [
+        { item: "BronzeSword", chance: 5 },
+        { item: "Bones", chance: 100 },
+      ],
+      weaknesses: ["Magic"]
+    }
+    // Add more monsters here...
+  ];
+  

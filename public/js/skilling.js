@@ -136,6 +136,38 @@ export function checkLevelUp(skill) {
   updateSkillStats();
 }
 
+export function calculateCombatLevel() {
+  // Fetch the activeCharacter object from localStorage
+  const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter")) || {};
+
+  // Extract skill levels from the activeCharacter object
+  const levels = {
+    attack: activeCharacter.attack || 0,
+    strength: activeCharacter.strength || 0,
+    defence: activeCharacter.defence || 0,
+    hitpoints: activeCharacter.hitpoints || 0,
+    prayer: activeCharacter.prayer || 0,
+    magic: activeCharacter.magic || 0,
+    ranged: activeCharacter.ranged || 0,
+  };
+
+  const baseCombat = 0.25 * (levels.defence + levels.hitpoints + Math.floor(levels.prayer / 2));
+  const meleeCombat = 0.325 * (levels.attack + levels.strength);
+  const rangeCombat = 0.325 * Math.floor(levels.ranged * 1.5);
+  const mageCombat = 0.325 * Math.floor(levels.magic * 1.5);
+
+  const combatLevel = Math.floor(baseCombat + Math.max(meleeCombat, rangeCombat, mageCombat));
+
+  // Update the activeCharacter object with the calculated combat level
+  activeCharacter.level = combatLevel;
+
+  // Save the updated activeCharacter object back to localStorage
+  localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+  console.log("Combat Level:", combatLevel);
+
+  return combatLevel;
+}
+
 export function getCurrentSkillLevel(skill) {
   const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
   const currentXP = activeCharacter[`${skill}xp`] || 0;
