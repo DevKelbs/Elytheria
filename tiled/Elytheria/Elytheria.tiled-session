@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Tileset-Props.tsx",
+    "activeFile": "",
     "expandedProjectPaths": [
-        "TiledMap Editor",
-        "."
+        ".",
+        "TiledMap Editor"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -19,11 +19,11 @@
             "scaleInEditor": 1
         },
         "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx": {
-            "scale": 0.297,
+            "scale": 0.24,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 1052.1885521885524,
-                "y": 1202.020202020202
+                "x": 1022.9166666666669,
+                "y": 1181.25
             }
         },
         "TiledMap Editor/Terrain.tsx": {
@@ -37,13 +37,11 @@
     "map.layerDataFormat": null,
     "map.width": 64,
     "openFiles": [
-        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx",
-        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Tileset-Props.tsx"
     ],
     "project": "Elytheria.tiled-project",
     "recentFiles": [
-        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx",
         "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Tileset-Props.tsx",
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx",
         "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Terrain.tsx",
         "TiledMap Editor/Terrain.tsx"
     ],
