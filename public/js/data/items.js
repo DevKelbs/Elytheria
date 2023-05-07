@@ -1,8 +1,14 @@
-const items = [
+export const items = [
     {
-        id: 1,
-        name: 'Wood Log',
-        type: 'resource',
+      name: "NormalTreeLog",
+      imageSrc: "./assets/images/objects/leaf1.png",
+      type: "resource"
     },
-    // ... more items
-];
+    {
+      name: "OakTreeLog",
+      imageSrc: "./assets/images/objects/leaf2.png",
+      type: "resource"
+    },
+    // Add more items with their corresponding properties
+  ];
+  

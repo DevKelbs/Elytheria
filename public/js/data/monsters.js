@@ -1,6 +1,7 @@
 export const monsters = [
     {
       name: "Goblin",
+      requiredLevel: 1,
       xpToAdd: 10,
       timeInSeconds: 1.5,
       drops: [
@@ -11,6 +12,7 @@ export const monsters = [
     },
     {
       name: "Orc",
+      requiredLevel: 15,
       xpToAdd: 15,
       timeInSeconds: 2,
       drops: [
@@ -21,6 +23,7 @@ export const monsters = [
     },
     {
       name: "Troll",
+      requiredLevel: 30,
       xpToAdd: 22,
       timeInSeconds: 2.5,
       drops: [

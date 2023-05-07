@@ -9,18 +9,15 @@ import { updateInventoryDisplay } from "./inventory.js";
 
 function canFightMonster(monsterType) {
   const activeCharacter = JSON.parse(localStorage.getItem("activeCharacter"));
-  const level = activeCharacter[`level`];
+  const level = activeCharacter.level;
 
-  switch (monsterType) {
-    case "Goblin":
-      return level >= 1;
-    case "Orc":
-      return level >= 15;
-    case "Troll":
-      return level >= 30;
-    default:
-      return false;
+  const monster = monsters.find(m => m.name === monsterType);
+
+  if (!monster) {
+    return false;
   }
+
+  return level >= monster.requiredLevel;
 }
 
 function updateMonsterVisibility() {
@@ -30,7 +27,7 @@ function updateMonsterVisibility() {
   // Use monsterTypes instead of the hardcoded monsters array
   monsters.forEach((monster) => {
     const elements = document.querySelectorAll(
-      `[data-monster-type="${monster.id}"]`
+      `[data-monster-type="${monster.name}"]`
     );
     elements.forEach((element) => {
       if (level >= monster.requiredLevel) {
@@ -100,21 +97,33 @@ function startCombat(monsterType, fightStyle) {
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 
       // Add loot to the inventory
+      const droppedItems = {};
+
       drops.forEach(drop => {
         const { item, chance } = drop;
-      
+          
         // Check if the drop should occur based on the chance
         if (Math.random() * 100 < chance) {
-          // Display toast notification
-          toast.textContent = `+1 ${item}!`;
-          toast.classList.add("show");
-          setTimeout(() => toast.classList.remove("show"), 1000); // Hide toast after 1 second
-      
           activeCharacter.inventory[item] =
             (activeCharacter.inventory[item] || 0) + 1;
-          localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+          droppedItems[item] = (droppedItems[item] || 0) + 1;
         }
-      });      
+      });
+      
+      // Create a string listing dropped items and their quantities
+      const dropList = Object.entries(droppedItems)
+        .map(([item, quantity]) => `+${quantity} ${item}`)
+        .join(", ");
+      
+      if (dropList !== "") {
+        // Display toast notification
+        toast.textContent = dropList + "!";
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 1000); // Hide toast after 1 second
+      }
+      
+      localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+      
 
       console.log(
         `You gained ${xpToAdd} ${skill} XP from fighting the ${monsterType}.`
