@@ -3,7 +3,7 @@ import {
   getCurrentSkillLevel,
   updateSkillInfo,
 } from "./skilling.js";
-
+import { monsters } from "./monsters.js";
 import { updateInventoryDisplay } from "./inventory.js";
 
 function canFightMonster(monsterType) {
@@ -82,29 +82,15 @@ function startCombat(monsterType, fightStyle) {
     currentTask = null;
   }
 
-  let xpToAdd;
-  let timeInSeconds;
+  const monster = monsters.find(m => m.name === monsterType);
 
-  switch (monsterType) {
-    // Add your own monsters and their respective xp and time values here
-    case "Goblin":
-      xpToAdd = 10;
-      timeInSeconds = 1.5;
-      break;
-    case "Orc":
-      xpToAdd = 15;
-      timeInSeconds = 2;
-      break;
-    case "Troll":
-      xpToAdd = 22;
-      timeInSeconds = 2.5;
-      break;
-    // ...
-    default:
-      xpToAdd = 0;
-      timeInSeconds = 0;
+  if (!monster) {
+    console.log(`Monster not found: ${monsterType}`);
+    return;
   }
-
+  
+  const { xpToAdd, timeInSeconds, drops, weaknesses } = monster;
+  
   function runTask(resolve, reject) {
 
     console.log(`Starting to fight ${monsterType}...`);
@@ -119,15 +105,21 @@ function startCombat(monsterType, fightStyle) {
       localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
 
       // Add loot to the inventory
-      const lootType = (monsterType + " Loot").replace(/\s+/g, "");
-      // Display toast notification
-      toast.textContent = `+1 ${lootType}!`;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 1000); // Hide toast after 3 seconds
-
-      activeCharacter.inventory[lootType] =
-        (activeCharacter.inventory[lootType] || 0) + 1;
-      localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+      drops.forEach(drop => {
+        const { item, chance } = drop;
+      
+        // Check if the drop should occur based on the chance
+        if (Math.random() * 100 < chance) {
+          // Display toast notification
+          toast.textContent = `+1 ${item}!`;
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 1000); // Hide toast after 1 second
+      
+          activeCharacter.inventory[item] =
+            (activeCharacter.inventory[item] || 0) + 1;
+          localStorage.setItem("activeCharacter", JSON.stringify(activeCharacter));
+        }
+      });      
 
       console.log(
         `You gained ${xpToAdd} ${skill} XP from fighting the ${monsterType}.`
