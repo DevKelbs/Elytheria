@@ -1,0 +1,51 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx",
+    "expandedProjectPaths": [
+        ".",
+        "TiledMap Editor"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Terrain.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Tileset-Props.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 410.6060606060606,
+                "y": 642.4242424242425
+            }
+        },
+        "TiledMap Editor/Terrain.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "/Users/kcorr/Documents/Tiled/Elytheria/Tilesets",
+    "map.height": 64,
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.width": 64,
+    "openFiles": [
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx",
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Tileset-Props.tsx"
+    ],
+    "project": "Elytheria.tiled-project",
+    "recentFiles": [
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Tileset-Props.tsx",
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/cove.tmx",
+        "/Users/kcorr/Downloads/EPIC RPG World Pack - Grass Land V. 1.4.3/TiledMap Editor/Terrain.tsx",
+        "TiledMap Editor/Terrain.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
